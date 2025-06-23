@@ -108,7 +108,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/RatingSnapshot'
     tag:
       - analyst
   /grades-latest-news:
@@ -884,6 +886,45 @@ components:
         - epsLow
         - numAnalystsRevenue
         - numAnalystsEps
+    RatingSnapshot:
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        rating:
+          type: string
+          example: "A-"
+        overallScore:
+          type: integer
+          example: 4
+        discountedCashFlowScore:
+          type: integer
+          example: 3
+        returnOnEquityScore:
+          type: integer
+          example: 5
+        returnOnAssetsScore:
+          type: integer
+          example: 5
+        debtToEquityScore:
+          type: integer
+          example: 4
+        priceToEarningsScore:
+          type: integer
+          example: 2
+        priceToBookScore:
+          type: integer
+          example: 1
+      required:
+        - symbol
+        - rating
+        - overallScore
+        - discountedCashFlowScore
+        - returnOnEquityScore
+        - returnOnAssetsScore
+        - debtToEquityScore
+        - priceToEarningsScore
+        - priceToBookScore
     News:
       properties:
         symbol:
