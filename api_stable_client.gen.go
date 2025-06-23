@@ -26,6 +26,46 @@ const (
 	ApiKeyAuthScopes = "ApiKeyAuth.Scopes"
 )
 
+// CompanyProfile defines model for CompanyProfile.
+type CompanyProfile struct {
+	Address           string             `json:"address"`
+	AverageVolume     int                `json:"averageVolume"`
+	Beta              float64            `json:"beta"`
+	Ceo               string             `json:"ceo"`
+	Change            float64            `json:"change"`
+	ChangePercentage  float64            `json:"changePercentage"`
+	Cik               string             `json:"cik"`
+	City              string             `json:"city"`
+	CompanyName       string             `json:"companyName"`
+	Country           string             `json:"country"`
+	Currency          string             `json:"currency"`
+	Cusip             string             `json:"cusip"`
+	DefaultImage      bool               `json:"defaultImage"`
+	Description       string             `json:"description"`
+	Exchange          string             `json:"exchange"`
+	ExchangeFullName  string             `json:"exchangeFullName"`
+	FullTimeEmployees string             `json:"fullTimeEmployees"`
+	Image             string             `json:"image"`
+	Industry          string             `json:"industry"`
+	IpoDate           openapi_types.Date `json:"ipoDate"`
+	IsActivelyTrading bool               `json:"isActivelyTrading"`
+	IsAdr             bool               `json:"isAdr"`
+	IsEtf             bool               `json:"isEtf"`
+	IsFund            bool               `json:"isFund"`
+	Isin              string             `json:"isin"`
+	LastDividend      float64            `json:"lastDividend"`
+	MarketCap         int                `json:"marketCap"`
+	Phone             string             `json:"phone"`
+	Price             float64            `json:"price"`
+	Range             string             `json:"range"`
+	Sector            string             `json:"sector"`
+	State             string             `json:"state"`
+	Symbol            string             `json:"symbol"`
+	Volume            int                `json:"volume"`
+	Website           string             `json:"website"`
+	Zip               string             `json:"zip"`
+}
+
 // FinancialEstimates defines model for FinancialEstimates.
 type FinancialEstimates struct {
 	Date               openapi_types.Date `json:"date"`
@@ -126,6 +166,11 @@ type GetHistoricalPriceEodLightParams struct {
 	To     *openapi_types.Date `form:"to,omitempty" json:"to,omitempty"`
 }
 
+// GetProfileParams defines parameters for GetProfile.
+type GetProfileParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
+}
+
 // GetRatingsSnapshotParams defines parameters for GetRatingsSnapshot.
 type GetRatingsSnapshotParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
@@ -159,6 +204,9 @@ const (
 
 	// /historical-price-eod/light
 	GetHistoricalPriceEodLightOperationPath OperationPath = "/historical-price-eod/light"
+
+	// /profile
+	GetProfileOperationPath OperationPath = "/profile"
 
 	// /ratings-snapshot
 	GetRatingsSnapshotOperationPath OperationPath = "/ratings-snapshot"
@@ -255,6 +303,9 @@ type ClientInterface interface {
 	// GetHistoricalPriceEodLight request
 	GetHistoricalPriceEodLight(ctx context.Context, params *GetHistoricalPriceEodLightParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetProfile request
+	GetProfile(ctx context.Context, params *GetProfileParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetRatingsSnapshot request
 	GetRatingsSnapshot(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -303,6 +354,18 @@ func (c *Client) GetHistoricalPriceEodFull(ctx context.Context, params *GetHisto
 
 func (c *Client) GetHistoricalPriceEodLight(ctx context.Context, params *GetHistoricalPriceEodLightParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetHistoricalPriceEodLightRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetProfile(ctx context.Context, params *GetProfileParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetProfileRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -657,6 +720,51 @@ func NewGetHistoricalPriceEodLightRequest(server string, params *GetHistoricalPr
 	return req, nil
 }
 
+// NewGetProfileRequest generates requests for GetProfile
+func NewGetProfileRequest(server string, params *GetProfileParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/profile")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewGetRatingsSnapshotRequest generates requests for GetRatingsSnapshot
 func NewGetRatingsSnapshotRequest(server string, params *GetRatingsSnapshotParams) (*http.Request, error) {
 	var err error
@@ -895,6 +1003,9 @@ type ClientWithResponsesInterface interface {
 	// GetHistoricalPriceEodLightWithResponse request
 	GetHistoricalPriceEodLightWithResponse(ctx context.Context, params *GetHistoricalPriceEodLightParams, reqEditors ...RequestEditorFn) (*GetHistoricalPriceEodLightClientResponse, error)
 
+	// GetProfileWithResponse request
+	GetProfileWithResponse(ctx context.Context, params *GetProfileParams, reqEditors ...RequestEditorFn) (*GetProfileClientResponse, error)
+
 	// GetRatingsSnapshotWithResponse request
 	GetRatingsSnapshotWithResponse(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*GetRatingsSnapshotClientResponse, error)
 
@@ -987,6 +1098,28 @@ func (r GetHistoricalPriceEodLightClientResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetHistoricalPriceEodLightClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetProfileClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CompanyProfile
+}
+
+// Status returns HTTPResponse.Status
+func (r GetProfileClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetProfileClientResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -1093,6 +1226,15 @@ func (c *ClientWithResponses) GetHistoricalPriceEodLightWithResponse(ctx context
 		return nil, err
 	}
 	return ParseGetHistoricalPriceEodLightClientResponse(rsp)
+}
+
+// GetProfileWithResponse request returning *GetProfileClientResponse
+func (c *ClientWithResponses) GetProfileWithResponse(ctx context.Context, params *GetProfileParams, reqEditors ...RequestEditorFn) (*GetProfileClientResponse, error) {
+	rsp, err := c.GetProfile(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetProfileClientResponse(rsp)
 }
 
 // GetRatingsSnapshotWithResponse request returning *GetRatingsSnapshotClientResponse
@@ -1226,6 +1368,32 @@ func ParseGetHistoricalPriceEodLightClientResponse(rsp *http.Response) (*GetHist
 	return response, nil
 }
 
+// ParseGetProfileClientResponse parses an HTTP response from a GetProfileWithResponse call
+func ParseGetProfileClientResponse(rsp *http.Response) (*GetProfileClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetProfileClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CompanyProfile
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseGetRatingsSnapshotClientResponse parses an HTTP response from a GetRatingsSnapshotWithResponse call
 func ParseGetRatingsSnapshotClientResponse(rsp *http.Response) (*GetRatingsSnapshotClientResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -1307,34 +1475,47 @@ func ParseGetSearchSymbolClientResponse(rsp *http.Response) (*GetSearchSymbolCli
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
-	"MkySgkGhvnucLjRPL/8OAAD//5vZDprOHQAA",
+	"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",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

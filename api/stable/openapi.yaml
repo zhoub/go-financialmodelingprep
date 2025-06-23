@@ -197,6 +197,25 @@ paths:
                   $ref: '#/components/schemas/FullCandle'
     tag:
       - chart
+  /profile:
+    get:
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: A list of company profile
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyProfile'
+    tag:
+      - company
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -455,4 +474,157 @@ components:
         - change
         - changePercent
         - vwap
-
+    CompanyProfile:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        price:
+          type: number
+          format: double
+          example: 232.8
+        marketCap:
+          type: integer
+          example: 3500823120000
+        beta:
+          type: number
+          format: double
+          example: 1.24
+        lastDividend:
+          type: number
+          format: double
+          example: 0.99
+        range:
+          type: string
+          example: "164.08-260.1"
+        change:
+          type: number
+          format: double
+          example: 4.79
+        changePercentage:
+          type: number
+          format: double
+          example: 2.1008
+        volume:
+          type: integer
+          example: 0
+        averageVolume:
+          type: integer
+          example: 50542058
+        companyName:
+          type: string
+          example: "Apple Inc."
+        currency:
+          type: string
+          example: "USD"
+        cik:
+          type: string
+          example: "0000320193"
+        isin:
+          type: string
+          example: "US0378331005"
+        cusip:
+          type: string
+          example: "037833100"
+        exchangeFullName:
+          type: string
+          example: "NASDAQ Global Select"
+        exchange:
+          type: string
+          example: "NASDAQ"
+        industry:
+          type: string
+          example: "Consumer Electronics"
+        website:
+          type: string
+          example: "https://www.apple.com"
+        description:
+          type: string
+          example: "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories comprising AirPods, Apple TV, Apple Watch, Beats products, and HomePod. It also provides AppleCare support and cloud services; and operates various platforms, including the App Store that allow customers to discov..."
+        ceo:
+          type: string
+          example: "Mr. Timothy D. Cook"
+        sector:
+          type: string
+          example: "Technology"
+        country:
+          type: string
+          example: "US"
+        fullTimeEmployees:
+          type: string
+          example: "164000"
+        phone:
+          type: string
+          example: "(408) 996-1010"
+        address:
+          type: string
+          example: "One Apple Park Way"
+        city:
+          type: string
+          example: "Cupertino"
+        state:
+          type: string
+          example: "CA"
+        zip:
+          type: string
+          example: "95014"
+        image:
+          type: string
+          example: "https://images.financialmodelingprep.com/symbol/AAPL.png"
+        ipoDate:
+          type: string
+          format: date
+          example: "1980-12-12"
+        defaultImage:
+          type: boolean
+          example: false
+        isEtf:
+          type: boolean
+          example: false
+        isActivelyTrading:
+          type: boolean
+          example: true
+        isAdr:
+          type: boolean
+          example: false
+        isFund:
+          type: boolean
+          example: false
+      required:
+            - symbol
+            - price
+            - marketCap
+            - beta
+            - lastDividend
+            - range
+            - change
+            - changePercentage
+            - volume
+            - averageVolume
+            - companyName
+            - currency
+            - cik
+            - isin
+            - cusip
+            - exchangeFullName
+            - exchange
+            - industry
+            - website
+            - description
+            - ceo
+            - sector
+            - country
+            - fullTimeEmployees
+            - phone
+            - address
+            - city
+            - state
+            - zip
+            - image
+            - ipoDate
+            - defaultImage
+            - isEtf
+            - isActivelyTrading
+            - isAdr
+            - isFund
