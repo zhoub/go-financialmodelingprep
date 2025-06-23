@@ -135,6 +135,68 @@ paths:
                   $ref: '#/components/schemas/News'
     tag:
       - analyst
+  /historical-price-eod/light:
+    get:
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        '200':
+          description: A list of historical EOD price data (light)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LightCandle'
+    tag:
+      - chart
+  /historical-price-eod/full:
+    get:
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        '200':
+          description: A list of historical EOD price data (full)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FullCandle'
+    tag:
+      - chart
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -322,3 +384,75 @@ components:
         - gradingCompany
         - action
         - priceWhenPosted
+    LightCandle:
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          format: date
+          example: "2025-02-04"
+        price:
+          type: number
+          example: 232.8
+        volume:
+          type: integer
+          example: 44489128
+      required:
+        - symbol
+        - date
+        - price
+        - volume
+    FullCandle:
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          format: date
+          example: "2025-02-04"
+        open:
+          type: number
+          format: double
+          example: 227.2
+        high:
+          type: number
+          format: double
+          example: 233.13
+        low:
+          type: number
+          format: double
+          example: 226.65
+        close:
+          type: number
+          format: double
+          example: 232.8
+        volume:
+          type: integer
+          example: 44489128
+        change:
+          type: number
+          format: double
+          example: 5.6
+        changePercent:
+          type: number
+          format: double
+          example: 2.46479
+        vwap:
+          type: number
+          format: double
+          example: 230.86
+      required:
+        - symbol
+        - date
+        - open
+        - high
+        - low
+        - close
+        - volume
+        - change
+        - changePercent
+        - vwap
+

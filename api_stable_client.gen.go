@@ -52,6 +52,28 @@ type FinancialEstimates struct {
 	Symbol             string             `json:"symbol"`
 }
 
+// FullCandle defines model for FullCandle.
+type FullCandle struct {
+	Change        float64            `json:"change"`
+	ChangePercent float64            `json:"changePercent"`
+	Close         float64            `json:"close"`
+	Date          openapi_types.Date `json:"date"`
+	High          float64            `json:"high"`
+	Low           float64            `json:"low"`
+	Open          float64            `json:"open"`
+	Symbol        string             `json:"symbol"`
+	Volume        int                `json:"volume"`
+	Vwap          float64            `json:"vwap"`
+}
+
+// LightCandle defines model for LightCandle.
+type LightCandle struct {
+	Date   openapi_types.Date `json:"date"`
+	Price  float32            `json:"price"`
+	Symbol string             `json:"symbol"`
+	Volume int                `json:"volume"`
+}
+
 // News defines model for News.
 type News struct {
 	Action          string    `json:"action"`
@@ -90,6 +112,20 @@ type GetGradesLatestNewsParams struct {
 	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
 }
 
+// GetHistoricalPriceEodFullParams defines parameters for GetHistoricalPriceEodFull.
+type GetHistoricalPriceEodFullParams struct {
+	Symbol string              `form:"symbol" json:"symbol"`
+	From   *openapi_types.Date `form:"from,omitempty" json:"from,omitempty"`
+	To     *openapi_types.Date `form:"to,omitempty" json:"to,omitempty"`
+}
+
+// GetHistoricalPriceEodLightParams defines parameters for GetHistoricalPriceEodLight.
+type GetHistoricalPriceEodLightParams struct {
+	Symbol string              `form:"symbol" json:"symbol"`
+	From   *openapi_types.Date `form:"from,omitempty" json:"from,omitempty"`
+	To     *openapi_types.Date `form:"to,omitempty" json:"to,omitempty"`
+}
+
 // GetRatingsSnapshotParams defines parameters for GetRatingsSnapshot.
 type GetRatingsSnapshotParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
@@ -117,6 +153,12 @@ const (
 
 	// /grades-latest-news
 	GetGradesLatestNewsOperationPath OperationPath = "/grades-latest-news"
+
+	// /historical-price-eod/full
+	GetHistoricalPriceEodFullOperationPath OperationPath = "/historical-price-eod/full"
+
+	// /historical-price-eod/light
+	GetHistoricalPriceEodLightOperationPath OperationPath = "/historical-price-eod/light"
 
 	// /ratings-snapshot
 	GetRatingsSnapshotOperationPath OperationPath = "/ratings-snapshot"
@@ -207,6 +249,12 @@ type ClientInterface interface {
 	// GetGradesLatestNews request
 	GetGradesLatestNews(ctx context.Context, params *GetGradesLatestNewsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetHistoricalPriceEodFull request
+	GetHistoricalPriceEodFull(ctx context.Context, params *GetHistoricalPriceEodFullParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetHistoricalPriceEodLight request
+	GetHistoricalPriceEodLight(ctx context.Context, params *GetHistoricalPriceEodLightParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetRatingsSnapshot request
 	GetRatingsSnapshot(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -231,6 +279,30 @@ func (c *Client) GetAnalystEstimates(ctx context.Context, params *GetAnalystEsti
 
 func (c *Client) GetGradesLatestNews(ctx context.Context, params *GetGradesLatestNewsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetGradesLatestNewsRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetHistoricalPriceEodFull(ctx context.Context, params *GetHistoricalPriceEodFullParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetHistoricalPriceEodFullRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetHistoricalPriceEodLight(ctx context.Context, params *GetHistoricalPriceEodLightParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetHistoricalPriceEodLightRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -407,6 +479,160 @@ func NewGetGradesLatestNewsRequest(server string, params *GetGradesLatestNewsPar
 		if params.Limit != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetHistoricalPriceEodFullRequest generates requests for GetHistoricalPriceEodFull
+func NewGetHistoricalPriceEodFullRequest(server string, params *GetHistoricalPriceEodFullParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/historical-price-eod/full")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.From != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "from", runtime.ParamLocationQuery, *params.From); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.To != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "to", runtime.ParamLocationQuery, *params.To); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetHistoricalPriceEodLightRequest generates requests for GetHistoricalPriceEodLight
+func NewGetHistoricalPriceEodLightRequest(server string, params *GetHistoricalPriceEodLightParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/historical-price-eod/light")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.From != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "from", runtime.ParamLocationQuery, *params.From); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.To != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "to", runtime.ParamLocationQuery, *params.To); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -663,6 +889,12 @@ type ClientWithResponsesInterface interface {
 	// GetGradesLatestNewsWithResponse request
 	GetGradesLatestNewsWithResponse(ctx context.Context, params *GetGradesLatestNewsParams, reqEditors ...RequestEditorFn) (*GetGradesLatestNewsClientResponse, error)
 
+	// GetHistoricalPriceEodFullWithResponse request
+	GetHistoricalPriceEodFullWithResponse(ctx context.Context, params *GetHistoricalPriceEodFullParams, reqEditors ...RequestEditorFn) (*GetHistoricalPriceEodFullClientResponse, error)
+
+	// GetHistoricalPriceEodLightWithResponse request
+	GetHistoricalPriceEodLightWithResponse(ctx context.Context, params *GetHistoricalPriceEodLightParams, reqEditors ...RequestEditorFn) (*GetHistoricalPriceEodLightClientResponse, error)
+
 	// GetRatingsSnapshotWithResponse request
 	GetRatingsSnapshotWithResponse(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*GetRatingsSnapshotClientResponse, error)
 
@@ -711,6 +943,50 @@ func (r GetGradesLatestNewsClientResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetGradesLatestNewsClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetHistoricalPriceEodFullClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]FullCandle
+}
+
+// Status returns HTTPResponse.Status
+func (r GetHistoricalPriceEodFullClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetHistoricalPriceEodFullClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetHistoricalPriceEodLightClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]LightCandle
+}
+
+// Status returns HTTPResponse.Status
+func (r GetHistoricalPriceEodLightClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetHistoricalPriceEodLightClientResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -801,6 +1077,24 @@ func (c *ClientWithResponses) GetGradesLatestNewsWithResponse(ctx context.Contex
 	return ParseGetGradesLatestNewsClientResponse(rsp)
 }
 
+// GetHistoricalPriceEodFullWithResponse request returning *GetHistoricalPriceEodFullClientResponse
+func (c *ClientWithResponses) GetHistoricalPriceEodFullWithResponse(ctx context.Context, params *GetHistoricalPriceEodFullParams, reqEditors ...RequestEditorFn) (*GetHistoricalPriceEodFullClientResponse, error) {
+	rsp, err := c.GetHistoricalPriceEodFull(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetHistoricalPriceEodFullClientResponse(rsp)
+}
+
+// GetHistoricalPriceEodLightWithResponse request returning *GetHistoricalPriceEodLightClientResponse
+func (c *ClientWithResponses) GetHistoricalPriceEodLightWithResponse(ctx context.Context, params *GetHistoricalPriceEodLightParams, reqEditors ...RequestEditorFn) (*GetHistoricalPriceEodLightClientResponse, error) {
+	rsp, err := c.GetHistoricalPriceEodLight(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetHistoricalPriceEodLightClientResponse(rsp)
+}
+
 // GetRatingsSnapshotWithResponse request returning *GetRatingsSnapshotClientResponse
 func (c *ClientWithResponses) GetRatingsSnapshotWithResponse(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*GetRatingsSnapshotClientResponse, error) {
 	rsp, err := c.GetRatingsSnapshot(ctx, params, reqEditors...)
@@ -870,6 +1164,58 @@ func ParseGetGradesLatestNewsClientResponse(rsp *http.Response) (*GetGradesLates
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []News
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetHistoricalPriceEodFullClientResponse parses an HTTP response from a GetHistoricalPriceEodFullWithResponse call
+func ParseGetHistoricalPriceEodFullClientResponse(rsp *http.Response) (*GetHistoricalPriceEodFullClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetHistoricalPriceEodFullClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []FullCandle
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetHistoricalPriceEodLightClientResponse parses an HTTP response from a GetHistoricalPriceEodLightWithResponse call
+func ParseGetHistoricalPriceEodLightClientResponse(rsp *http.Response) (*GetHistoricalPriceEodLightClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetHistoricalPriceEodLightClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []LightCandle
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -961,30 +1307,34 @@ func ParseGetSearchSymbolClientResponse(rsp *http.Response) (*GetSearchSymbolCli
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"H4sIAAAAAAAC/9xXXXPbthL9Kxzc+yhKFEVKpN6Ua8fXrZ2qkdNMm/EDRK5JJCSAAKAUNuP/3iFIiZ/y",
-	"SDONZ9q8KObgHGLP7p5dfkcBSzmjQJVEy+9IBjGkWP/3LaGYBgQn11KRFCvQT7lgHIQi5V8hVlD8wjec",
-	"8gTQEtmW7ZuWb9oeGqEnJlKs0LI8N0Iq58UZqQShEXoeIdgStdpFLYqpY81tz3Gmtr9oUrBsmzRIaJZu",
-	"QRxI/k+ieIDF9eaesziBuWP7AYjtuwvn/BeHuHd/1/Vde2YvHGd+AU0/As3jeJ7nXsLTi0rTTOdzazYf",
-	"AnHZDcAfz73zXshl/9bW2LamztkE3ev6Y8u1bOcsOAV1SwOWQr+E/KlrzVx/bvmXMQ1kYTH13NnC9n3r",
-	"JWBP9pnvOHPfXSys6XlXyNIVxUkulbzmssVV541QBVHv/HvYAc3ajTgdBInyZFcvx5tZ/szS/866bMXT",
-	"U6skci8m6qqneewLeGSEr79xoLIX22w69525586n8wuZetFpqsXUc+xLL9WNr7yUa3tT+zymPN2ypO20",
-	"q9X6ru+pWtOvGREQouWnA3B0cOCG3u0stmqj6SUtf2p6Xm2iDQuuLb3TG90e63RvV6xeHropPjpXbUNH",
-	"Pxlsjl6HPT6P0DvYD0w1HCjCaFvtmCXh0ASLBA4Jjf7HUo5p3sb8NF6PjXsmIkyHoBT2NwKHnQH6yw7E",
-	"HkgUqxMY+QZL+PD+rg3bAv2T0AiPA5aeAq6zbUJkDKINfVNBT8EeiEo6l1zjfI0T40FgKku1jHssIkKl",
-	"gWlorHGeAlXGbyzJUjCuBNmBcSPYXsUj4zoHadiW7VZPjI9ExcZGCUYj4+H+yljFgEODPRm3dAdSMWFc",
-	"4XxpVLk7dcueIrFSXC4nk/1+P26qM7HdiWVPnJmzcC3PmnCcc5yYW8BKml8dEw7rjomlqeoIzbSM0MQ0",
-	"NHkZobnTEZphEaEZ6XhMyEGaRYCHB3uiYlPqAE2Vhs3FKBNkKCAuYEdYJi+uDy5IAB9joGsmVWEBDehi",
-	"MV7Y7oC78Kouwquhdc41Ldu0nIepv5x6S8sZW5b1R3e5MxVJBze8Ieda/36Jc7VvVye7WZztxuhWe6PV",
-	"utL2Gnh06P6+loVhbACLIN4cg2obR5AJATTo2MCHzdXg7vstiDGNOoK/W22uVr++dP5tliTvcDqIM24S",
-	"tsWJsYEEguFW6SFXnCdg3NJgfG7+Lps8+o2jWpuBSBpiPB552fZzEUPBKyHIBFH5pvg6KaVecfIz5KtM",
-	"6RFNKFqirxmI/PDCJcKcfIG8vifWCPRcEBL6xAqcKq0Nvb1fG6v1LRqhHQipzR9JhYtp/DxCjAPFnKAl",
-	"mo2t8awoDaxifY0JLl2pdo3iaQSq+ClKAxfFdBuiJboBVVlY/UFVMAmcggIh0fLTcCBHJWt5lchgVH2s",
-	"6Ti6qRhm4iAIC/8WJhwVaevhjrvmKWBCUqJeRj4W95OcUVmqaVuWbi5GFVAtLOY8IYGWdvJZlqO6JiQK",
-	"Ug38r4AntET/mdTfuJPqA3cy8HX7XJeKELiqlBBkIAgvFwK0MhIiVTGbqrwbTwceo64ADVQ4KtqgOqfN",
-	"Y1J4DUgzKU4pk1bLx6lq0Q4l7/RhvaicVS3/+MzoUH98LgqtaSRNSTGXMVMvZeJ9eXZzOPrKbfsKmel6",
-	"7gtqV8IZR+FOSiz1sDQPI+eUuuVMrQbBOcKWtK+q7wnkcWy99NZX6ZrWYnJR96RYBTGhkSEVC760O6aU",
-	"upXNeiF4OZ+b4/72IzP6b9C2seBohZqrzafHIkQJYnfQLxNJ4+PmaHkpCyEhNOICuP7KOawvj89/BQAA",
-	"//9yVRHS5BUAAA==",
+	"H4sIAAAAAAAC/+xY35ObyBH+VyiSh6RKIECAQG+627Vvk7VPsXy5Slz7MIJemDuYwTODZOVq//fUDEj8",
+	"lIwqvq1KKn6xrZr+6P76648eftMjmheUABFcX/2m8yiFHKl/vsEEkQij7J4LnCMB6teC0QKYwNX/YiRA",
+	"/g1fUF5koK90x3JCwwoNJ9Bn+jNlORL6qjo308WxkGe4YJgk+stMhx0W633SgbBdy3cC17WdcNmGoOUu",
+	"a4GQMt8BO4H8gJN0BMUL/MBdXoh5pIeRECf0lu70B8dokL/nhZ6zcJau698AM6xA4bhBEHi34AyqUjC2",
+	"71sLfyyo4P0CQtMPpj2w4MOsLdOxbHcyQD/d0LQ8y3EnhRMQDySiOQwlFNqetfBC3wpvQxrpwtIOvMXS",
+	"CUPrWuCA9kXoun7oLZeWPS2FMl8TlB254PcF72A1fcNEQDI4/wH2QMruINqjQaw62efLDRZWuLDUn0nJ",
+	"1jgDtiog72agPnsKx7kBhyfo/ksBhA9qW9h+6PqB59v+jUiD6hTU0g5c59ak+vVVSXlOYDvTkI75jmZd",
+	"p12vN49DT1Wcfi4xg1hffToFzk4O3OK728WONtpe0vGntuc1Jtqy4MbSe7PRn7He9PbJGvSh3+KzczU2",
+	"dPaT0eEYTNjTy0x/U2bZ94jEGQzfbVGKSNIdKs+cpqEqdAMsAiI6CI7p+u5ymilFGeXd5zsLx5zmrKMv",
+	"Zs+wHMNyp7yY0772ncXCtBeTnp31xO44vul7k0JpAaQXuzS/9YjM9D3NyrzLj+u6QWg7wZhr7g+o6JFh",
+	"mcEUKXxlGlW5NdkVb6eun3M8iUnvq6pOS6r4ESepuCTj/1QJBcPRqApfrwNfYbHK8IwpGXkPh5FtFUUC",
+	"066+9JRm8ViCCUMxJsn3NC8QOXZj/mJuTO0dZQkiY6EEDm8Zinus/7gHdgDZqQsx/DvE4acPj92wHZB/",
+	"YZIgM6L5pcBNucswT4F1Q7+rQy+FfcQi6yW5QccNyrSPDBFesaW9QyzBhGuIxNoGHXMgQvu7Ylq7Y3gP",
+	"2ltGDyKdafdH4JrUVv2L9jMWqbYVjJJE+/juTlungGKNPmsPZA9cUKbdoeNKqz35UpYDRlIhCr6azw+H",
+	"g9lmZ+54c8uZuwt36VmBNS/QsUCZsQMkuPHZNeB0jTEQN0RToZFXFRqIxEZRVWhUWjJiWaGRqHoMOAI3",
+	"1PDUPxywSA2uCjREHrenqWR4fJhgj2nJb9aH0vjPKZAN5UKOQSt0uTSXjjcykEWti/juigd8tMOVHaws",
+	"17Qs6599RzAEzkdtYWzYN/+4ZSPpZtc0uy3O7mD01d4atT61gwGenaZ/yKU0jC0gFqXbc1G9VaBkDEjU",
+	"s4Gftnejd9ovI5uD/n69vVv/7dp5uYu8R/lonPY2ozuUaVvIIBoflUHkuigy0B5IZE7t320bpXrirOFm",
+	"pJIWGU9nXLr7RdYgcTlEJcPiuI1SyCuq1wX+KxzXpVDrByb6Sv9cAjueHrjSUYF/hWOTJ1IR+osExOSZ",
+	"yjhRWZv+5t1GW28e5MsBGFfmr3OB5Lu63jZQgfWVvjAtcyGlgUSq0pijypUa15C/JqC2OSkNJMX0EOsr",
+	"/S2I2sKaDyUSiaEcBDCurz6NF3JmsqFXsBJm9UcYVUe/FeNIBTBM42+ChNSqMYhrvYvHAzOcY3E98knm",
+	"xwtKeMWmY1lquCgR9ZqMiiLDkaJ2/guvXtUNIBaQq8A/MnjWV/of5s23q3n94Wo+8tXqpZEKY6hWSgw8",
+	"YrioFgJ9rWWYC/luqvuuPZ9wtEYBKlCgRI5BfU6Zx1x6DXAjk6eEQerl45JalEPxR3VYLSqT1PJf3xlV",
+	"6u/fixTL1QJHKDOU0RtA4/lzmWXXWvLDOWgjY+5pLD3stcf4makdr4n7ynJ+CUfQm1BeZy6bm/ZNGmja",
+	"qd3/eKeplmoxEkj7k2zqnztCiFLErskgU+vVTTp4rDey/wvhGwmhfVn9VkpQfb0oBdliknCDE1TwlF4V",
+	"wIfq7PZ09JUb/wpe3d/CrjBeE6edibtoulytz8ZpCb3EbrVl16vhFGIr2Ffl90LkeZG99tRXGaDOVeWm",
+	"CcqRiFJMEo0LGv3afYdWVHe62VwRrvdze77R/Z4d/V/gtnXlUQy1LzufnmSJHNj+xF/JstbnjvMSlNMY",
+	"MkySgkGhvnucLjRPL/8OAAD//5vZDprOHQAA",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
