@@ -26,6 +26,243 @@ const (
 	ApiKeyAuthScopes = "ApiKeyAuth.Scopes"
 )
 
+// BalanceSheetStatement defines model for BalanceSheetStatement.
+type BalanceSheetStatement struct {
+	AcceptedDate                            string             `json:"acceptedDate"`
+	AccountPayables                         float64            `json:"accountPayables"`
+	AccountsReceivables                     float64            `json:"accountsReceivables"`
+	AccruedExpenses                         float64            `json:"accruedExpenses"`
+	AccumulatedOtherComprehensiveIncomeLoss float64            `json:"accumulatedOtherComprehensiveIncomeLoss"`
+	AdditionalPaidInCapital                 float64            `json:"additionalPaidInCapital"`
+	CapitalLeaseObligations                 float64            `json:"capitalLeaseObligations"`
+	CapitalLeaseObligationsCurrent          float64            `json:"capitalLeaseObligationsCurrent"`
+	CashAndCashEquivalents                  float64            `json:"cashAndCashEquivalents"`
+	CashAndShortTermInvestments             float64            `json:"cashAndShortTermInvestments"`
+	Cik                                     string             `json:"cik"`
+	CommonStock                             float64            `json:"commonStock"`
+	Date                                    openapi_types.Date `json:"date"`
+	DeferredRevenue                         float64            `json:"deferredRevenue"`
+	DeferredRevenueNonCurrent               float64            `json:"deferredRevenueNonCurrent"`
+	DeferredTaxLiabilitiesNonCurrent        float64            `json:"deferredTaxLiabilitiesNonCurrent"`
+	FilingDate                              openapi_types.Date `json:"filingDate"`
+	FiscalYear                              string             `json:"fiscalYear"`
+	Goodwill                                float64            `json:"goodwill"`
+	GoodwillAndIntangibleAssets             float64            `json:"goodwillAndIntangibleAssets"`
+	IntangibleAssets                        float64            `json:"intangibleAssets"`
+	Inventory                               float64            `json:"inventory"`
+	LongTermDebt                            float64            `json:"longTermDebt"`
+	LongTermInvestments                     float64            `json:"longTermInvestments"`
+	MinorityInterest                        float64            `json:"minorityInterest"`
+	NetDebt                                 float64            `json:"netDebt"`
+	NetReceivables                          float64            `json:"netReceivables"`
+	OtherAssets                             float64            `json:"otherAssets"`
+	OtherCurrentAssets                      float64            `json:"otherCurrentAssets"`
+	OtherCurrentLiabilities                 float64            `json:"otherCurrentLiabilities"`
+	OtherLiabilities                        float64            `json:"otherLiabilities"`
+	OtherNonCurrentAssets                   float64            `json:"otherNonCurrentAssets"`
+	OtherNonCurrentLiabilities              float64            `json:"otherNonCurrentLiabilities"`
+	OtherPayables                           float64            `json:"otherPayables"`
+	OtherReceivables                        float64            `json:"otherReceivables"`
+	OtherTotalStockholdersEquity            float64            `json:"otherTotalStockholdersEquity"`
+	Period                                  string             `json:"period"`
+	PreferredStock                          float64            `json:"preferredStock"`
+	Prepaids                                float64            `json:"prepaids"`
+	PropertyPlantEquipmentNet               float64            `json:"propertyPlantEquipmentNet"`
+	ReportedCurrency                        string             `json:"reportedCurrency"`
+	RetainedEarnings                        float64            `json:"retainedEarnings"`
+	ShortTermDebt                           float64            `json:"shortTermDebt"`
+	ShortTermInvestments                    float64            `json:"shortTermInvestments"`
+	Symbol                                  string             `json:"symbol"`
+	TaxAssets                               float64            `json:"taxAssets"`
+	TaxPayables                             float64            `json:"taxPayables"`
+	TotalAssets                             float64            `json:"totalAssets"`
+	TotalCurrentAssets                      float64            `json:"totalCurrentAssets"`
+	TotalCurrentLiabilities                 float64            `json:"totalCurrentLiabilities"`
+	TotalDebt                               float64            `json:"totalDebt"`
+	TotalEquity                             float64            `json:"totalEquity"`
+	TotalInvestments                        float64            `json:"totalInvestments"`
+	TotalLiabilities                        float64            `json:"totalLiabilities"`
+	TotalLiabilitiesAndTotalEquity          float64            `json:"totalLiabilitiesAndTotalEquity"`
+	TotalNonCurrentAssets                   float64            `json:"totalNonCurrentAssets"`
+	TotalNonCurrentLiabilities              float64            `json:"totalNonCurrentLiabilities"`
+	TotalPayables                           float64            `json:"totalPayables"`
+	TotalStockholdersEquity                 float64            `json:"totalStockholdersEquity"`
+	TreasuryStock                           float64            `json:"treasuryStock"`
+}
+
+// BalanceSheetStatementTtm defines model for BalanceSheetStatementTtm.
+type BalanceSheetStatementTtm struct {
+	AcceptedDate                            string             `json:"acceptedDate"`
+	AccountPayables                         float32            `json:"accountPayables"`
+	AccountsReceivables                     float32            `json:"accountsReceivables"`
+	AccruedExpenses                         float32            `json:"accruedExpenses"`
+	AccumulatedOtherComprehensiveIncomeLoss float32            `json:"accumulatedOtherComprehensiveIncomeLoss"`
+	AdditionalPaidInCapital                 float32            `json:"additionalPaidInCapital"`
+	CapitalLeaseObligations                 float32            `json:"capitalLeaseObligations"`
+	CapitalLeaseObligationsCurrent          float32            `json:"capitalLeaseObligationsCurrent"`
+	CashAndCashEquivalents                  float32            `json:"cashAndCashEquivalents"`
+	CashAndShortTermInvestments             float32            `json:"cashAndShortTermInvestments"`
+	Cik                                     string             `json:"cik"`
+	CommonStock                             float32            `json:"commonStock"`
+	Date                                    openapi_types.Date `json:"date"`
+	DeferredRevenue                         float32            `json:"deferredRevenue"`
+	DeferredRevenueNonCurrent               float32            `json:"deferredRevenueNonCurrent"`
+	DeferredTaxLiabilitiesNonCurrent        float32            `json:"deferredTaxLiabilitiesNonCurrent"`
+	FilingDate                              openapi_types.Date `json:"filingDate"`
+	FiscalYear                              string             `json:"fiscalYear"`
+	Goodwill                                float32            `json:"goodwill"`
+	GoodwillAndIntangibleAssets             float32            `json:"goodwillAndIntangibleAssets"`
+	IntangibleAssets                        float32            `json:"intangibleAssets"`
+	Inventory                               float32            `json:"inventory"`
+	LongTermDebt                            float32            `json:"longTermDebt"`
+	LongTermInvestments                     float32            `json:"longTermInvestments"`
+	MinorityInterest                        float32            `json:"minorityInterest"`
+	NetDebt                                 float32            `json:"netDebt"`
+	NetReceivables                          float32            `json:"netReceivables"`
+	OtherAssets                             float32            `json:"otherAssets"`
+	OtherCurrentAssets                      float32            `json:"otherCurrentAssets"`
+	OtherCurrentLiabilities                 float32            `json:"otherCurrentLiabilities"`
+	OtherLiabilities                        float32            `json:"otherLiabilities"`
+	OtherNonCurrentAssets                   float32            `json:"otherNonCurrentAssets"`
+	OtherNonCurrentLiabilities              float32            `json:"otherNonCurrentLiabilities"`
+	OtherPayables                           float32            `json:"otherPayables"`
+	OtherReceivables                        float32            `json:"otherReceivables"`
+	OtherTotalStockholdersEquity            float32            `json:"otherTotalStockholdersEquity"`
+	Period                                  string             `json:"period"`
+	PreferredStock                          float32            `json:"preferredStock"`
+	Prepaids                                float32            `json:"prepaids"`
+	PropertyPlantEquipmentNet               float32            `json:"propertyPlantEquipmentNet"`
+	ReportedCurrency                        string             `json:"reportedCurrency"`
+	RetainedEarnings                        float32            `json:"retainedEarnings"`
+	ShortTermDebt                           float32            `json:"shortTermDebt"`
+	ShortTermInvestments                    float32            `json:"shortTermInvestments"`
+	Symbol                                  string             `json:"symbol"`
+	TaxAssets                               float32            `json:"taxAssets"`
+	TaxPayables                             float32            `json:"taxPayables"`
+	TotalAssets                             float32            `json:"totalAssets"`
+	TotalCurrentAssets                      float32            `json:"totalCurrentAssets"`
+	TotalCurrentLiabilities                 float32            `json:"totalCurrentLiabilities"`
+	TotalDebt                               float32            `json:"totalDebt"`
+	TotalEquity                             float32            `json:"totalEquity"`
+	TotalInvestments                        float32            `json:"totalInvestments"`
+	TotalLiabilities                        float32            `json:"totalLiabilities"`
+	TotalLiabilitiesAndTotalEquity          float32            `json:"totalLiabilitiesAndTotalEquity"`
+	TotalNonCurrentAssets                   float32            `json:"totalNonCurrentAssets"`
+	TotalNonCurrentLiabilities              float32            `json:"totalNonCurrentLiabilities"`
+	TotalPayables                           float32            `json:"totalPayables"`
+	TotalStockholdersEquity                 float32            `json:"totalStockholdersEquity"`
+	TreasuryStock                           float32            `json:"treasuryStock"`
+}
+
+// CashFlowStatement defines model for CashFlowStatement.
+type CashFlowStatement struct {
+	AcceptedDate                           string             `json:"acceptedDate"`
+	AccountsPayables                       float64            `json:"accountsPayables"`
+	AccountsReceivables                    float64            `json:"accountsReceivables"`
+	AcquisitionsNet                        float64            `json:"acquisitionsNet"`
+	CapitalExpenditure                     float64            `json:"capitalExpenditure"`
+	CashAtBeginningOfPeriod                float64            `json:"cashAtBeginningOfPeriod"`
+	CashAtEndOfPeriod                      float64            `json:"cashAtEndOfPeriod"`
+	ChangeInWorkingCapital                 float64            `json:"changeInWorkingCapital"`
+	Cik                                    string             `json:"cik"`
+	CommonDividendsPaid                    float64            `json:"commonDividendsPaid"`
+	CommonStockIssuance                    float64            `json:"commonStockIssuance"`
+	CommonStockRepurchased                 float64            `json:"commonStockRepurchased"`
+	Date                                   openapi_types.Date `json:"date"`
+	DeferredIncomeTax                      float64            `json:"deferredIncomeTax"`
+	DepreciationAndAmortization            float64            `json:"depreciationAndAmortization"`
+	EffectOfForexChangesOnCash             float64            `json:"effectOfForexChangesOnCash"`
+	FilingDate                             openapi_types.Date `json:"filingDate"`
+	FiscalYear                             string             `json:"fiscalYear"`
+	FreeCashFlow                           float64            `json:"freeCashFlow"`
+	IncomeTaxesPaid                        float64            `json:"incomeTaxesPaid"`
+	InterestPaid                           float64            `json:"interestPaid"`
+	Inventory                              float64            `json:"inventory"`
+	InvestmentsInPropertyPlantAndEquipment float64            `json:"investmentsInPropertyPlantAndEquipment"`
+	LongTermNetDebtIssuance                float64            `json:"longTermNetDebtIssuance"`
+	NetCashProvidedByFinancingActivities   float64            `json:"netCashProvidedByFinancingActivities"`
+	NetCashProvidedByInvestingActivities   float64            `json:"netCashProvidedByInvestingActivities"`
+	NetCashProvidedByOperatingActivities   float64            `json:"netCashProvidedByOperatingActivities"`
+	NetChangeInCash                        float64            `json:"netChangeInCash"`
+	NetCommonStockIssuance                 float64            `json:"netCommonStockIssuance"`
+	NetDebtIssuance                        float64            `json:"netDebtIssuance"`
+	NetDividendsPaid                       float64            `json:"netDividendsPaid"`
+	NetIncome                              float64            `json:"netIncome"`
+	NetPreferredStockIssuance              float64            `json:"netPreferredStockIssuance"`
+	NetStockIssuance                       float64            `json:"netStockIssuance"`
+	OperatingCashFlow                      float64            `json:"operatingCashFlow"`
+	OtherFinancingActivities               float64            `json:"otherFinancingActivities"`
+	OtherInvestingActivities               float64            `json:"otherInvestingActivities"`
+	OtherNonCashItems                      float64            `json:"otherNonCashItems"`
+	OtherWorkingCapital                    float64            `json:"otherWorkingCapital"`
+	Period                                 string             `json:"period"`
+	PreferredDividendsPaid                 float64            `json:"preferredDividendsPaid"`
+	PurchasesOfInvestments                 float64            `json:"purchasesOfInvestments"`
+	ReportedCurrency                       string             `json:"reportedCurrency"`
+	SalesMaturitiesOfInvestments           float64            `json:"salesMaturitiesOfInvestments"`
+	ShortTermNetDebtIssuance               float64            `json:"shortTermNetDebtIssuance"`
+	StockBasedCompensation                 float64            `json:"stockBasedCompensation"`
+	Symbol                                 string             `json:"symbol"`
+}
+
+// CashFlowStatementTtm defines model for CashFlowStatementTtm.
+type CashFlowStatementTtm struct {
+	AcceptedDate                           string             `json:"acceptedDate"`
+	AccountsPayables                       float64            `json:"accountsPayables"`
+	AccountsReceivables                    float64            `json:"accountsReceivables"`
+	AcquisitionsNet                        float64            `json:"acquisitionsNet"`
+	CapitalExpenditure                     float64            `json:"capitalExpenditure"`
+	CashAtBeginningOfPeriod                float64            `json:"cashAtBeginningOfPeriod"`
+	CashAtEndOfPeriod                      float64            `json:"cashAtEndOfPeriod"`
+	ChangeInWorkingCapital                 float64            `json:"changeInWorkingCapital"`
+	Cik                                    string             `json:"cik"`
+	CommonDividendsPaid                    float64            `json:"commonDividendsPaid"`
+	CommonStockIssuance                    float64            `json:"commonStockIssuance"`
+	CommonStockRepurchased                 float64            `json:"commonStockRepurchased"`
+	Date                                   openapi_types.Date `json:"date"`
+	DeferredIncomeTax                      float64            `json:"deferredIncomeTax"`
+	DepreciationAndAmortization            float64            `json:"depreciationAndAmortization"`
+	EffectOfForexChangesOnCash             float64            `json:"effectOfForexChangesOnCash"`
+	FilingDate                             openapi_types.Date `json:"filingDate"`
+	FiscalYear                             string             `json:"fiscalYear"`
+	FreeCashFlow                           float64            `json:"freeCashFlow"`
+	IncomeTaxesPaid                        float64            `json:"incomeTaxesPaid"`
+	InterestPaid                           float64            `json:"interestPaid"`
+	Inventory                              float64            `json:"inventory"`
+	InvestmentsInPropertyPlantAndEquipment float64            `json:"investmentsInPropertyPlantAndEquipment"`
+	LongTermNetDebtIssuance                float64            `json:"longTermNetDebtIssuance"`
+	NetCashProvidedByFinancingActivities   float64            `json:"netCashProvidedByFinancingActivities"`
+	NetCashProvidedByInvestingActivities   float64            `json:"netCashProvidedByInvestingActivities"`
+	NetCashProvidedByOperatingActivities   float64            `json:"netCashProvidedByOperatingActivities"`
+	NetChangeInCash                        float64            `json:"netChangeInCash"`
+	NetCommonStockIssuance                 float64            `json:"netCommonStockIssuance"`
+	NetDebtIssuance                        float64            `json:"netDebtIssuance"`
+	NetDividendsPaid                       float64            `json:"netDividendsPaid"`
+	NetIncome                              float64            `json:"netIncome"`
+	NetPreferredStockIssuance              float64            `json:"netPreferredStockIssuance"`
+	NetStockIssuance                       float64            `json:"netStockIssuance"`
+	OperatingCashFlow                      float64            `json:"operatingCashFlow"`
+	OtherFinancingActivities               float64            `json:"otherFinancingActivities"`
+	OtherInvestingActivities               float64            `json:"otherInvestingActivities"`
+	OtherNonCashItems                      float64            `json:"otherNonCashItems"`
+	OtherWorkingCapital                    float64            `json:"otherWorkingCapital"`
+	Period                                 string             `json:"period"`
+	PreferredDividendsPaid                 float64            `json:"preferredDividendsPaid"`
+	PurchasesOfInvestments                 float64            `json:"purchasesOfInvestments"`
+	ReportedCurrency                       string             `json:"reportedCurrency"`
+	SalesMaturitiesOfInvestments           float64            `json:"salesMaturitiesOfInvestments"`
+	ShortTermNetDebtIssuance               float64            `json:"shortTermNetDebtIssuance"`
+	StockBasedCompensation                 float64            `json:"stockBasedCompensation"`
+	Symbol                                 string             `json:"symbol"`
+}
+
+// CompanyCapitalization defines model for CompanyCapitalization.
+type CompanyCapitalization struct {
+	Date      openapi_types.Date `json:"date"`
+	MarketCap int                `json:"marketCap"`
+	Symbol    string             `json:"symbol"`
+}
+
 // CompanyProfile defines model for CompanyProfile.
 type CompanyProfile struct {
 	Address           string             `json:"address"`
@@ -66,6 +303,55 @@ type CompanyProfile struct {
 	Zip               string             `json:"zip"`
 }
 
+// CompanySharesFloat defines model for CompanySharesFloat.
+type CompanySharesFloat struct {
+	Date              string  `json:"date"`
+	FloatShares       int     `json:"floatShares"`
+	FreeFloat         float64 `json:"freeFloat"`
+	OutstandingShares int     `json:"outstandingShares"`
+	Symbol            string  `json:"symbol"`
+}
+
+// EconomicEsgDisclosure defines model for EconomicEsgDisclosure.
+type EconomicEsgDisclosure struct {
+	ESGScore           float64            `json:"ESGScore"`
+	AcceptedDate       openapi_types.Date `json:"acceptedDate"`
+	Cik                string             `json:"cik"`
+	CompanyName        string             `json:"companyName"`
+	Date               openapi_types.Date `json:"date"`
+	EnvironmentalScore float64            `json:"environmentalScore"`
+	FormType           string             `json:"formType"`
+	GovernanceScore    float64            `json:"governanceScore"`
+	SocialScore        float64            `json:"socialScore"`
+	Symbol             string             `json:"symbol"`
+	Url                string             `json:"url"`
+}
+
+// EconomicEsgRating defines model for EconomicEsgRating.
+type EconomicEsgRating struct {
+	ESGRiskRating string `json:"ESGRiskRating"`
+	Cik           string `json:"cik"`
+	CompanyName   string `json:"companyName"`
+	FiscalYear    int    `json:"fiscalYear"`
+	Industry      string `json:"industry"`
+	IndustryRank  string `json:"industryRank"`
+	Symbol        string `json:"symbol"`
+}
+
+// EconomicRecord defines model for EconomicRecord.
+type EconomicRecord struct {
+	Actual           float64  `json:"actual"`
+	Change           float64  `json:"change"`
+	ChangePercentage float64  `json:"changePercentage"`
+	Country          string   `json:"country"`
+	Currency         string   `json:"currency"`
+	Date             string   `json:"date"`
+	Estimate         *float64 `json:"estimate"`
+	Event            string   `json:"event"`
+	Impact           string   `json:"impact"`
+	Previous         float64  `json:"previous"`
+}
+
 // FinancialEstimates defines model for FinancialEstimates.
 type FinancialEstimates struct {
 	Date               openapi_types.Date `json:"date"`
@@ -92,6 +378,73 @@ type FinancialEstimates struct {
 	Symbol             string             `json:"symbol"`
 }
 
+// FinancialRatios defines model for FinancialRatios.
+type FinancialRatios struct {
+	AssetTurnover                           float64            `json:"assetTurnover"`
+	BookValuePerShare                       float64            `json:"bookValuePerShare"`
+	BottomLineProfitMargin                  float64            `json:"bottomLineProfitMargin"`
+	CapexPerShare                           float64            `json:"capexPerShare"`
+	CapitalExpenditureCoverageRatio         float64            `json:"capitalExpenditureCoverageRatio"`
+	CashPerShare                            float64            `json:"cashPerShare"`
+	CashRatio                               float64            `json:"cashRatio"`
+	ContinuousOperationsProfitMargin        float64            `json:"continuousOperationsProfitMargin"`
+	CurrentRatio                            float64            `json:"currentRatio"`
+	Date                                    openapi_types.Date `json:"date"`
+	DebtServiceCoverageRatio                float64            `json:"debtServiceCoverageRatio"`
+	DebtToAssetsRatio                       float64            `json:"debtToAssetsRatio"`
+	DebtToCapitalRatio                      float64            `json:"debtToCapitalRatio"`
+	DebtToEquityRatio                       float64            `json:"debtToEquityRatio"`
+	DebtToMarketCap                         float64            `json:"debtToMarketCap"`
+	DividendPaidAndCapexCoverageRatio       float64            `json:"dividendPaidAndCapexCoverageRatio"`
+	DividendPayoutRatio                     float64            `json:"dividendPayoutRatio"`
+	DividendYield                           float64            `json:"dividendYield"`
+	DividendYieldPercentage                 float64            `json:"dividendYieldPercentage"`
+	EbitMargin                              float64            `json:"ebitMargin"`
+	EbitdaMargin                            float64            `json:"ebitdaMargin"`
+	EbtPerEbit                              float64            `json:"ebtPerEbit"`
+	EffectiveTaxRate                        float64            `json:"effectiveTaxRate"`
+	EnterpriseValueMultiple                 float64            `json:"enterpriseValueMultiple"`
+	FinancialLeverageRatio                  float64            `json:"financialLeverageRatio"`
+	FiscalYear                              string             `json:"fiscalYear"`
+	FixedAssetTurnover                      float64            `json:"fixedAssetTurnover"`
+	ForwardPriceToEarningsGrowthRatio       float64            `json:"forwardPriceToEarningsGrowthRatio"`
+	FreeCashFlowOperatingCashFlowRatio      float64            `json:"freeCashFlowOperatingCashFlowRatio"`
+	FreeCashFlowPerShare                    float64            `json:"freeCashFlowPerShare"`
+	GrossProfitMargin                       float64            `json:"grossProfitMargin"`
+	InterestCoverageRatio                   float64            `json:"interestCoverageRatio"`
+	InterestDebtPerShare                    float64            `json:"interestDebtPerShare"`
+	InventoryTurnover                       float64            `json:"inventoryTurnover"`
+	LongTermDebtToCapitalRatio              float64            `json:"longTermDebtToCapitalRatio"`
+	NetIncomePerEBT                         float64            `json:"netIncomePerEBT"`
+	NetIncomePerShare                       float64            `json:"netIncomePerShare"`
+	NetProfitMargin                         float64            `json:"netProfitMargin"`
+	OperatingCashFlowCoverageRatio          float64            `json:"operatingCashFlowCoverageRatio"`
+	OperatingCashFlowPerShare               float64            `json:"operatingCashFlowPerShare"`
+	OperatingCashFlowRatio                  float64            `json:"operatingCashFlowRatio"`
+	OperatingCashFlowSalesRatio             float64            `json:"operatingCashFlowSalesRatio"`
+	OperatingProfitMargin                   float64            `json:"operatingProfitMargin"`
+	PayablesTurnover                        float64            `json:"payablesTurnover"`
+	Period                                  string             `json:"period"`
+	PretaxProfitMargin                      float64            `json:"pretaxProfitMargin"`
+	PriceToBookRatio                        float64            `json:"priceToBookRatio"`
+	PriceToEarningsGrowthRatio              float64            `json:"priceToEarningsGrowthRatio"`
+	PriceToEarningsRatio                    float64            `json:"priceToEarningsRatio"`
+	PriceToFairValue                        float64            `json:"priceToFairValue"`
+	PriceToFreeCashFlowRatio                float64            `json:"priceToFreeCashFlowRatio"`
+	PriceToOperatingCashFlowRatio           float64            `json:"priceToOperatingCashFlowRatio"`
+	PriceToSalesRatio                       float64            `json:"priceToSalesRatio"`
+	QuickRatio                              float64            `json:"quickRatio"`
+	ReceivablesTurnover                     float64            `json:"receivablesTurnover"`
+	ReportedCurrency                        string             `json:"reportedCurrency"`
+	RevenuePerShare                         float64            `json:"revenuePerShare"`
+	ShareholdersEquityPerShare              float64            `json:"shareholdersEquityPerShare"`
+	ShortTermOperatingCashFlowCoverageRatio float64            `json:"shortTermOperatingCashFlowCoverageRatio"`
+	SolvencyRatio                           float64            `json:"solvencyRatio"`
+	Symbol                                  string             `json:"symbol"`
+	TangibleBookValuePerShare               float64            `json:"tangibleBookValuePerShare"`
+	WorkingCapitalTurnoverRatio             float64            `json:"workingCapitalTurnoverRatio"`
+}
+
 // FullCandle defines model for FullCandle.
 type FullCandle struct {
 	Change        float64            `json:"change"`
@@ -104,6 +457,184 @@ type FullCandle struct {
 	Symbol        string             `json:"symbol"`
 	Volume        int                `json:"volume"`
 	Vwap          float64            `json:"vwap"`
+}
+
+// FullQuote defines model for FullQuote.
+type FullQuote struct {
+	Change           float64 `json:"change"`
+	ChangePercentage float64 `json:"changePercentage"`
+	DayHigh          float64 `json:"dayHigh"`
+	DayLow           float64 `json:"dayLow"`
+	Exchange         string  `json:"exchange"`
+	MarketCap        int     `json:"marketCap"`
+	Name             string  `json:"name"`
+	Open             float64 `json:"open"`
+	PreviousClose    float64 `json:"previousClose"`
+	Price            float64 `json:"price"`
+	PriceAvg200      float64 `json:"priceAvg200"`
+	PriceAvg50       float64 `json:"priceAvg50"`
+	Symbol           string  `json:"symbol"`
+	Timestamp        int     `json:"timestamp"`
+	Volume           int     `json:"volume"`
+	YearHigh         float64 `json:"yearHigh"`
+	YearLow          float64 `json:"yearLow"`
+}
+
+// IncomeStatement defines model for IncomeStatement.
+type IncomeStatement struct {
+	AcceptedDate                            string             `json:"acceptedDate"`
+	BottomLineNetIncome                     float64            `json:"bottomLineNetIncome"`
+	Cik                                     string             `json:"cik"`
+	CostAndExpenses                         float64            `json:"costAndExpenses"`
+	CostOfRevenue                           float64            `json:"costOfRevenue"`
+	Date                                    openapi_types.Date `json:"date"`
+	DepreciationAndAmortization             float64            `json:"depreciationAndAmortization"`
+	Ebit                                    float64            `json:"ebit"`
+	Ebitda                                  float64            `json:"ebitda"`
+	Eps                                     float64            `json:"eps"`
+	EpsDiluted                              float64            `json:"epsDiluted"`
+	FilingDate                              openapi_types.Date `json:"filingDate"`
+	FiscalYear                              string             `json:"fiscalYear"`
+	GeneralAndAdministrativeExpenses        float64            `json:"generalAndAdministrativeExpenses"`
+	GrossProfit                             float64            `json:"grossProfit"`
+	IncomeBeforeTax                         float64            `json:"incomeBeforeTax"`
+	IncomeTaxExpense                        float64            `json:"incomeTaxExpense"`
+	InterestExpense                         float64            `json:"interestExpense"`
+	InterestIncome                          float64            `json:"interestIncome"`
+	NetIncome                               float64            `json:"netIncome"`
+	NetIncomeDeductions                     float64            `json:"netIncomeDeductions"`
+	NetIncomeFromContinuingOperations       float64            `json:"netIncomeFromContinuingOperations"`
+	NetIncomeFromDiscontinuedOperations     float64            `json:"netIncomeFromDiscontinuedOperations"`
+	NetInterestIncome                       float64            `json:"netInterestIncome"`
+	NonOperatingIncomeExcludingInterest     float64            `json:"nonOperatingIncomeExcludingInterest"`
+	OperatingExpenses                       float64            `json:"operatingExpenses"`
+	OperatingIncome                         float64            `json:"operatingIncome"`
+	OtherAdjustmentsToNetIncome             float64            `json:"otherAdjustmentsToNetIncome"`
+	OtherExpenses                           float64            `json:"otherExpenses"`
+	Period                                  string             `json:"period"`
+	ReportedCurrency                        string             `json:"reportedCurrency"`
+	ResearchAndDevelopmentExpenses          float64            `json:"researchAndDevelopmentExpenses"`
+	Revenue                                 float64            `json:"revenue"`
+	SellingAndMarketingExpenses             float64            `json:"sellingAndMarketingExpenses"`
+	SellingGeneralAndAdministrativeExpenses float64            `json:"sellingGeneralAndAdministrativeExpenses"`
+	Symbol                                  string             `json:"symbol"`
+	TotalOtherIncomeExpensesNet             float64            `json:"totalOtherIncomeExpensesNet"`
+	WeightedAverageShsOut                   float64            `json:"weightedAverageShsOut"`
+	WeightedAverageShsOutDil                float64            `json:"weightedAverageShsOutDil"`
+}
+
+// IncomeStatementTtm defines model for IncomeStatementTtm.
+type IncomeStatementTtm struct {
+	AcceptedDate                            string             `json:"acceptedDate"`
+	BottomLineNetIncome                     float64            `json:"bottomLineNetIncome"`
+	Cik                                     string             `json:"cik"`
+	CostAndExpenses                         float64            `json:"costAndExpenses"`
+	CostOfRevenue                           float64            `json:"costOfRevenue"`
+	Date                                    openapi_types.Date `json:"date"`
+	DepreciationAndAmortization             float64            `json:"depreciationAndAmortization"`
+	Ebit                                    float64            `json:"ebit"`
+	Ebitda                                  float64            `json:"ebitda"`
+	Eps                                     float64            `json:"eps"`
+	EpsDiluted                              float64            `json:"epsDiluted"`
+	FilingDate                              openapi_types.Date `json:"filingDate"`
+	FiscalYear                              string             `json:"fiscalYear"`
+	GeneralAndAdministrativeExpenses        float64            `json:"generalAndAdministrativeExpenses"`
+	GrossProfit                             float64            `json:"grossProfit"`
+	IncomeBeforeTax                         float64            `json:"incomeBeforeTax"`
+	IncomeTaxExpense                        float64            `json:"incomeTaxExpense"`
+	InterestExpense                         float64            `json:"interestExpense"`
+	InterestIncome                          float64            `json:"interestIncome"`
+	NetIncome                               float64            `json:"netIncome"`
+	NetIncomeDeductions                     float64            `json:"netIncomeDeductions"`
+	NetIncomeFromContinuingOperations       float64            `json:"netIncomeFromContinuingOperations"`
+	NetIncomeFromDiscontinuedOperations     float64            `json:"netIncomeFromDiscontinuedOperations"`
+	NetInterestIncome                       float64            `json:"netInterestIncome"`
+	NonOperatingIncomeExcludingInterest     float64            `json:"nonOperatingIncomeExcludingInterest"`
+	OperatingExpenses                       float64            `json:"operatingExpenses"`
+	OperatingIncome                         float64            `json:"operatingIncome"`
+	OtherAdjustmentsToNetIncome             float64            `json:"otherAdjustmentsToNetIncome"`
+	OtherExpenses                           float64            `json:"otherExpenses"`
+	Period                                  string             `json:"period"`
+	ReportedCurrency                        string             `json:"reportedCurrency"`
+	ResearchAndDevelopmentExpenses          float64            `json:"researchAndDevelopmentExpenses"`
+	Revenue                                 float64            `json:"revenue"`
+	SellingAndMarketingExpenses             float64            `json:"sellingAndMarketingExpenses"`
+	SellingGeneralAndAdministrativeExpenses float64            `json:"sellingGeneralAndAdministrativeExpenses"`
+	Symbol                                  string             `json:"symbol"`
+	TotalOtherIncomeExpensesNet             float64            `json:"totalOtherIncomeExpensesNet"`
+	WeightedAverageShsOut                   float64            `json:"weightedAverageShsOut"`
+	WeightedAverageShsOutDil                float64            `json:"weightedAverageShsOutDil"`
+}
+
+// InsiderTransaction defines model for InsiderTransaction.
+type InsiderTransaction struct {
+	AcquisitionOrDisposition string             `json:"acquisitionOrDisposition"`
+	CompanyCik               string             `json:"companyCik"`
+	DirectOrIndirect         string             `json:"directOrIndirect"`
+	FilingDate               openapi_types.Date `json:"filingDate"`
+	FormType                 string             `json:"formType"`
+	Price                    float32            `json:"price"`
+	ReportingCik             string             `json:"reportingCik"`
+	ReportingName            string             `json:"reportingName"`
+	SecuritiesOwned          int                `json:"securitiesOwned"`
+	SecuritiesTransacted     int                `json:"securitiesTransacted"`
+	SecurityName             string             `json:"securityName"`
+	Symbol                   string             `json:"symbol"`
+	TransactionDate          openapi_types.Date `json:"transactionDate"`
+	TransactionType          string             `json:"transactionType"`
+	TypeOfOwner              string             `json:"typeOfOwner"`
+	Url                      string             `json:"url"`
+}
+
+// KeyMetrics defines model for KeyMetrics.
+type KeyMetrics struct {
+	AverageInventory                       float64            `json:"averageInventory"`
+	AveragePayables                        float64            `json:"averagePayables"`
+	AverageReceivables                     float64            `json:"averageReceivables"`
+	CapexToDepreciation                    float64            `json:"capexToDepreciation"`
+	CapexToOperatingCashFlow               float64            `json:"capexToOperatingCashFlow"`
+	CapexToRevenue                         float64            `json:"capexToRevenue"`
+	CashConversionCycle                    float64            `json:"cashConversionCycle"`
+	CurrentRatio                           float64            `json:"currentRatio"`
+	Date                                   openapi_types.Date `json:"date"`
+	DaysOfInventoryOutstanding             float64            `json:"daysOfInventoryOutstanding"`
+	DaysOfPayablesOutstanding              float64            `json:"daysOfPayablesOutstanding"`
+	DaysOfSalesOutstanding                 float64            `json:"daysOfSalesOutstanding"`
+	EarningsYield                          float64            `json:"earningsYield"`
+	EnterpriseValue                        float64            `json:"enterpriseValue"`
+	EvToEBITDA                             float64            `json:"evToEBITDA"`
+	EvToFreeCashFlow                       float64            `json:"evToFreeCashFlow"`
+	EvToOperatingCashFlow                  float64            `json:"evToOperatingCashFlow"`
+	EvToSales                              float64            `json:"evToSales"`
+	FiscalYear                             string             `json:"fiscalYear"`
+	FreeCashFlowToEquity                   float64            `json:"freeCashFlowToEquity"`
+	FreeCashFlowToFirm                     float64            `json:"freeCashFlowToFirm"`
+	FreeCashFlowYield                      float64            `json:"freeCashFlowYield"`
+	GrahamNetNet                           float64            `json:"grahamNetNet"`
+	GrahamNumber                           float64            `json:"grahamNumber"`
+	IncomeQuality                          float64            `json:"incomeQuality"`
+	IntangiblesToTotalAssets               float64            `json:"intangiblesToTotalAssets"`
+	InterestBurden                         float64            `json:"interestBurden"`
+	InvestedCapital                        float64            `json:"investedCapital"`
+	MarketCap                              float64            `json:"marketCap"`
+	NetCurrentAssetValue                   float64            `json:"netCurrentAssetValue"`
+	NetDebtToEBITDA                        float64            `json:"netDebtToEBITDA"`
+	OperatingCycle                         float64            `json:"operatingCycle"`
+	OperatingReturnOnAssets                float64            `json:"operatingReturnOnAssets"`
+	Period                                 string             `json:"period"`
+	ReportedCurrency                       string             `json:"reportedCurrency"`
+	ResearchAndDevelopementToRevenue       float64            `json:"researchAndDevelopementToRevenue"`
+	ReturnOnAssets                         float64            `json:"returnOnAssets"`
+	ReturnOnCapitalEmployed                float64            `json:"returnOnCapitalEmployed"`
+	ReturnOnEquity                         float64            `json:"returnOnEquity"`
+	ReturnOnInvestedCapital                float64            `json:"returnOnInvestedCapital"`
+	ReturnOnTangibleAssets                 float64            `json:"returnOnTangibleAssets"`
+	SalesGeneralAndAdministrativeToRevenue float64            `json:"salesGeneralAndAdministrativeToRevenue"`
+	StockBasedCompensationToRevenue        float64            `json:"stockBasedCompensationToRevenue"`
+	Symbol                                 string             `json:"symbol"`
+	TangibleAssetValue                     float64            `json:"tangibleAssetValue"`
+	TaxBurden                              float64            `json:"taxBurden"`
+	WorkingCapital                         float64            `json:"workingCapital"`
 }
 
 // LightCandle defines model for LightCandle.
@@ -129,6 +660,28 @@ type News struct {
 	Symbol          string    `json:"symbol"`
 }
 
+// NewsRecord defines model for NewsRecord.
+type NewsRecord struct {
+	Image         string    `json:"image"`
+	PublishedDate time.Time `json:"publishedDate"`
+	Publisher     string    `json:"publisher"`
+	Site          string    `json:"site"`
+	Symbol        string    `json:"symbol"`
+	Text          string    `json:"text"`
+	Title         string    `json:"title"`
+	Url           string    `json:"url"`
+}
+
+// RevenueSegmentation defines model for RevenueSegmentation.
+type RevenueSegmentation struct {
+	Data             map[string]float32 `json:"data"`
+	Date             openapi_types.Date `json:"date"`
+	FiscalYear       int                `json:"fiscalYear"`
+	Period           string             `json:"period"`
+	ReportedCurrency *string            `json:"reportedCurrency"`
+	Symbol           string             `json:"symbol"`
+}
+
 // SearchSymbol defines model for SearchSymbol.
 type SearchSymbol struct {
 	Currency         string `json:"currency"`
@@ -138,12 +691,79 @@ type SearchSymbol struct {
 	Symbol           string `json:"symbol"`
 }
 
+// ShortQuote defines model for ShortQuote.
+type ShortQuote struct {
+	Change float64 `json:"change"`
+	Price  float64 `json:"price"`
+	Symbol string  `json:"symbol"`
+	Volume int     `json:"volume"`
+}
+
+// TreasuryRates defines model for TreasuryRates.
+type TreasuryRates struct {
+	Date   openapi_types.Date `json:"date"`
+	Month1 float64            `json:"month1"`
+	Month2 float64            `json:"month2"`
+	Month3 float64            `json:"month3"`
+	Month6 float64            `json:"month6"`
+	Year1  float64            `json:"year1"`
+	Year10 float64            `json:"year10"`
+	Year2  float64            `json:"year2"`
+	Year20 float64            `json:"year20"`
+	Year3  float64            `json:"year3"`
+	Year30 float64            `json:"year30"`
+	Year5  float64            `json:"year5"`
+	Year7  float64            `json:"year7"`
+}
+
 // GetAnalystEstimatesParams defines parameters for GetAnalystEstimates.
 type GetAnalystEstimatesParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
 	Period string `form:"period" json:"period"`
 	Page   *int   `form:"page,omitempty" json:"page,omitempty"`
 	Limit  *int   `form:"limit,omitempty" json:"limit,omitempty"`
+}
+
+// GetBalanceSheetStatementParams defines parameters for GetBalanceSheetStatement.
+type GetBalanceSheetStatementParams struct {
+	Symbol string       `form:"symbol" json:"symbol"`
+	Limit  *int         `form:"limit,omitempty" json:"limit,omitempty"`
+	Period *interface{} `form:"period,omitempty" json:"period,omitempty"`
+}
+
+// GetBalanceSheetStatementTtmParams defines parameters for GetBalanceSheetStatementTtm.
+type GetBalanceSheetStatementTtmParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
+	Limit  *int   `form:"limit,omitempty" json:"limit,omitempty"`
+}
+
+// GetCashFlowStatementParams defines parameters for GetCashFlowStatement.
+type GetCashFlowStatementParams struct {
+	Symbol string       `form:"symbol" json:"symbol"`
+	Limit  *int         `form:"limit,omitempty" json:"limit,omitempty"`
+	Period *interface{} `form:"period,omitempty" json:"period,omitempty"`
+}
+
+// GetCashFlowStatementTtmParams defines parameters for GetCashFlowStatementTtm.
+type GetCashFlowStatementTtmParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
+	Limit  *int   `form:"limit,omitempty" json:"limit,omitempty"`
+}
+
+// GetEconomicCalendarParams defines parameters for GetEconomicCalendar.
+type GetEconomicCalendarParams struct {
+	From *openapi_types.Date `form:"from,omitempty" json:"from,omitempty"`
+	To   *openapi_types.Date `form:"to,omitempty" json:"to,omitempty"`
+}
+
+// GetEsgDisclosuresParams defines parameters for GetEsgDisclosures.
+type GetEsgDisclosuresParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
+}
+
+// GetEsgRatingsParams defines parameters for GetEsgRatings.
+type GetEsgRatingsParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
 }
 
 // GetGradesLatestNewsParams defines parameters for GetGradesLatestNews.
@@ -166,8 +786,62 @@ type GetHistoricalPriceEodLightParams struct {
 	To     *openapi_types.Date `form:"to,omitempty" json:"to,omitempty"`
 }
 
+// GetIncomeStatementParams defines parameters for GetIncomeStatement.
+type GetIncomeStatementParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
+}
+
+// GetIncomeStatementTtmParams defines parameters for GetIncomeStatementTtm.
+type GetIncomeStatementTtmParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
+	Limit  *int   `form:"limit,omitempty" json:"limit,omitempty"`
+}
+
+// GetInsiderTradingLatestParams defines parameters for GetInsiderTradingLatest.
+type GetInsiderTradingLatestParams struct {
+	Date  *openapi_types.Date `form:"date,omitempty" json:"date,omitempty"`
+	Page  *int                `form:"page,omitempty" json:"page,omitempty"`
+	Limit *int                `form:"limit,omitempty" json:"limit,omitempty"`
+}
+
+// GetKeyMetricsParams defines parameters for GetKeyMetrics.
+type GetKeyMetricsParams struct {
+	Symbol string       `form:"symbol" json:"symbol"`
+	Limit  *int         `form:"limit,omitempty" json:"limit,omitempty"`
+	Period *interface{} `form:"period,omitempty" json:"period,omitempty"`
+}
+
+// GetMarketCapitalizationParams defines parameters for GetMarketCapitalization.
+type GetMarketCapitalizationParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
+}
+
+// GetMarketCapitalizationBatchParams defines parameters for GetMarketCapitalizationBatch.
+type GetMarketCapitalizationBatchParams struct {
+	// Symbols Array of symbols to fetch market capitalization data for
+	Symbols []string `form:"symbols" json:"symbols"`
+}
+
+// GetNewsGeneralLatestParams defines parameters for GetNewsGeneralLatest.
+type GetNewsGeneralLatestParams struct {
+	From  *openapi_types.Date `form:"from,omitempty" json:"from,omitempty"`
+	To    *openapi_types.Date `form:"to,omitempty" json:"to,omitempty"`
+	Page  *int                `form:"page,omitempty" json:"page,omitempty"`
+	Limit *int                `form:"limit,omitempty" json:"limit,omitempty"`
+}
+
 // GetProfileParams defines parameters for GetProfile.
 type GetProfileParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
+}
+
+// GetQuoteParams defines parameters for GetQuote.
+type GetQuoteParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
+}
+
+// GetQuoteShortParams defines parameters for GetQuoteShort.
+type GetQuoteShortParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
 }
 
@@ -175,6 +849,27 @@ type GetProfileParams struct {
 type GetRatingsSnapshotParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
 	Limit  *int   `form:"limit,omitempty" json:"limit,omitempty"`
+}
+
+// GetRatiosParams defines parameters for GetRatios.
+type GetRatiosParams struct {
+	Symbol string       `form:"symbol" json:"symbol"`
+	Limit  *int         `form:"limit,omitempty" json:"limit,omitempty"`
+	Period *interface{} `form:"period,omitempty" json:"period,omitempty"`
+}
+
+// GetRevenueGeographicSegmentationParams defines parameters for GetRevenueGeographicSegmentation.
+type GetRevenueGeographicSegmentationParams struct {
+	Symbol    string       `form:"symbol" json:"symbol"`
+	Period    *interface{} `form:"period,omitempty" json:"period,omitempty"`
+	Structure *string      `form:"structure,omitempty" json:"structure,omitempty"`
+}
+
+// GetRevenueProductSegmentationParams defines parameters for GetRevenueProductSegmentation.
+type GetRevenueProductSegmentationParams struct {
+	Symbol    string       `form:"symbol" json:"symbol"`
+	Period    *interface{} `form:"period,omitempty" json:"period,omitempty"`
+	Structure *string      `form:"structure,omitempty" json:"structure,omitempty"`
 }
 
 // GetSearchNameParams defines parameters for GetSearchName.
@@ -189,12 +884,44 @@ type GetSearchSymbolParams struct {
 	SearchSymbol string `form:"search-symbol" json:"search-symbol"`
 }
 
+// GetSharesFloatParams defines parameters for GetSharesFloat.
+type GetSharesFloatParams struct {
+	Symbol string `form:"symbol" json:"symbol"`
+}
+
+// GetTreasuryRatesParams defines parameters for GetTreasuryRates.
+type GetTreasuryRatesParams struct {
+	From *openapi_types.Date `form:"from,omitempty" json:"from,omitempty"`
+	To   *openapi_types.Date `form:"to,omitempty" json:"to,omitempty"`
+}
+
 type OperationPath string
 
 const (
 
 	// /analyst-estimates
 	GetAnalystEstimatesOperationPath OperationPath = "/analyst-estimates"
+
+	// /balance-sheet-statement
+	GetBalanceSheetStatementOperationPath OperationPath = "/balance-sheet-statement"
+
+	// /balance-sheet-statement-ttm
+	GetBalanceSheetStatementTtmOperationPath OperationPath = "/balance-sheet-statement-ttm"
+
+	// /cash-flow-statement
+	GetCashFlowStatementOperationPath OperationPath = "/cash-flow-statement"
+
+	// /cash-flow-statement-ttm
+	GetCashFlowStatementTtmOperationPath OperationPath = "/cash-flow-statement-ttm"
+
+	// /economic-calendar
+	GetEconomicCalendarOperationPath OperationPath = "/economic-calendar"
+
+	// /esg-disclosures
+	GetEsgDisclosuresOperationPath OperationPath = "/esg-disclosures"
+
+	// /esg-ratings
+	GetEsgRatingsOperationPath OperationPath = "/esg-ratings"
 
 	// /grades-latest-news
 	GetGradesLatestNewsOperationPath OperationPath = "/grades-latest-news"
@@ -205,17 +932,59 @@ const (
 	// /historical-price-eod/light
 	GetHistoricalPriceEodLightOperationPath OperationPath = "/historical-price-eod/light"
 
+	// /income-statement
+	GetIncomeStatementOperationPath OperationPath = "/income-statement"
+
+	// /income-statement-ttm
+	GetIncomeStatementTtmOperationPath OperationPath = "/income-statement-ttm"
+
+	// /insider-trading/latest
+	GetInsiderTradingLatestOperationPath OperationPath = "/insider-trading/latest"
+
+	// /key-metrics
+	GetKeyMetricsOperationPath OperationPath = "/key-metrics"
+
+	// /market-capitalization
+	GetMarketCapitalizationOperationPath OperationPath = "/market-capitalization"
+
+	// /market-capitalization-batch
+	GetMarketCapitalizationBatchOperationPath OperationPath = "/market-capitalization-batch"
+
+	// /news/general-latest
+	GetNewsGeneralLatestOperationPath OperationPath = "/news/general-latest"
+
 	// /profile
 	GetProfileOperationPath OperationPath = "/profile"
 
+	// /quote
+	GetQuoteOperationPath OperationPath = "/quote"
+
+	// /quote-short
+	GetQuoteShortOperationPath OperationPath = "/quote-short"
+
 	// /ratings-snapshot
 	GetRatingsSnapshotOperationPath OperationPath = "/ratings-snapshot"
+
+	// /ratios
+	GetRatiosOperationPath OperationPath = "/ratios"
+
+	// /revenue-geographic-segmentation
+	GetRevenueGeographicSegmentationOperationPath OperationPath = "/revenue-geographic-segmentation"
+
+	// /revenue-product-segmentation
+	GetRevenueProductSegmentationOperationPath OperationPath = "/revenue-product-segmentation"
 
 	// /search-name
 	GetSearchNameOperationPath OperationPath = "/search-name"
 
 	// /search-symbol
 	GetSearchSymbolOperationPath OperationPath = "/search-symbol"
+
+	// /shares-float
+	GetSharesFloatOperationPath OperationPath = "/shares-float"
+
+	// /treasury-rates
+	GetTreasuryRatesOperationPath OperationPath = "/treasury-rates"
 )
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
@@ -294,6 +1063,27 @@ type ClientInterface interface {
 	// GetAnalystEstimates request
 	GetAnalystEstimates(ctx context.Context, params *GetAnalystEstimatesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetBalanceSheetStatement request
+	GetBalanceSheetStatement(ctx context.Context, params *GetBalanceSheetStatementParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetBalanceSheetStatementTtm request
+	GetBalanceSheetStatementTtm(ctx context.Context, params *GetBalanceSheetStatementTtmParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetCashFlowStatement request
+	GetCashFlowStatement(ctx context.Context, params *GetCashFlowStatementParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetCashFlowStatementTtm request
+	GetCashFlowStatementTtm(ctx context.Context, params *GetCashFlowStatementTtmParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetEconomicCalendar request
+	GetEconomicCalendar(ctx context.Context, params *GetEconomicCalendarParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetEsgDisclosures request
+	GetEsgDisclosures(ctx context.Context, params *GetEsgDisclosuresParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetEsgRatings request
+	GetEsgRatings(ctx context.Context, params *GetEsgRatingsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetGradesLatestNews request
 	GetGradesLatestNews(ctx context.Context, params *GetGradesLatestNewsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -303,21 +1093,147 @@ type ClientInterface interface {
 	// GetHistoricalPriceEodLight request
 	GetHistoricalPriceEodLight(ctx context.Context, params *GetHistoricalPriceEodLightParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetIncomeStatement request
+	GetIncomeStatement(ctx context.Context, params *GetIncomeStatementParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetIncomeStatementTtm request
+	GetIncomeStatementTtm(ctx context.Context, params *GetIncomeStatementTtmParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetInsiderTradingLatest request
+	GetInsiderTradingLatest(ctx context.Context, params *GetInsiderTradingLatestParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetKeyMetrics request
+	GetKeyMetrics(ctx context.Context, params *GetKeyMetricsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetMarketCapitalization request
+	GetMarketCapitalization(ctx context.Context, params *GetMarketCapitalizationParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetMarketCapitalizationBatch request
+	GetMarketCapitalizationBatch(ctx context.Context, params *GetMarketCapitalizationBatchParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetNewsGeneralLatest request
+	GetNewsGeneralLatest(ctx context.Context, params *GetNewsGeneralLatestParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetProfile request
 	GetProfile(ctx context.Context, params *GetProfileParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetQuote request
+	GetQuote(ctx context.Context, params *GetQuoteParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetQuoteShort request
+	GetQuoteShort(ctx context.Context, params *GetQuoteShortParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetRatingsSnapshot request
 	GetRatingsSnapshot(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetRatios request
+	GetRatios(ctx context.Context, params *GetRatiosParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetRevenueGeographicSegmentation request
+	GetRevenueGeographicSegmentation(ctx context.Context, params *GetRevenueGeographicSegmentationParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetRevenueProductSegmentation request
+	GetRevenueProductSegmentation(ctx context.Context, params *GetRevenueProductSegmentationParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSearchName request
 	GetSearchName(ctx context.Context, params *GetSearchNameParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSearchSymbol request
 	GetSearchSymbol(ctx context.Context, params *GetSearchSymbolParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetSharesFloat request
+	GetSharesFloat(ctx context.Context, params *GetSharesFloatParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetTreasuryRates request
+	GetTreasuryRates(ctx context.Context, params *GetTreasuryRatesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) GetAnalystEstimates(ctx context.Context, params *GetAnalystEstimatesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetAnalystEstimatesRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetBalanceSheetStatement(ctx context.Context, params *GetBalanceSheetStatementParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetBalanceSheetStatementRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetBalanceSheetStatementTtm(ctx context.Context, params *GetBalanceSheetStatementTtmParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetBalanceSheetStatementTtmRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetCashFlowStatement(ctx context.Context, params *GetCashFlowStatementParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCashFlowStatementRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetCashFlowStatementTtm(ctx context.Context, params *GetCashFlowStatementTtmParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCashFlowStatementTtmRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetEconomicCalendar(ctx context.Context, params *GetEconomicCalendarParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetEconomicCalendarRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetEsgDisclosures(ctx context.Context, params *GetEsgDisclosuresParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetEsgDisclosuresRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetEsgRatings(ctx context.Context, params *GetEsgRatingsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetEsgRatingsRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -364,6 +1280,90 @@ func (c *Client) GetHistoricalPriceEodLight(ctx context.Context, params *GetHist
 	return c.Client.Do(req)
 }
 
+func (c *Client) GetIncomeStatement(ctx context.Context, params *GetIncomeStatementParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetIncomeStatementRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetIncomeStatementTtm(ctx context.Context, params *GetIncomeStatementTtmParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetIncomeStatementTtmRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetInsiderTradingLatest(ctx context.Context, params *GetInsiderTradingLatestParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetInsiderTradingLatestRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetKeyMetrics(ctx context.Context, params *GetKeyMetricsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetKeyMetricsRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetMarketCapitalization(ctx context.Context, params *GetMarketCapitalizationParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetMarketCapitalizationRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetMarketCapitalizationBatch(ctx context.Context, params *GetMarketCapitalizationBatchParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetMarketCapitalizationBatchRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetNewsGeneralLatest(ctx context.Context, params *GetNewsGeneralLatestParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetNewsGeneralLatestRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) GetProfile(ctx context.Context, params *GetProfileParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetProfileRequest(c.Server, params)
 	if err != nil {
@@ -376,8 +1376,68 @@ func (c *Client) GetProfile(ctx context.Context, params *GetProfileParams, reqEd
 	return c.Client.Do(req)
 }
 
+func (c *Client) GetQuote(ctx context.Context, params *GetQuoteParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetQuoteRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetQuoteShort(ctx context.Context, params *GetQuoteShortParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetQuoteShortRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) GetRatingsSnapshot(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetRatingsSnapshotRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetRatios(ctx context.Context, params *GetRatiosParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetRatiosRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetRevenueGeographicSegmentation(ctx context.Context, params *GetRevenueGeographicSegmentationParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetRevenueGeographicSegmentationRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetRevenueProductSegmentation(ctx context.Context, params *GetRevenueProductSegmentationParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetRevenueProductSegmentationRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -402,6 +1462,30 @@ func (c *Client) GetSearchName(ctx context.Context, params *GetSearchNameParams,
 
 func (c *Client) GetSearchSymbol(ctx context.Context, params *GetSearchSymbolParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetSearchSymbolRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetSharesFloat(ctx context.Context, params *GetSharesFloatParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSharesFloatRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetTreasuryRates(ctx context.Context, params *GetTreasuryRatesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetTreasuryRatesRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -488,6 +1572,437 @@ func NewGetAnalystEstimatesRequest(server string, params *GetAnalystEstimatesPar
 				}
 			}
 
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetBalanceSheetStatementRequest generates requests for GetBalanceSheetStatement
+func NewGetBalanceSheetStatementRequest(server string, params *GetBalanceSheetStatementParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/balance-sheet-statement")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Period != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, *params.Period); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetBalanceSheetStatementTtmRequest generates requests for GetBalanceSheetStatementTtm
+func NewGetBalanceSheetStatementTtmRequest(server string, params *GetBalanceSheetStatementTtmParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/balance-sheet-statement-ttm")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetCashFlowStatementRequest generates requests for GetCashFlowStatement
+func NewGetCashFlowStatementRequest(server string, params *GetCashFlowStatementParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/cash-flow-statement")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Period != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, *params.Period); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetCashFlowStatementTtmRequest generates requests for GetCashFlowStatementTtm
+func NewGetCashFlowStatementTtmRequest(server string, params *GetCashFlowStatementTtmParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/cash-flow-statement-ttm")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetEconomicCalendarRequest generates requests for GetEconomicCalendar
+func NewGetEconomicCalendarRequest(server string, params *GetEconomicCalendarParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/economic-calendar")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.From != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "from", runtime.ParamLocationQuery, *params.From); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.To != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "to", runtime.ParamLocationQuery, *params.To); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetEsgDisclosuresRequest generates requests for GetEsgDisclosures
+func NewGetEsgDisclosuresRequest(server string, params *GetEsgDisclosuresParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/esg-disclosures")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetEsgRatingsRequest generates requests for GetEsgRatings
+func NewGetEsgRatingsRequest(server string, params *GetEsgRatingsParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/esg-ratings")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -720,6 +2235,457 @@ func NewGetHistoricalPriceEodLightRequest(server string, params *GetHistoricalPr
 	return req, nil
 }
 
+// NewGetIncomeStatementRequest generates requests for GetIncomeStatement
+func NewGetIncomeStatementRequest(server string, params *GetIncomeStatementParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/income-statement")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetIncomeStatementTtmRequest generates requests for GetIncomeStatementTtm
+func NewGetIncomeStatementTtmRequest(server string, params *GetIncomeStatementTtmParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/income-statement-ttm")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetInsiderTradingLatestRequest generates requests for GetInsiderTradingLatest
+func NewGetInsiderTradingLatestRequest(server string, params *GetInsiderTradingLatestParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/insider-trading/latest")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Date != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "date", runtime.ParamLocationQuery, *params.Date); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetKeyMetricsRequest generates requests for GetKeyMetrics
+func NewGetKeyMetricsRequest(server string, params *GetKeyMetricsParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/key-metrics")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Period != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, *params.Period); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetMarketCapitalizationRequest generates requests for GetMarketCapitalization
+func NewGetMarketCapitalizationRequest(server string, params *GetMarketCapitalizationParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/market-capitalization")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetMarketCapitalizationBatchRequest generates requests for GetMarketCapitalizationBatch
+func NewGetMarketCapitalizationBatchRequest(server string, params *GetMarketCapitalizationBatchParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/market-capitalization-batch")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbols", runtime.ParamLocationQuery, params.Symbols); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetNewsGeneralLatestRequest generates requests for GetNewsGeneralLatest
+func NewGetNewsGeneralLatestRequest(server string, params *GetNewsGeneralLatestParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/news/general-latest")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.From != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "from", runtime.ParamLocationQuery, *params.From); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.To != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "to", runtime.ParamLocationQuery, *params.To); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewGetProfileRequest generates requests for GetProfile
 func NewGetProfileRequest(server string, params *GetProfileParams) (*http.Request, error) {
 	var err error
@@ -730,6 +2696,96 @@ func NewGetProfileRequest(server string, params *GetProfileParams) (*http.Reques
 	}
 
 	operationPath := fmt.Sprintf("/profile")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetQuoteRequest generates requests for GetQuote
+func NewGetQuoteRequest(server string, params *GetQuoteParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/quote")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetQuoteShortRequest generates requests for GetQuoteShort
+func NewGetQuoteShortRequest(server string, params *GetQuoteShortParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/quote-short")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -802,6 +2858,237 @@ func NewGetRatingsSnapshotRequest(server string, params *GetRatingsSnapshotParam
 		if params.Limit != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetRatiosRequest generates requests for GetRatios
+func NewGetRatiosRequest(server string, params *GetRatiosParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/ratios")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Period != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, *params.Period); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetRevenueGeographicSegmentationRequest generates requests for GetRevenueGeographicSegmentation
+func NewGetRevenueGeographicSegmentationRequest(server string, params *GetRevenueGeographicSegmentationParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/revenue-geographic-segmentation")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Period != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, *params.Period); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Structure != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "structure", runtime.ParamLocationQuery, *params.Structure); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetRevenueProductSegmentationRequest generates requests for GetRevenueProductSegmentation
+func NewGetRevenueProductSegmentationRequest(server string, params *GetRevenueProductSegmentationParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/revenue-product-segmentation")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Period != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, *params.Period); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Structure != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "structure", runtime.ParamLocationQuery, *params.Structure); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -948,6 +3235,116 @@ func NewGetSearchSymbolRequest(server string, params *GetSearchSymbolParams) (*h
 	return req, nil
 }
 
+// NewGetSharesFloatRequest generates requests for GetSharesFloat
+func NewGetSharesFloatRequest(server string, params *GetSharesFloatParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/shares-float")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "symbol", runtime.ParamLocationQuery, params.Symbol); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetTreasuryRatesRequest generates requests for GetTreasuryRates
+func NewGetTreasuryRatesRequest(server string, params *GetTreasuryRatesParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/treasury-rates")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.From != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "from", runtime.ParamLocationQuery, *params.From); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.To != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "to", runtime.ParamLocationQuery, *params.To); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 func (c *Client) applyEditors(ctx context.Context, req *http.Request, additionalEditors []RequestEditorFn) error {
 	for _, r := range c.RequestEditors {
 		if err := r(ctx, req); err != nil {
@@ -994,6 +3391,27 @@ type ClientWithResponsesInterface interface {
 	// GetAnalystEstimatesWithResponse request
 	GetAnalystEstimatesWithResponse(ctx context.Context, params *GetAnalystEstimatesParams, reqEditors ...RequestEditorFn) (*GetAnalystEstimatesClientResponse, error)
 
+	// GetBalanceSheetStatementWithResponse request
+	GetBalanceSheetStatementWithResponse(ctx context.Context, params *GetBalanceSheetStatementParams, reqEditors ...RequestEditorFn) (*GetBalanceSheetStatementClientResponse, error)
+
+	// GetBalanceSheetStatementTtmWithResponse request
+	GetBalanceSheetStatementTtmWithResponse(ctx context.Context, params *GetBalanceSheetStatementTtmParams, reqEditors ...RequestEditorFn) (*GetBalanceSheetStatementTtmClientResponse, error)
+
+	// GetCashFlowStatementWithResponse request
+	GetCashFlowStatementWithResponse(ctx context.Context, params *GetCashFlowStatementParams, reqEditors ...RequestEditorFn) (*GetCashFlowStatementClientResponse, error)
+
+	// GetCashFlowStatementTtmWithResponse request
+	GetCashFlowStatementTtmWithResponse(ctx context.Context, params *GetCashFlowStatementTtmParams, reqEditors ...RequestEditorFn) (*GetCashFlowStatementTtmClientResponse, error)
+
+	// GetEconomicCalendarWithResponse request
+	GetEconomicCalendarWithResponse(ctx context.Context, params *GetEconomicCalendarParams, reqEditors ...RequestEditorFn) (*GetEconomicCalendarClientResponse, error)
+
+	// GetEsgDisclosuresWithResponse request
+	GetEsgDisclosuresWithResponse(ctx context.Context, params *GetEsgDisclosuresParams, reqEditors ...RequestEditorFn) (*GetEsgDisclosuresClientResponse, error)
+
+	// GetEsgRatingsWithResponse request
+	GetEsgRatingsWithResponse(ctx context.Context, params *GetEsgRatingsParams, reqEditors ...RequestEditorFn) (*GetEsgRatingsClientResponse, error)
+
 	// GetGradesLatestNewsWithResponse request
 	GetGradesLatestNewsWithResponse(ctx context.Context, params *GetGradesLatestNewsParams, reqEditors ...RequestEditorFn) (*GetGradesLatestNewsClientResponse, error)
 
@@ -1003,17 +3421,59 @@ type ClientWithResponsesInterface interface {
 	// GetHistoricalPriceEodLightWithResponse request
 	GetHistoricalPriceEodLightWithResponse(ctx context.Context, params *GetHistoricalPriceEodLightParams, reqEditors ...RequestEditorFn) (*GetHistoricalPriceEodLightClientResponse, error)
 
+	// GetIncomeStatementWithResponse request
+	GetIncomeStatementWithResponse(ctx context.Context, params *GetIncomeStatementParams, reqEditors ...RequestEditorFn) (*GetIncomeStatementClientResponse, error)
+
+	// GetIncomeStatementTtmWithResponse request
+	GetIncomeStatementTtmWithResponse(ctx context.Context, params *GetIncomeStatementTtmParams, reqEditors ...RequestEditorFn) (*GetIncomeStatementTtmClientResponse, error)
+
+	// GetInsiderTradingLatestWithResponse request
+	GetInsiderTradingLatestWithResponse(ctx context.Context, params *GetInsiderTradingLatestParams, reqEditors ...RequestEditorFn) (*GetInsiderTradingLatestClientResponse, error)
+
+	// GetKeyMetricsWithResponse request
+	GetKeyMetricsWithResponse(ctx context.Context, params *GetKeyMetricsParams, reqEditors ...RequestEditorFn) (*GetKeyMetricsClientResponse, error)
+
+	// GetMarketCapitalizationWithResponse request
+	GetMarketCapitalizationWithResponse(ctx context.Context, params *GetMarketCapitalizationParams, reqEditors ...RequestEditorFn) (*GetMarketCapitalizationClientResponse, error)
+
+	// GetMarketCapitalizationBatchWithResponse request
+	GetMarketCapitalizationBatchWithResponse(ctx context.Context, params *GetMarketCapitalizationBatchParams, reqEditors ...RequestEditorFn) (*GetMarketCapitalizationBatchClientResponse, error)
+
+	// GetNewsGeneralLatestWithResponse request
+	GetNewsGeneralLatestWithResponse(ctx context.Context, params *GetNewsGeneralLatestParams, reqEditors ...RequestEditorFn) (*GetNewsGeneralLatestClientResponse, error)
+
 	// GetProfileWithResponse request
 	GetProfileWithResponse(ctx context.Context, params *GetProfileParams, reqEditors ...RequestEditorFn) (*GetProfileClientResponse, error)
 
+	// GetQuoteWithResponse request
+	GetQuoteWithResponse(ctx context.Context, params *GetQuoteParams, reqEditors ...RequestEditorFn) (*GetQuoteClientResponse, error)
+
+	// GetQuoteShortWithResponse request
+	GetQuoteShortWithResponse(ctx context.Context, params *GetQuoteShortParams, reqEditors ...RequestEditorFn) (*GetQuoteShortClientResponse, error)
+
 	// GetRatingsSnapshotWithResponse request
 	GetRatingsSnapshotWithResponse(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*GetRatingsSnapshotClientResponse, error)
+
+	// GetRatiosWithResponse request
+	GetRatiosWithResponse(ctx context.Context, params *GetRatiosParams, reqEditors ...RequestEditorFn) (*GetRatiosClientResponse, error)
+
+	// GetRevenueGeographicSegmentationWithResponse request
+	GetRevenueGeographicSegmentationWithResponse(ctx context.Context, params *GetRevenueGeographicSegmentationParams, reqEditors ...RequestEditorFn) (*GetRevenueGeographicSegmentationClientResponse, error)
+
+	// GetRevenueProductSegmentationWithResponse request
+	GetRevenueProductSegmentationWithResponse(ctx context.Context, params *GetRevenueProductSegmentationParams, reqEditors ...RequestEditorFn) (*GetRevenueProductSegmentationClientResponse, error)
 
 	// GetSearchNameWithResponse request
 	GetSearchNameWithResponse(ctx context.Context, params *GetSearchNameParams, reqEditors ...RequestEditorFn) (*GetSearchNameClientResponse, error)
 
 	// GetSearchSymbolWithResponse request
 	GetSearchSymbolWithResponse(ctx context.Context, params *GetSearchSymbolParams, reqEditors ...RequestEditorFn) (*GetSearchSymbolClientResponse, error)
+
+	// GetSharesFloatWithResponse request
+	GetSharesFloatWithResponse(ctx context.Context, params *GetSharesFloatParams, reqEditors ...RequestEditorFn) (*GetSharesFloatClientResponse, error)
+
+	// GetTreasuryRatesWithResponse request
+	GetTreasuryRatesWithResponse(ctx context.Context, params *GetTreasuryRatesParams, reqEditors ...RequestEditorFn) (*GetTreasuryRatesClientResponse, error)
 }
 
 type GetAnalystEstimatesClientResponse struct {
@@ -1032,6 +3492,160 @@ func (r GetAnalystEstimatesClientResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetAnalystEstimatesClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetBalanceSheetStatementClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]BalanceSheetStatement
+}
+
+// Status returns HTTPResponse.Status
+func (r GetBalanceSheetStatementClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetBalanceSheetStatementClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetBalanceSheetStatementTtmClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]BalanceSheetStatementTtm
+}
+
+// Status returns HTTPResponse.Status
+func (r GetBalanceSheetStatementTtmClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetBalanceSheetStatementTtmClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetCashFlowStatementClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CashFlowStatement
+}
+
+// Status returns HTTPResponse.Status
+func (r GetCashFlowStatementClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetCashFlowStatementClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetCashFlowStatementTtmClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CashFlowStatementTtm
+}
+
+// Status returns HTTPResponse.Status
+func (r GetCashFlowStatementTtmClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetCashFlowStatementTtmClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetEconomicCalendarClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]EconomicRecord
+}
+
+// Status returns HTTPResponse.Status
+func (r GetEconomicCalendarClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetEconomicCalendarClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetEsgDisclosuresClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]EconomicEsgDisclosure
+}
+
+// Status returns HTTPResponse.Status
+func (r GetEsgDisclosuresClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetEsgDisclosuresClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetEsgRatingsClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]EconomicEsgRating
+}
+
+// Status returns HTTPResponse.Status
+func (r GetEsgRatingsClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetEsgRatingsClientResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -1104,6 +3718,160 @@ func (r GetHistoricalPriceEodLightClientResponse) StatusCode() int {
 	return 0
 }
 
+type GetIncomeStatementClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]IncomeStatement
+}
+
+// Status returns HTTPResponse.Status
+func (r GetIncomeStatementClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetIncomeStatementClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetIncomeStatementTtmClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]IncomeStatementTtm
+}
+
+// Status returns HTTPResponse.Status
+func (r GetIncomeStatementTtmClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetIncomeStatementTtmClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetInsiderTradingLatestClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]InsiderTransaction
+}
+
+// Status returns HTTPResponse.Status
+func (r GetInsiderTradingLatestClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetInsiderTradingLatestClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetKeyMetricsClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]KeyMetrics
+}
+
+// Status returns HTTPResponse.Status
+func (r GetKeyMetricsClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetKeyMetricsClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetMarketCapitalizationClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CompanyCapitalization
+}
+
+// Status returns HTTPResponse.Status
+func (r GetMarketCapitalizationClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetMarketCapitalizationClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetMarketCapitalizationBatchClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CompanyCapitalization
+}
+
+// Status returns HTTPResponse.Status
+func (r GetMarketCapitalizationBatchClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetMarketCapitalizationBatchClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetNewsGeneralLatestClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]NewsRecord
+}
+
+// Status returns HTTPResponse.Status
+func (r GetNewsGeneralLatestClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetNewsGeneralLatestClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type GetProfileClientResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -1126,6 +3894,50 @@ func (r GetProfileClientResponse) StatusCode() int {
 	return 0
 }
 
+type GetQuoteClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]FullQuote
+}
+
+// Status returns HTTPResponse.Status
+func (r GetQuoteClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetQuoteClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetQuoteShortClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ShortQuote
+}
+
+// Status returns HTTPResponse.Status
+func (r GetQuoteShortClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetQuoteShortClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type GetRatingsSnapshotClientResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -1142,6 +3954,72 @@ func (r GetRatingsSnapshotClientResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetRatingsSnapshotClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetRatiosClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]FinancialRatios
+}
+
+// Status returns HTTPResponse.Status
+func (r GetRatiosClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetRatiosClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetRevenueGeographicSegmentationClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]RevenueSegmentation
+}
+
+// Status returns HTTPResponse.Status
+func (r GetRevenueGeographicSegmentationClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetRevenueGeographicSegmentationClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetRevenueProductSegmentationClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]RevenueSegmentation
+}
+
+// Status returns HTTPResponse.Status
+func (r GetRevenueProductSegmentationClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetRevenueProductSegmentationClientResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -1192,6 +4070,50 @@ func (r GetSearchSymbolClientResponse) StatusCode() int {
 	return 0
 }
 
+type GetSharesFloatClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CompanySharesFloat
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSharesFloatClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSharesFloatClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetTreasuryRatesClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]TreasuryRates
+}
+
+// Status returns HTTPResponse.Status
+func (r GetTreasuryRatesClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetTreasuryRatesClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 // GetAnalystEstimatesWithResponse request returning *GetAnalystEstimatesClientResponse
 func (c *ClientWithResponses) GetAnalystEstimatesWithResponse(ctx context.Context, params *GetAnalystEstimatesParams, reqEditors ...RequestEditorFn) (*GetAnalystEstimatesClientResponse, error) {
 	rsp, err := c.GetAnalystEstimates(ctx, params, reqEditors...)
@@ -1199,6 +4121,69 @@ func (c *ClientWithResponses) GetAnalystEstimatesWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseGetAnalystEstimatesClientResponse(rsp)
+}
+
+// GetBalanceSheetStatementWithResponse request returning *GetBalanceSheetStatementClientResponse
+func (c *ClientWithResponses) GetBalanceSheetStatementWithResponse(ctx context.Context, params *GetBalanceSheetStatementParams, reqEditors ...RequestEditorFn) (*GetBalanceSheetStatementClientResponse, error) {
+	rsp, err := c.GetBalanceSheetStatement(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetBalanceSheetStatementClientResponse(rsp)
+}
+
+// GetBalanceSheetStatementTtmWithResponse request returning *GetBalanceSheetStatementTtmClientResponse
+func (c *ClientWithResponses) GetBalanceSheetStatementTtmWithResponse(ctx context.Context, params *GetBalanceSheetStatementTtmParams, reqEditors ...RequestEditorFn) (*GetBalanceSheetStatementTtmClientResponse, error) {
+	rsp, err := c.GetBalanceSheetStatementTtm(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetBalanceSheetStatementTtmClientResponse(rsp)
+}
+
+// GetCashFlowStatementWithResponse request returning *GetCashFlowStatementClientResponse
+func (c *ClientWithResponses) GetCashFlowStatementWithResponse(ctx context.Context, params *GetCashFlowStatementParams, reqEditors ...RequestEditorFn) (*GetCashFlowStatementClientResponse, error) {
+	rsp, err := c.GetCashFlowStatement(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetCashFlowStatementClientResponse(rsp)
+}
+
+// GetCashFlowStatementTtmWithResponse request returning *GetCashFlowStatementTtmClientResponse
+func (c *ClientWithResponses) GetCashFlowStatementTtmWithResponse(ctx context.Context, params *GetCashFlowStatementTtmParams, reqEditors ...RequestEditorFn) (*GetCashFlowStatementTtmClientResponse, error) {
+	rsp, err := c.GetCashFlowStatementTtm(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetCashFlowStatementTtmClientResponse(rsp)
+}
+
+// GetEconomicCalendarWithResponse request returning *GetEconomicCalendarClientResponse
+func (c *ClientWithResponses) GetEconomicCalendarWithResponse(ctx context.Context, params *GetEconomicCalendarParams, reqEditors ...RequestEditorFn) (*GetEconomicCalendarClientResponse, error) {
+	rsp, err := c.GetEconomicCalendar(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetEconomicCalendarClientResponse(rsp)
+}
+
+// GetEsgDisclosuresWithResponse request returning *GetEsgDisclosuresClientResponse
+func (c *ClientWithResponses) GetEsgDisclosuresWithResponse(ctx context.Context, params *GetEsgDisclosuresParams, reqEditors ...RequestEditorFn) (*GetEsgDisclosuresClientResponse, error) {
+	rsp, err := c.GetEsgDisclosures(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetEsgDisclosuresClientResponse(rsp)
+}
+
+// GetEsgRatingsWithResponse request returning *GetEsgRatingsClientResponse
+func (c *ClientWithResponses) GetEsgRatingsWithResponse(ctx context.Context, params *GetEsgRatingsParams, reqEditors ...RequestEditorFn) (*GetEsgRatingsClientResponse, error) {
+	rsp, err := c.GetEsgRatings(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetEsgRatingsClientResponse(rsp)
 }
 
 // GetGradesLatestNewsWithResponse request returning *GetGradesLatestNewsClientResponse
@@ -1228,6 +4213,69 @@ func (c *ClientWithResponses) GetHistoricalPriceEodLightWithResponse(ctx context
 	return ParseGetHistoricalPriceEodLightClientResponse(rsp)
 }
 
+// GetIncomeStatementWithResponse request returning *GetIncomeStatementClientResponse
+func (c *ClientWithResponses) GetIncomeStatementWithResponse(ctx context.Context, params *GetIncomeStatementParams, reqEditors ...RequestEditorFn) (*GetIncomeStatementClientResponse, error) {
+	rsp, err := c.GetIncomeStatement(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetIncomeStatementClientResponse(rsp)
+}
+
+// GetIncomeStatementTtmWithResponse request returning *GetIncomeStatementTtmClientResponse
+func (c *ClientWithResponses) GetIncomeStatementTtmWithResponse(ctx context.Context, params *GetIncomeStatementTtmParams, reqEditors ...RequestEditorFn) (*GetIncomeStatementTtmClientResponse, error) {
+	rsp, err := c.GetIncomeStatementTtm(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetIncomeStatementTtmClientResponse(rsp)
+}
+
+// GetInsiderTradingLatestWithResponse request returning *GetInsiderTradingLatestClientResponse
+func (c *ClientWithResponses) GetInsiderTradingLatestWithResponse(ctx context.Context, params *GetInsiderTradingLatestParams, reqEditors ...RequestEditorFn) (*GetInsiderTradingLatestClientResponse, error) {
+	rsp, err := c.GetInsiderTradingLatest(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetInsiderTradingLatestClientResponse(rsp)
+}
+
+// GetKeyMetricsWithResponse request returning *GetKeyMetricsClientResponse
+func (c *ClientWithResponses) GetKeyMetricsWithResponse(ctx context.Context, params *GetKeyMetricsParams, reqEditors ...RequestEditorFn) (*GetKeyMetricsClientResponse, error) {
+	rsp, err := c.GetKeyMetrics(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetKeyMetricsClientResponse(rsp)
+}
+
+// GetMarketCapitalizationWithResponse request returning *GetMarketCapitalizationClientResponse
+func (c *ClientWithResponses) GetMarketCapitalizationWithResponse(ctx context.Context, params *GetMarketCapitalizationParams, reqEditors ...RequestEditorFn) (*GetMarketCapitalizationClientResponse, error) {
+	rsp, err := c.GetMarketCapitalization(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetMarketCapitalizationClientResponse(rsp)
+}
+
+// GetMarketCapitalizationBatchWithResponse request returning *GetMarketCapitalizationBatchClientResponse
+func (c *ClientWithResponses) GetMarketCapitalizationBatchWithResponse(ctx context.Context, params *GetMarketCapitalizationBatchParams, reqEditors ...RequestEditorFn) (*GetMarketCapitalizationBatchClientResponse, error) {
+	rsp, err := c.GetMarketCapitalizationBatch(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetMarketCapitalizationBatchClientResponse(rsp)
+}
+
+// GetNewsGeneralLatestWithResponse request returning *GetNewsGeneralLatestClientResponse
+func (c *ClientWithResponses) GetNewsGeneralLatestWithResponse(ctx context.Context, params *GetNewsGeneralLatestParams, reqEditors ...RequestEditorFn) (*GetNewsGeneralLatestClientResponse, error) {
+	rsp, err := c.GetNewsGeneralLatest(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetNewsGeneralLatestClientResponse(rsp)
+}
+
 // GetProfileWithResponse request returning *GetProfileClientResponse
 func (c *ClientWithResponses) GetProfileWithResponse(ctx context.Context, params *GetProfileParams, reqEditors ...RequestEditorFn) (*GetProfileClientResponse, error) {
 	rsp, err := c.GetProfile(ctx, params, reqEditors...)
@@ -1237,6 +4285,24 @@ func (c *ClientWithResponses) GetProfileWithResponse(ctx context.Context, params
 	return ParseGetProfileClientResponse(rsp)
 }
 
+// GetQuoteWithResponse request returning *GetQuoteClientResponse
+func (c *ClientWithResponses) GetQuoteWithResponse(ctx context.Context, params *GetQuoteParams, reqEditors ...RequestEditorFn) (*GetQuoteClientResponse, error) {
+	rsp, err := c.GetQuote(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetQuoteClientResponse(rsp)
+}
+
+// GetQuoteShortWithResponse request returning *GetQuoteShortClientResponse
+func (c *ClientWithResponses) GetQuoteShortWithResponse(ctx context.Context, params *GetQuoteShortParams, reqEditors ...RequestEditorFn) (*GetQuoteShortClientResponse, error) {
+	rsp, err := c.GetQuoteShort(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetQuoteShortClientResponse(rsp)
+}
+
 // GetRatingsSnapshotWithResponse request returning *GetRatingsSnapshotClientResponse
 func (c *ClientWithResponses) GetRatingsSnapshotWithResponse(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*GetRatingsSnapshotClientResponse, error) {
 	rsp, err := c.GetRatingsSnapshot(ctx, params, reqEditors...)
@@ -1244,6 +4310,33 @@ func (c *ClientWithResponses) GetRatingsSnapshotWithResponse(ctx context.Context
 		return nil, err
 	}
 	return ParseGetRatingsSnapshotClientResponse(rsp)
+}
+
+// GetRatiosWithResponse request returning *GetRatiosClientResponse
+func (c *ClientWithResponses) GetRatiosWithResponse(ctx context.Context, params *GetRatiosParams, reqEditors ...RequestEditorFn) (*GetRatiosClientResponse, error) {
+	rsp, err := c.GetRatios(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetRatiosClientResponse(rsp)
+}
+
+// GetRevenueGeographicSegmentationWithResponse request returning *GetRevenueGeographicSegmentationClientResponse
+func (c *ClientWithResponses) GetRevenueGeographicSegmentationWithResponse(ctx context.Context, params *GetRevenueGeographicSegmentationParams, reqEditors ...RequestEditorFn) (*GetRevenueGeographicSegmentationClientResponse, error) {
+	rsp, err := c.GetRevenueGeographicSegmentation(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetRevenueGeographicSegmentationClientResponse(rsp)
+}
+
+// GetRevenueProductSegmentationWithResponse request returning *GetRevenueProductSegmentationClientResponse
+func (c *ClientWithResponses) GetRevenueProductSegmentationWithResponse(ctx context.Context, params *GetRevenueProductSegmentationParams, reqEditors ...RequestEditorFn) (*GetRevenueProductSegmentationClientResponse, error) {
+	rsp, err := c.GetRevenueProductSegmentation(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetRevenueProductSegmentationClientResponse(rsp)
 }
 
 // GetSearchNameWithResponse request returning *GetSearchNameClientResponse
@@ -1264,6 +4357,24 @@ func (c *ClientWithResponses) GetSearchSymbolWithResponse(ctx context.Context, p
 	return ParseGetSearchSymbolClientResponse(rsp)
 }
 
+// GetSharesFloatWithResponse request returning *GetSharesFloatClientResponse
+func (c *ClientWithResponses) GetSharesFloatWithResponse(ctx context.Context, params *GetSharesFloatParams, reqEditors ...RequestEditorFn) (*GetSharesFloatClientResponse, error) {
+	rsp, err := c.GetSharesFloat(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSharesFloatClientResponse(rsp)
+}
+
+// GetTreasuryRatesWithResponse request returning *GetTreasuryRatesClientResponse
+func (c *ClientWithResponses) GetTreasuryRatesWithResponse(ctx context.Context, params *GetTreasuryRatesParams, reqEditors ...RequestEditorFn) (*GetTreasuryRatesClientResponse, error) {
+	rsp, err := c.GetTreasuryRates(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetTreasuryRatesClientResponse(rsp)
+}
+
 // ParseGetAnalystEstimatesClientResponse parses an HTTP response from a GetAnalystEstimatesWithResponse call
 func ParseGetAnalystEstimatesClientResponse(rsp *http.Response) (*GetAnalystEstimatesClientResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -1280,6 +4391,188 @@ func ParseGetAnalystEstimatesClientResponse(rsp *http.Response) (*GetAnalystEsti
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []FinancialEstimates
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetBalanceSheetStatementClientResponse parses an HTTP response from a GetBalanceSheetStatementWithResponse call
+func ParseGetBalanceSheetStatementClientResponse(rsp *http.Response) (*GetBalanceSheetStatementClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetBalanceSheetStatementClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []BalanceSheetStatement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetBalanceSheetStatementTtmClientResponse parses an HTTP response from a GetBalanceSheetStatementTtmWithResponse call
+func ParseGetBalanceSheetStatementTtmClientResponse(rsp *http.Response) (*GetBalanceSheetStatementTtmClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetBalanceSheetStatementTtmClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []BalanceSheetStatementTtm
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetCashFlowStatementClientResponse parses an HTTP response from a GetCashFlowStatementWithResponse call
+func ParseGetCashFlowStatementClientResponse(rsp *http.Response) (*GetCashFlowStatementClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetCashFlowStatementClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CashFlowStatement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetCashFlowStatementTtmClientResponse parses an HTTP response from a GetCashFlowStatementTtmWithResponse call
+func ParseGetCashFlowStatementTtmClientResponse(rsp *http.Response) (*GetCashFlowStatementTtmClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetCashFlowStatementTtmClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CashFlowStatementTtm
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetEconomicCalendarClientResponse parses an HTTP response from a GetEconomicCalendarWithResponse call
+func ParseGetEconomicCalendarClientResponse(rsp *http.Response) (*GetEconomicCalendarClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetEconomicCalendarClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []EconomicRecord
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetEsgDisclosuresClientResponse parses an HTTP response from a GetEsgDisclosuresWithResponse call
+func ParseGetEsgDisclosuresClientResponse(rsp *http.Response) (*GetEsgDisclosuresClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetEsgDisclosuresClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []EconomicEsgDisclosure
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetEsgRatingsClientResponse parses an HTTP response from a GetEsgRatingsWithResponse call
+func ParseGetEsgRatingsClientResponse(rsp *http.Response) (*GetEsgRatingsClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetEsgRatingsClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []EconomicEsgRating
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1368,6 +4661,188 @@ func ParseGetHistoricalPriceEodLightClientResponse(rsp *http.Response) (*GetHist
 	return response, nil
 }
 
+// ParseGetIncomeStatementClientResponse parses an HTTP response from a GetIncomeStatementWithResponse call
+func ParseGetIncomeStatementClientResponse(rsp *http.Response) (*GetIncomeStatementClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetIncomeStatementClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []IncomeStatement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetIncomeStatementTtmClientResponse parses an HTTP response from a GetIncomeStatementTtmWithResponse call
+func ParseGetIncomeStatementTtmClientResponse(rsp *http.Response) (*GetIncomeStatementTtmClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetIncomeStatementTtmClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []IncomeStatementTtm
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetInsiderTradingLatestClientResponse parses an HTTP response from a GetInsiderTradingLatestWithResponse call
+func ParseGetInsiderTradingLatestClientResponse(rsp *http.Response) (*GetInsiderTradingLatestClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetInsiderTradingLatestClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []InsiderTransaction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetKeyMetricsClientResponse parses an HTTP response from a GetKeyMetricsWithResponse call
+func ParseGetKeyMetricsClientResponse(rsp *http.Response) (*GetKeyMetricsClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetKeyMetricsClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []KeyMetrics
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetMarketCapitalizationClientResponse parses an HTTP response from a GetMarketCapitalizationWithResponse call
+func ParseGetMarketCapitalizationClientResponse(rsp *http.Response) (*GetMarketCapitalizationClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetMarketCapitalizationClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CompanyCapitalization
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetMarketCapitalizationBatchClientResponse parses an HTTP response from a GetMarketCapitalizationBatchWithResponse call
+func ParseGetMarketCapitalizationBatchClientResponse(rsp *http.Response) (*GetMarketCapitalizationBatchClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetMarketCapitalizationBatchClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CompanyCapitalization
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetNewsGeneralLatestClientResponse parses an HTTP response from a GetNewsGeneralLatestWithResponse call
+func ParseGetNewsGeneralLatestClientResponse(rsp *http.Response) (*GetNewsGeneralLatestClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetNewsGeneralLatestClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []NewsRecord
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseGetProfileClientResponse parses an HTTP response from a GetProfileWithResponse call
 func ParseGetProfileClientResponse(rsp *http.Response) (*GetProfileClientResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -1394,6 +4869,58 @@ func ParseGetProfileClientResponse(rsp *http.Response) (*GetProfileClientRespons
 	return response, nil
 }
 
+// ParseGetQuoteClientResponse parses an HTTP response from a GetQuoteWithResponse call
+func ParseGetQuoteClientResponse(rsp *http.Response) (*GetQuoteClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetQuoteClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []FullQuote
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetQuoteShortClientResponse parses an HTTP response from a GetQuoteShortWithResponse call
+func ParseGetQuoteShortClientResponse(rsp *http.Response) (*GetQuoteShortClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetQuoteShortClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ShortQuote
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseGetRatingsSnapshotClientResponse parses an HTTP response from a GetRatingsSnapshotWithResponse call
 func ParseGetRatingsSnapshotClientResponse(rsp *http.Response) (*GetRatingsSnapshotClientResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -1410,6 +4937,84 @@ func ParseGetRatingsSnapshotClientResponse(rsp *http.Response) (*GetRatingsSnaps
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetRatiosClientResponse parses an HTTP response from a GetRatiosWithResponse call
+func ParseGetRatiosClientResponse(rsp *http.Response) (*GetRatiosClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetRatiosClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []FinancialRatios
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetRevenueGeographicSegmentationClientResponse parses an HTTP response from a GetRevenueGeographicSegmentationWithResponse call
+func ParseGetRevenueGeographicSegmentationClientResponse(rsp *http.Response) (*GetRevenueGeographicSegmentationClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetRevenueGeographicSegmentationClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []RevenueSegmentation
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetRevenueProductSegmentationClientResponse parses an HTTP response from a GetRevenueProductSegmentationWithResponse call
+func ParseGetRevenueProductSegmentationClientResponse(rsp *http.Response) (*GetRevenueProductSegmentationClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetRevenueProductSegmentationClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []RevenueSegmentation
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1472,50 +5077,220 @@ func ParseGetSearchSymbolClientResponse(rsp *http.Response) (*GetSearchSymbolCli
 	return response, nil
 }
 
+// ParseGetSharesFloatClientResponse parses an HTTP response from a GetSharesFloatWithResponse call
+func ParseGetSharesFloatClientResponse(rsp *http.Response) (*GetSharesFloatClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSharesFloatClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CompanySharesFloat
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetTreasuryRatesClientResponse parses an HTTP response from a GetTreasuryRatesWithResponse call
+func ParseGetTreasuryRatesClientResponse(rsp *http.Response) (*GetTreasuryRatesClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetTreasuryRatesClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []TreasuryRates
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
+	"AQA=",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
