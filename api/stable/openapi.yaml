@@ -87,6 +87,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/FinancialEstimates'
+    tag:
+      - analyst
   /ratings-snapshot:
     get:
       parameters:
@@ -107,6 +109,30 @@ paths:
             application/json:
               schema:
                 type: object
+    tag:
+      - analyst
+  /grades-latest-news:
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        '200':
+          description: A list of analyst financial estimates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/News'
     tag:
       - analyst
 components:
@@ -134,6 +160,12 @@ components:
         exchange:
           type: string
           example: "NASDAQ"
+      required:
+        - symbol
+        - name
+        - currency
+        - exchangeFullName
+        - exchange
     FinancialEstimates:
       properties:
         symbol:
@@ -145,57 +177,72 @@ components:
           example: "2029-09-28"
         revenueLow:
           type: number
+          format: double
           example: 483092500000
         revenueHigh:
           type: number
+          format: double
           example: 483093500000
         revenueAvg:
           type: number
+          format: double
           example: 483093000000
         ebitdaLow:
           type: number
           example: 155952166036
         ebitdaHigh:
           type: number
+          format: double
           example: 155952488856
         ebitdaAvg:
           type: number
+          format: double
           example: 155952327446
         ebitLow:
           type: number
+          format: double
           example: 140628295747
         ebitHigh:
           type: number
           example: 140628586847
         ebitAvg:
           type: number
+          format: double
           example: 140628441297
         netIncomeLow:
           type: number
+          format: double
           example: 139446957701
         netIncomeHigh:
           type: number
           example: 157185372990
         netIncomeAvg:
           type: number
+          format: double
           example: 149150359609
         sgaExpenseLow:
           type: number
+          format: double
           example: 31694652812
         sgaExpenseHigh:
           type: number
+          format: double
           example: 31694718420
         sgaExpenseAvg:
           type: number
+          format: double
           example: 31694685616
         epsAvg:
           type: number
+          format: double
           example: 9.68
         epsHigh:
           type: number
+          format: double
           example: 10.20148
         epsLow:
           type: number
+          format: double
           example: 9.05024
         numAnalystsRevenue:
           type: integer
@@ -203,3 +250,75 @@ components:
         numAnalystsEps:
           type: integer
           example: 6
+      required:
+        - symbol
+        - date
+        - revenueLow
+        - revenueHigh
+        - revenueAvg
+        - ebitdaLow
+        - ebitdaHigh
+        - ebitdaAvg
+        - ebitLow
+        - ebitHigh
+        - ebitAvg
+        - netIncomeLow
+        - netIncomeHigh
+        - netIncomeAvg
+        - sgaExpenseLow
+        - sgaExpenseHigh
+        - sgaExpenseAvg
+        - epsAvg
+        - epsHigh
+        - epsLow
+        - numAnalystsRevenue
+        - numAnalystsEps
+    News:
+      properties:
+        symbol:
+          type: string
+          example: "PYPL"
+        publishedDate:
+          type: string
+          format: date-time
+          example: "2025-02-04T19:18:04.000Z"
+        newsURL:
+          type: string
+          format: uri
+          example: "https://www.benzinga.com/25/02/43475080/paypal-beats-q4-estimates-as-transaction-margins-and-payment-volume-drive-growth-eyes-2025-growth-with-strong-tmd"
+        newsTitle:
+          type: string
+          example: "PayPal Transaction Margins and Payment Volume Drive Growth, Eyes 2025 Growth With Strong TMD Ahead of Investor Day: Analyst"
+        newsBaseURL:
+          type: string
+          example: "benzinga.com"
+        newsPublisher:
+          type: string
+          example: "Benzinga"
+        newGrade:
+          type: string
+          example: "Overweight"
+        previousGrade:
+          type: string
+          example: "Overweight"
+        gradingCompany:
+          type: string
+          example: "J.P. Morgan"
+        action:
+          type: string
+          example: "hold"
+        priceWhenPosted:
+          type: number
+          example: 77.725
+      required:
+        - symbol
+        - publishedDate
+        - newsURL
+        - newsTitle
+        - newsBaseURL
+        - newsPublisher
+        - newGrade
+        - previousGrade
+        - gradingCompany
+        - action
+        - priceWhenPosted

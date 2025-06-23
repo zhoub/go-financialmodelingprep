@@ -15,6 +15,7 @@ import (
 	"net/url"
 	"path"
 	"strings"
+	"time"
 
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/oapi-codegen/runtime"
@@ -27,37 +28,52 @@ const (
 
 // FinancialEstimates defines model for FinancialEstimates.
 type FinancialEstimates struct {
-	Date               *openapi_types.Date `json:"date,omitempty"`
-	EbitAvg            *float32            `json:"ebitAvg,omitempty"`
-	EbitHigh           *float32            `json:"ebitHigh,omitempty"`
-	EbitLow            *float32            `json:"ebitLow,omitempty"`
-	EbitdaAvg          *float32            `json:"ebitdaAvg,omitempty"`
-	EbitdaHigh         *float32            `json:"ebitdaHigh,omitempty"`
-	EbitdaLow          *float32            `json:"ebitdaLow,omitempty"`
-	EpsAvg             *float32            `json:"epsAvg,omitempty"`
-	EpsHigh            *float32            `json:"epsHigh,omitempty"`
-	EpsLow             *float32            `json:"epsLow,omitempty"`
-	NetIncomeAvg       *float32            `json:"netIncomeAvg,omitempty"`
-	NetIncomeHigh      *float32            `json:"netIncomeHigh,omitempty"`
-	NetIncomeLow       *float32            `json:"netIncomeLow,omitempty"`
-	NumAnalystsEps     *int                `json:"numAnalystsEps,omitempty"`
-	NumAnalystsRevenue *int                `json:"numAnalystsRevenue,omitempty"`
-	RevenueAvg         *float32            `json:"revenueAvg,omitempty"`
-	RevenueHigh        *float32            `json:"revenueHigh,omitempty"`
-	RevenueLow         *float32            `json:"revenueLow,omitempty"`
-	SgaExpenseAvg      *float32            `json:"sgaExpenseAvg,omitempty"`
-	SgaExpenseHigh     *float32            `json:"sgaExpenseHigh,omitempty"`
-	SgaExpenseLow      *float32            `json:"sgaExpenseLow,omitempty"`
-	Symbol             *string             `json:"symbol,omitempty"`
+	Date               openapi_types.Date `json:"date"`
+	EbitAvg            float64            `json:"ebitAvg"`
+	EbitHigh           float32            `json:"ebitHigh"`
+	EbitLow            float64            `json:"ebitLow"`
+	EbitdaAvg          float64            `json:"ebitdaAvg"`
+	EbitdaHigh         float64            `json:"ebitdaHigh"`
+	EbitdaLow          float32            `json:"ebitdaLow"`
+	EpsAvg             float64            `json:"epsAvg"`
+	EpsHigh            float64            `json:"epsHigh"`
+	EpsLow             float64            `json:"epsLow"`
+	NetIncomeAvg       float64            `json:"netIncomeAvg"`
+	NetIncomeHigh      float32            `json:"netIncomeHigh"`
+	NetIncomeLow       float64            `json:"netIncomeLow"`
+	NumAnalystsEps     int                `json:"numAnalystsEps"`
+	NumAnalystsRevenue int                `json:"numAnalystsRevenue"`
+	RevenueAvg         float64            `json:"revenueAvg"`
+	RevenueHigh        float64            `json:"revenueHigh"`
+	RevenueLow         float64            `json:"revenueLow"`
+	SgaExpenseAvg      float64            `json:"sgaExpenseAvg"`
+	SgaExpenseHigh     float64            `json:"sgaExpenseHigh"`
+	SgaExpenseLow      float64            `json:"sgaExpenseLow"`
+	Symbol             string             `json:"symbol"`
+}
+
+// News defines model for News.
+type News struct {
+	Action          string    `json:"action"`
+	GradingCompany  string    `json:"gradingCompany"`
+	NewGrade        string    `json:"newGrade"`
+	NewsBaseURL     string    `json:"newsBaseURL"`
+	NewsPublisher   string    `json:"newsPublisher"`
+	NewsTitle       string    `json:"newsTitle"`
+	NewsURL         string    `json:"newsURL"`
+	PreviousGrade   string    `json:"previousGrade"`
+	PriceWhenPosted float32   `json:"priceWhenPosted"`
+	PublishedDate   time.Time `json:"publishedDate"`
+	Symbol          string    `json:"symbol"`
 }
 
 // SearchSymbol defines model for SearchSymbol.
 type SearchSymbol struct {
-	Currency         *string `json:"currency,omitempty"`
-	Exchange         *string `json:"exchange,omitempty"`
-	ExchangeFullName *string `json:"exchangeFullName,omitempty"`
-	Name             *string `json:"name,omitempty"`
-	Symbol           *string `json:"symbol,omitempty"`
+	Currency         string `json:"currency"`
+	Exchange         string `json:"exchange"`
+	ExchangeFullName string `json:"exchangeFullName"`
+	Name             string `json:"name"`
+	Symbol           string `json:"symbol"`
 }
 
 // GetAnalystEstimatesParams defines parameters for GetAnalystEstimates.
@@ -66,6 +82,12 @@ type GetAnalystEstimatesParams struct {
 	Period string `form:"period" json:"period"`
 	Page   *int   `form:"page,omitempty" json:"page,omitempty"`
 	Limit  *int   `form:"limit,omitempty" json:"limit,omitempty"`
+}
+
+// GetGradesLatestNewsParams defines parameters for GetGradesLatestNews.
+type GetGradesLatestNewsParams struct {
+	Page  *int `form:"page,omitempty" json:"page,omitempty"`
+	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
 }
 
 // GetRatingsSnapshotParams defines parameters for GetRatingsSnapshot.
@@ -92,6 +114,9 @@ const (
 
 	// /analyst-estimates
 	GetAnalystEstimatesOperationPath OperationPath = "/analyst-estimates"
+
+	// /grades-latest-news
+	GetGradesLatestNewsOperationPath OperationPath = "/grades-latest-news"
 
 	// /ratings-snapshot
 	GetRatingsSnapshotOperationPath OperationPath = "/ratings-snapshot"
@@ -179,6 +204,9 @@ type ClientInterface interface {
 	// GetAnalystEstimates request
 	GetAnalystEstimates(ctx context.Context, params *GetAnalystEstimatesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetGradesLatestNews request
+	GetGradesLatestNews(ctx context.Context, params *GetGradesLatestNewsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetRatingsSnapshot request
 	GetRatingsSnapshot(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -191,6 +219,18 @@ type ClientInterface interface {
 
 func (c *Client) GetAnalystEstimates(ctx context.Context, params *GetAnalystEstimatesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetAnalystEstimatesRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetGradesLatestNews(ctx context.Context, params *GetGradesLatestNewsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetGradesLatestNewsRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -282,6 +322,71 @@ func NewGetAnalystEstimatesRequest(server string, params *GetAnalystEstimatesPar
 				}
 			}
 		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetGradesLatestNewsRequest generates requests for GetGradesLatestNews
+func NewGetGradesLatestNewsRequest(server string, params *GetGradesLatestNewsParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/grades-latest-news")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
 
 		if params.Page != nil {
 
@@ -555,6 +660,9 @@ type ClientWithResponsesInterface interface {
 	// GetAnalystEstimatesWithResponse request
 	GetAnalystEstimatesWithResponse(ctx context.Context, params *GetAnalystEstimatesParams, reqEditors ...RequestEditorFn) (*GetAnalystEstimatesClientResponse, error)
 
+	// GetGradesLatestNewsWithResponse request
+	GetGradesLatestNewsWithResponse(ctx context.Context, params *GetGradesLatestNewsParams, reqEditors ...RequestEditorFn) (*GetGradesLatestNewsClientResponse, error)
+
 	// GetRatingsSnapshotWithResponse request
 	GetRatingsSnapshotWithResponse(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*GetRatingsSnapshotClientResponse, error)
 
@@ -581,6 +689,28 @@ func (r GetAnalystEstimatesClientResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetAnalystEstimatesClientResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetGradesLatestNewsClientResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]News
+}
+
+// Status returns HTTPResponse.Status
+func (r GetGradesLatestNewsClientResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetGradesLatestNewsClientResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -662,6 +792,15 @@ func (c *ClientWithResponses) GetAnalystEstimatesWithResponse(ctx context.Contex
 	return ParseGetAnalystEstimatesClientResponse(rsp)
 }
 
+// GetGradesLatestNewsWithResponse request returning *GetGradesLatestNewsClientResponse
+func (c *ClientWithResponses) GetGradesLatestNewsWithResponse(ctx context.Context, params *GetGradesLatestNewsParams, reqEditors ...RequestEditorFn) (*GetGradesLatestNewsClientResponse, error) {
+	rsp, err := c.GetGradesLatestNews(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetGradesLatestNewsClientResponse(rsp)
+}
+
 // GetRatingsSnapshotWithResponse request returning *GetRatingsSnapshotClientResponse
 func (c *ClientWithResponses) GetRatingsSnapshotWithResponse(ctx context.Context, params *GetRatingsSnapshotParams, reqEditors ...RequestEditorFn) (*GetRatingsSnapshotClientResponse, error) {
 	rsp, err := c.GetRatingsSnapshot(ctx, params, reqEditors...)
@@ -705,6 +844,32 @@ func ParseGetAnalystEstimatesClientResponse(rsp *http.Response) (*GetAnalystEsti
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []FinancialEstimates
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetGradesLatestNewsClientResponse parses an HTTP response from a GetGradesLatestNewsWithResponse call
+func ParseGetGradesLatestNewsClientResponse(rsp *http.Response) (*GetGradesLatestNewsClientResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetGradesLatestNewsClientResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []News
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -796,22 +961,30 @@ func ParseGetSearchSymbolClientResponse(rsp *http.Response) (*GetSearchSymbolCli
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"H4sIAAAAAAAC/9yWTW/jNhCG/4rA9uhY37Kkm4BNtkG3i3SNnoIcaHksc1ciueQojRH4vxeiZDuyPtoF",
-	"2hyai2JhnuGrd8gZvpJcVFJw4KhJ+kp0voeKmn/vGKc8Z7S81cgqimDeSiUkKGTtry1FaJ7wQitZAkmJ",
-	"53jJjZPceDFZkJ1QFUWStnELggfZxGhUjBfkuCCwYZg9F70UbuBEXhwErpeszgivqw2oE/ILK/YjTBhH",
-	"cTDFfBJ/jiBeEq4mkS0daAvDJPR8bxUE0SQ0VGeoII7jcJoa6DOQG0WOPwpJfS0uWUbxeORQkbP0HDeY",
-	"CL+Wkiyd0PGCkWAOeM9zUcGwiIkbOn6YRE4yx414tXLj0F95SeLMgQO7/CQIoiRcrRx3jKurjNPyoFHf",
-	"St0jL+4yjlAM4r/AM/C6v83dUUi1kddeBLHvJL5j/kakddTAiRYL/wa79sFQ3iSlC3r7IoHrgUrfjZIg",
-	"isPIjWa5gU4Drtw48OYXvFbaLhh6seuNcYdqI8p+b8myh0/DLnI8LsgaqMr36zPT71J5rRTw/NDP9sf6",
-	"w2hLesn3lBdXbe1ztv6Q/T4Xf1eX5WdajXLWx1JsaGmtoYQcx7LwAZlJWYJ1z/PlWPwP2HN+IzZfm9Wb",
-	"NxryWjE8rJt235qUSfYrHLIaTXUZJyn5XoM6kJM4QiX7BofLCtQQbQEY34mGQ4ZGy91vD1b2cE8W5BmU",
-	"ZoIbRXRTQqNeSOBUMpISf+ksfbIgkuLeyLBpe+xu4O3UKQCbR1NUikzw+y1JyUfA7oxeJlSTSdEKEJQm",
-	"6eP4h3TmNWfoe80UbEmKqoZFN/3Md1ybOJ5JgmJi+69kokUzIQfcub1MgSWrGM6TT40+LQXXrZue45hj",
-	"ITgCN8ZSKUuWG2vtr7qp1uubhAyhMuDPCnYkJT/Zl0uD3d0Y7JHrwmXrUaVot1O2oHPFJLZ7IrNKptES",
-	"O6uru7U75bEuO+BoSLupPS/0jeZU6r3AuZ3xpY1dn0LfeWO8Q1WuT/WMt51x1tk4E420IOkj6YwnT43F",
-	"2jTSm1M7mnK37bem3f0zY9u07+rvBHnu73OrvsuJ6Q2tHzorFcV8z3hhaRT5N90rZ2t1r5qXYTFfz/Wp",
-	"PP9pRf8P3r4Zocaht8Pz8an5RA3q+eRfrUqSkj2i1KltnxtcJbZQMl5IBXKZi8o+Dcin418BAAD//7f+",
-	"1juXDQAA",
+	"H4sIAAAAAAAC/9xXXXPbthL9Kxzc+yhKFEVKpN6Ua8fXrZ2qkdNMm/EDRK5JJCSAAKAUNuP/3iFIiZ/y",
+	"SDONZ9q8KObgHGLP7p5dfkcBSzmjQJVEy+9IBjGkWP/3LaGYBgQn11KRFCvQT7lgHIQi5V8hVlD8wjec",
+	"8gTQEtmW7ZuWb9oeGqEnJlKs0LI8N0Iq58UZqQShEXoeIdgStdpFLYqpY81tz3Gmtr9oUrBsmzRIaJZu",
+	"QRxI/k+ieIDF9eaesziBuWP7AYjtuwvn/BeHuHd/1/Vde2YvHGd+AU0/As3jeJ7nXsLTi0rTTOdzazYf",
+	"AnHZDcAfz73zXshl/9bW2LamztkE3ev6Y8u1bOcsOAV1SwOWQr+E/KlrzVx/bvmXMQ1kYTH13NnC9n3r",
+	"JWBP9pnvOHPfXSys6XlXyNIVxUkulbzmssVV541QBVHv/HvYAc3ajTgdBInyZFcvx5tZ/szS/866bMXT",
+	"U6skci8m6qqneewLeGSEr79xoLIX22w69525586n8wuZetFpqsXUc+xLL9WNr7yUa3tT+zymPN2ypO20",
+	"q9X6ru+pWtOvGREQouWnA3B0cOCG3u0stmqj6SUtf2p6Xm2iDQuuLb3TG90e63RvV6xeHropPjpXbUNH",
+	"Pxlsjl6HPT6P0DvYD0w1HCjCaFvtmCXh0ASLBA4Jjf7HUo5p3sb8NF6PjXsmIkyHoBT2NwKHnQH6yw7E",
+	"HkgUqxMY+QZL+PD+rg3bAv2T0AiPA5aeAq6zbUJkDKINfVNBT8EeiEo6l1zjfI0T40FgKku1jHssIkKl",
+	"gWlorHGeAlXGbyzJUjCuBNmBcSPYXsUj4zoHadiW7VZPjI9ExcZGCUYj4+H+yljFgEODPRm3dAdSMWFc",
+	"4XxpVLk7dcueIrFSXC4nk/1+P26qM7HdiWVPnJmzcC3PmnCcc5yYW8BKml8dEw7rjomlqeoIzbSM0MQ0",
+	"NHkZobnTEZphEaEZ6XhMyEGaRYCHB3uiYlPqAE2Vhs3FKBNkKCAuYEdYJi+uDy5IAB9joGsmVWEBDehi",
+	"MV7Y7oC78Kouwquhdc41Ldu0nIepv5x6S8sZW5b1R3e5MxVJBze8Ieda/36Jc7VvVye7WZztxuhWe6PV",
+	"utL2Gnh06P6+loVhbACLIN4cg2obR5AJATTo2MCHzdXg7vstiDGNOoK/W22uVr++dP5tliTvcDqIM24S",
+	"tsWJsYEEguFW6SFXnCdg3NJgfG7+Lps8+o2jWpuBSBpiPB552fZzEUPBKyHIBFH5pvg6KaVecfIz5KtM",
+	"6RFNKFqirxmI/PDCJcKcfIG8vifWCPRcEBL6xAqcKq0Nvb1fG6v1LRqhHQipzR9JhYtp/DxCjAPFnKAl",
+	"mo2t8awoDaxifY0JLl2pdo3iaQSq+ClKAxfFdBuiJboBVVlY/UFVMAmcggIh0fLTcCBHJWt5lchgVH2s",
+	"6Ti6qRhm4iAIC/8WJhwVaevhjrvmKWBCUqJeRj4W95OcUVmqaVuWbi5GFVAtLOY8IYGWdvJZlqO6JiQK",
+	"Ug38r4AntET/mdTfuJPqA3cy8HX7XJeKELiqlBBkIAgvFwK0MhIiVTGbqrwbTwceo64ADVQ4KtqgOqfN",
+	"Y1J4DUgzKU4pk1bLx6lq0Q4l7/RhvaicVS3/+MzoUH98LgqtaSRNSTGXMVMvZeJ9eXZzOPrKbfsKmel6",
+	"7gtqV8IZR+FOSiz1sDQPI+eUuuVMrQbBOcKWtK+q7wnkcWy99NZX6ZrWYnJR96RYBTGhkSEVC760O6aU",
+	"upXNeiF4OZ+b4/72IzP6b9C2seBohZqrzafHIkQJYnfQLxNJ4+PmaHkpCyEhNOICuP7KOawvj89/BQAA",
+	"//9yVRHS5BUAAA==",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
