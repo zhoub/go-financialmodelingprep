@@ -1,0 +1,205 @@
+openapi: 3.0.3
+info:
+  title: FMP API
+  version: stable
+servers:
+  - url: https://financialmodelingprep.com/stable
+security:
+  - ApiKeyAuth: []
+paths:
+  /search-symbol:
+    get:
+      parameters:
+        - in: query
+          name: search-symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: A list of matching stocks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchSymbol'
+    tag:
+      - search
+  /search-name:
+    get:
+      parameters:
+        - in: query
+          name: search-symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: exchange
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: A list of matching stocks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchSymbol'
+    tag:
+      - search
+  /analyst-estimates:
+    get:
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: period
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        '200':
+          description: A list of analyst financial estimates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FinancialEstimates'
+  /ratings-snapshot:
+    get:
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        '200':
+          description: A list of ratings snapshot
+          content:
+            application/json:
+              schema:
+                type: object
+    tag:
+      - analyst
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: apikey
+  schemas:
+    SearchSymbol:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        name:
+          type: string
+          example: "Apple Inc."
+        currency:
+          type: string
+          example: "USD"
+        exchangeFullName:
+          type: string
+          example: "NASDAQ Global Select"
+        exchange:
+          type: string
+          example: "NASDAQ"
+    FinancialEstimates:
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          format: date
+          example: "2029-09-28"
+        revenueLow:
+          type: number
+          example: 483092500000
+        revenueHigh:
+          type: number
+          example: 483093500000
+        revenueAvg:
+          type: number
+          example: 483093000000
+        ebitdaLow:
+          type: number
+          example: 155952166036
+        ebitdaHigh:
+          type: number
+          example: 155952488856
+        ebitdaAvg:
+          type: number
+          example: 155952327446
+        ebitLow:
+          type: number
+          example: 140628295747
+        ebitHigh:
+          type: number
+          example: 140628586847
+        ebitAvg:
+          type: number
+          example: 140628441297
+        netIncomeLow:
+          type: number
+          example: 139446957701
+        netIncomeHigh:
+          type: number
+          example: 157185372990
+        netIncomeAvg:
+          type: number
+          example: 149150359609
+        sgaExpenseLow:
+          type: number
+          example: 31694652812
+        sgaExpenseHigh:
+          type: number
+          example: 31694718420
+        sgaExpenseAvg:
+          type: number
+          example: 31694685616
+        epsAvg:
+          type: number
+          example: 9.68
+        epsHigh:
+          type: number
+          example: 10.20148
+        epsLow:
+          type: number
+          example: 9.05024
+        numAnalystsRevenue:
+          type: integer
+          example: 16
+        numAnalystsEps:
+          type: integer
+          example: 6
