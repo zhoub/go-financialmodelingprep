@@ -3,11 +3,19 @@ package gofmp
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/suite"
 )
 
-func TestGetSwagger(t *testing.T) {
+type apiStableClientSuite struct {
+	suite.Suite
+}
+
+func (r *apiStableClientSuite) TestGetSwagger() {
 	s, err := GetSwagger()
-	assert.NotNil(t, s)
-	assert.NoError(t, err)
+	r.NotNil(s)
+	r.NoError(err)
+}
+
+func TestApiStableClientSuite(t *testing.T) {
+	suite.Run(t, &apiStableClientSuite{})
 }
