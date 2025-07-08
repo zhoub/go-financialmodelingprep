@@ -1,4 +1,4 @@
-package gofmp
+package financialmodelingprep
 
 import (
 	"testing"

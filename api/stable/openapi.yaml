@@ -284,9 +284,7 @@ paths:
         - in: query
           name: symbols
           schema:
-            type: array
-            items:
-              type: string
+            type: string
           required: true
           description: Array of symbols to fetch market capitalization data for
           style: form
@@ -826,9 +824,7 @@ paths:
         - in: query
           name: symbols
           schema:
-            type: array
-            items:
-              type: string
+            type: string
           required: true
       responses:
         "200":
@@ -851,9 +847,7 @@ paths:
         - in: query
           name: symbols
           schema:
-            type: array
-            items:
-              type: string
+            type: string
           required: true
       responses:
         "200":
