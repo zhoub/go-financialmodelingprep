@@ -442,7 +442,7 @@ paths:
         - in: query
           name: period
           schema:
-            ref: "#/components/schemas/Period"
+            $ref: "#/components/schemas/Period"
           required: false
       responses:
         "200":
@@ -473,7 +473,7 @@ paths:
         - in: query
           name: period
           schema:
-            ref: "#/components/schemas/Period"
+            $ref: "#/components/schemas/Period"
           required: false
       responses:
         "200":
@@ -582,7 +582,7 @@ paths:
         - in: query
           name: period
           schema:
-            ref: "#/components/schemas/Period"
+            $ref: "#/components/schemas/Period"
           required: false
       responses:
         "200":
@@ -613,7 +613,7 @@ paths:
         - in: query
           name: period
           schema:
-            ref: "#/components/schemas/Period"
+            $ref: "#/components/schemas/Period"
           required: false
       responses:
         "200":
@@ -639,7 +639,7 @@ paths:
         - in: query
           name: period
           schema:
-            ref: "#/components/schemas/Period"
+            $ref: "#/components/schemas/Period"
           required: false
         - in: query
           name: structure
@@ -670,7 +670,7 @@ paths:
         - in: query
           name: period
           schema:
-            ref: "#/components/schemas/Period"
+            $ref: "#/components/schemas/Period"
           required: false
         - in: query
           name: structure
