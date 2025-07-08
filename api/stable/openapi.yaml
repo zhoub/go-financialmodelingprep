@@ -16,14 +16,14 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: A list of matching stocks
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/SearchSymbol'
+                  $ref: "#/components/schemas/SearchSymbol"
     tag:
       - search
   /search-name:
@@ -45,14 +45,14 @@ paths:
             type: string
           required: false
       responses:
-        '200':
+        "200":
           description: A list of matching stocks
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/SearchSymbol'
+                  $ref: "#/components/schemas/SearchSymbol"
     tag:
       - search
   /analyst-estimates:
@@ -79,14 +79,14 @@ paths:
             type: integer
           required: false
       responses:
-        '200':
+        "200":
           description: A list of analyst financial estimates
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FinancialEstimates'
+                  $ref: "#/components/schemas/FinancialEstimates"
     tag:
       - analyst
   /ratings-snapshot:
@@ -103,14 +103,14 @@ paths:
             type: integer
           required: false
       responses:
-        '200':
+        "200":
           description: A list of ratings snapshot
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/RatingSnapshot'
+                  $ref: "#/components/schemas/RatingSnapshot"
     tag:
       - analyst
   /grades-latest-news:
@@ -127,14 +127,14 @@ paths:
             type: integer
           required: false
       responses:
-        '200':
+        "200":
           description: A list of analyst financial estimates
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/News'
+                  $ref: "#/components/schemas/News"
     tag:
       - analyst
   /historical-price-eod/light:
@@ -158,14 +158,14 @@ paths:
             format: date
           required: false
       responses:
-        '200':
+        "200":
           description: A list of historical EOD price data (light)
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/LightCandle'
+                  $ref: "#/components/schemas/LightCandle"
     tag:
       - chart
   /historical-price-eod/full:
@@ -189,14 +189,14 @@ paths:
             format: date
           required: false
       responses:
-        '200':
+        "200":
           description: A list of historical EOD price data (full)
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FullCandle'
+                  $ref: "#/components/schemas/FullCandle"
     tag:
       - chart
   /profile:
@@ -208,14 +208,14 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: A list of company profile
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CompanyProfile'
+                  $ref: "#/components/schemas/CompanyProfile"
     tag:
       - company
   /market-capitalization:
@@ -227,14 +227,14 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: Market capitalization data for the requested symbol
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CompanyCapitalization'
+                  $ref: "#/components/schemas/CompanyCapitalization"
     tag:
       - company
   /market-capitalization-batch:
@@ -251,14 +251,14 @@ paths:
           style: form
           explode: true
       responses:
-        '200':
+        "200":
           description: Market capitalization data for the requested symbols
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CompanyCapitalization'
+                  $ref: "#/components/schemas/CompanyCapitalization"
     tag:
       - company
   /shares-float:
@@ -270,14 +270,14 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: A list of float shares
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CompanySharesFloat'
+                  $ref: "#/components/schemas/CompanySharesFloat"
     tag:
       - company
   /treasury-rates:
@@ -296,14 +296,14 @@ paths:
             format: date
           required: false
       responses:
-        '200':
+        "200":
           description: A list of treasury rates
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TreasuryRates'
+                  $ref: "#/components/schemas/TreasuryRates"
     tag:
       - economics
   /economic-calendar:
@@ -322,14 +322,14 @@ paths:
             format: date
           required: false
       responses:
-        '200':
+        "200":
           description: A list of economic record
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/EconomicRecord'
+                  $ref: "#/components/schemas/EconomicRecord"
     tag:
       - economics
   /esg-disclosures:
@@ -341,14 +341,14 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: A list of esg disclosure
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/EconomicEsgDisclosure'
+                  $ref: "#/components/schemas/EconomicEsgDisclosure"
     tag:
       - economics
   /esg-ratings:
@@ -360,14 +360,14 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: A list of esg disclosure
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/EconomicEsgRating'
+                  $ref: "#/components/schemas/EconomicEsgRating"
     tag:
       - economics
   /income-statement:
@@ -379,14 +379,14 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: A list of income statement
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/IncomeStatement'
+                  $ref: "#/components/schemas/IncomeStatement"
     tag:
       - statement
   /balance-sheet-statement:
@@ -405,17 +405,17 @@ paths:
         - in: query
           name: period
           schema:
-            ref: '#/components/schemas/Period'
+            ref: "#/components/schemas/Period"
           required: false
       responses:
-        '200':
+        "200":
           description: A list of balance sheet statement
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/BalanceSheetStatement'
+                  $ref: "#/components/schemas/BalanceSheetStatement"
     tag:
       - statement
   /cash-flow-statement:
@@ -434,17 +434,17 @@ paths:
         - in: query
           name: period
           schema:
-            ref: '#/components/schemas/Period'
+            ref: "#/components/schemas/Period"
           required: false
       responses:
-        '200':
+        "200":
           description: A list of cash flow statement
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CashFlowStatement'
+                  $ref: "#/components/schemas/CashFlowStatement"
     tag:
       - statement
   /income-statement-ttm:
@@ -461,14 +461,14 @@ paths:
             type: integer
           required: false
       responses:
-        '200':
+        "200":
           description: A list of income statement ttm
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/IncomeStatementTtm'
+                  $ref: "#/components/schemas/IncomeStatementTtm"
     tag:
       - statement
   /balance-sheet-statement-ttm:
@@ -485,14 +485,14 @@ paths:
             type: integer
           required: false
       responses:
-        '200':
+        "200":
           description: A list of balance sheet statement ttm
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/BalanceSheetStatementTtm'
+                  $ref: "#/components/schemas/BalanceSheetStatementTtm"
     tag:
       - statement
   /cash-flow-statement-ttm:
@@ -509,14 +509,14 @@ paths:
             type: integer
           required: false
       responses:
-        '200':
+        "200":
           description: A list of cash flow statement ttm
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CashFlowStatementTtm'
+                  $ref: "#/components/schemas/CashFlowStatementTtm"
     tag:
       - statement
   /key-metrics:
@@ -535,17 +535,17 @@ paths:
         - in: query
           name: period
           schema:
-            ref: '#/components/schemas/Period'
+            ref: "#/components/schemas/Period"
           required: false
       responses:
-        '200':
+        "200":
           description: A list of key metrics
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/KeyMetrics'
+                  $ref: "#/components/schemas/KeyMetrics"
     tag:
       - statement
   /ratios:
@@ -564,17 +564,17 @@ paths:
         - in: query
           name: period
           schema:
-            ref: '#/components/schemas/Period'
+            ref: "#/components/schemas/Period"
           required: false
       responses:
-        '200':
+        "200":
           description: A list of financial ratios
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FinancialRatios'
+                  $ref: "#/components/schemas/FinancialRatios"
     tag:
       - statement
   /revenue-product-segmentation:
@@ -588,7 +588,7 @@ paths:
         - in: query
           name: period
           schema:
-            ref: '#/components/schemas/Period'
+            ref: "#/components/schemas/Period"
           required: false
         - in: query
           name: structure
@@ -596,14 +596,14 @@ paths:
             type: string
           required: false
       responses:
-        '200':
+        "200":
           description: A list of revenue segmentation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/RevenueSegmentation'
+                  $ref: "#/components/schemas/RevenueSegmentation"
     tag:
       - statement
   /revenue-geographic-segmentation:
@@ -617,7 +617,7 @@ paths:
         - in: query
           name: period
           schema:
-            ref: '#/components/schemas/Period'
+            ref: "#/components/schemas/Period"
           required: false
         - in: query
           name: structure
@@ -625,14 +625,14 @@ paths:
             type: string
           required: false
       responses:
-        '200':
+        "200":
           description: A list of revenue segmentation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/RevenueSegmentation'
+                  $ref: "#/components/schemas/RevenueSegmentation"
     tag:
       - statement
   /insider-trading/latest:
@@ -655,14 +655,14 @@ paths:
             type: integer
           required: false
       responses:
-        '200':
+        "200":
           description: A list of insider transaction
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/InsiderTransaction'
+                  $ref: "#/components/schemas/InsiderTransaction"
     tag:
       - insider-trading
   /quote:
@@ -674,14 +674,14 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: A list of full quote
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FullQuote'
+                  $ref: "#/components/schemas/FullQuote"
     tag:
       - quote
   /quote-short:
@@ -693,14 +693,14 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: A list of short quote
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ShortQuote'
+                  $ref: "#/components/schemas/ShortQuote"
     tag:
       - quote
   /news/general-latest:
@@ -729,14 +729,14 @@ paths:
             type: integer
           required: false
       responses:
-        '200':
+        "200":
           description: A list of news event
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/NewsRecord'
+                  $ref: "#/components/schemas/NewsRecord"
     tag:
       - news
 components:
@@ -1163,42 +1163,42 @@ components:
           type: boolean
           example: false
       required:
-            - symbol
-            - price
-            - marketCap
-            - beta
-            - lastDividend
-            - range
-            - change
-            - changePercentage
-            - volume
-            - averageVolume
-            - companyName
-            - currency
-            - cik
-            - isin
-            - cusip
-            - exchangeFullName
-            - exchange
-            - industry
-            - website
-            - description
-            - ceo
-            - sector
-            - country
-            - fullTimeEmployees
-            - phone
-            - address
-            - city
-            - state
-            - zip
-            - image
-            - ipoDate
-            - defaultImage
-            - isEtf
-            - isActivelyTrading
-            - isAdr
-            - isFund
+        - symbol
+        - price
+        - marketCap
+        - beta
+        - lastDividend
+        - range
+        - change
+        - changePercentage
+        - volume
+        - averageVolume
+        - companyName
+        - currency
+        - cik
+        - isin
+        - cusip
+        - exchangeFullName
+        - exchange
+        - industry
+        - website
+        - description
+        - ceo
+        - sector
+        - country
+        - fullTimeEmployees
+        - phone
+        - address
+        - city
+        - state
+        - zip
+        - image
+        - ipoDate
+        - defaultImage
+        - isEtf
+        - isActivelyTrading
+        - isAdr
+        - isFund
     CompanyCapitalization:
       type: object
       properties:
@@ -2323,45 +2323,45 @@ components:
           format: double
           example: 15150865000
       required:
-            - date
-            - symbol
-            - reportedCurrency
-            - cik
-            - filingDate
-            - acceptedDate
-            - fiscalYear
-            - period
-            - revenue
-            - costOfRevenue
-            - grossProfit
-            - researchAndDevelopmentExpenses
-            - generalAndAdministrativeExpenses
-            - sellingAndMarketingExpenses
-            - sellingGeneralAndAdministrativeExpenses
-            - otherExpenses
-            - operatingExpenses
-            - costAndExpenses
-            - netInterestIncome
-            - interestIncome
-            - interestExpense
-            - depreciationAndAmortization
-            - ebitda
-            - ebit
-            - nonOperatingIncomeExcludingInterest
-            - operatingIncome
-            - totalOtherIncomeExpensesNet
-            - incomeBeforeTax
-            - incomeTaxExpense
-            - netIncomeFromContinuingOperations
-            - netIncomeFromDiscontinuedOperations
-            - otherAdjustmentsToNetIncome
-            - netIncome
-            - netIncomeDeductions
-            - bottomLineNetIncome
-            - eps
-            - epsDiluted
-            - weightedAverageShsOut
-            - weightedAverageShsOutDil
+        - date
+        - symbol
+        - reportedCurrency
+        - cik
+        - filingDate
+        - acceptedDate
+        - fiscalYear
+        - period
+        - revenue
+        - costOfRevenue
+        - grossProfit
+        - researchAndDevelopmentExpenses
+        - generalAndAdministrativeExpenses
+        - sellingAndMarketingExpenses
+        - sellingGeneralAndAdministrativeExpenses
+        - otherExpenses
+        - operatingExpenses
+        - costAndExpenses
+        - netInterestIncome
+        - interestIncome
+        - interestExpense
+        - depreciationAndAmortization
+        - ebitda
+        - ebit
+        - nonOperatingIncomeExcludingInterest
+        - operatingIncome
+        - totalOtherIncomeExpensesNet
+        - incomeBeforeTax
+        - incomeTaxExpense
+        - netIncomeFromContinuingOperations
+        - netIncomeFromDiscontinuedOperations
+        - otherAdjustmentsToNetIncome
+        - netIncome
+        - netIncomeDeductions
+        - bottomLineNetIncome
+        - eps
+        - epsDiluted
+        - weightedAverageShsOut
+        - weightedAverageShsOutDil
     BalanceSheetStatementTtm:
       type: object
       properties:
@@ -2548,66 +2548,66 @@ components:
           type: number
           example: 66500000000
       required:
-                - date
-                - symbol
-                - reportedCurrency
-                - cik
-                - filingDate
-                - acceptedDate
-                - fiscalYear
-                - period
-                - cashAndCashEquivalents
-                - shortTermInvestments
-                - cashAndShortTermInvestments
-                - netReceivables
-                - accountsReceivables
-                - otherReceivables
-                - inventory
-                - prepaids
-                - otherCurrentAssets
-                - totalCurrentAssets
-                - propertyPlantEquipmentNet
-                - goodwill
-                - intangibleAssets
-                - goodwillAndIntangibleAssets
-                - longTermInvestments
-                - taxAssets
-                - otherNonCurrentAssets
-                - totalNonCurrentAssets
-                - otherAssets
-                - totalAssets
-                - totalPayables
-                - accountPayables
-                - otherPayables
-                - accruedExpenses
-                - shortTermDebt
-                - capitalLeaseObligationsCurrent
-                - taxPayables
-                - deferredRevenue
-                - otherCurrentLiabilities
-                - totalCurrentLiabilities
-                - longTermDebt
-                - deferredRevenueNonCurrent
-                - deferredTaxLiabilitiesNonCurrent
-                - otherNonCurrentLiabilities
-                - totalNonCurrentLiabilities
-                - otherLiabilities
-                - capitalLeaseObligations
-                - totalLiabilities
-                - treasuryStock
-                - preferredStock
-                - commonStock
-                - retainedEarnings
-                - additionalPaidInCapital
-                - accumulatedOtherComprehensiveIncomeLoss
-                - otherTotalStockholdersEquity
-                - totalStockholdersEquity
-                - totalEquity
-                - minorityInterest
-                - totalLiabilitiesAndTotalEquity
-                - totalInvestments
-                - totalDebt
-                - netDebt
+        - date
+        - symbol
+        - reportedCurrency
+        - cik
+        - filingDate
+        - acceptedDate
+        - fiscalYear
+        - period
+        - cashAndCashEquivalents
+        - shortTermInvestments
+        - cashAndShortTermInvestments
+        - netReceivables
+        - accountsReceivables
+        - otherReceivables
+        - inventory
+        - prepaids
+        - otherCurrentAssets
+        - totalCurrentAssets
+        - propertyPlantEquipmentNet
+        - goodwill
+        - intangibleAssets
+        - goodwillAndIntangibleAssets
+        - longTermInvestments
+        - taxAssets
+        - otherNonCurrentAssets
+        - totalNonCurrentAssets
+        - otherAssets
+        - totalAssets
+        - totalPayables
+        - accountPayables
+        - otherPayables
+        - accruedExpenses
+        - shortTermDebt
+        - capitalLeaseObligationsCurrent
+        - taxPayables
+        - deferredRevenue
+        - otherCurrentLiabilities
+        - totalCurrentLiabilities
+        - longTermDebt
+        - deferredRevenueNonCurrent
+        - deferredTaxLiabilitiesNonCurrent
+        - otherNonCurrentLiabilities
+        - totalNonCurrentLiabilities
+        - otherLiabilities
+        - capitalLeaseObligations
+        - totalLiabilities
+        - treasuryStock
+        - preferredStock
+        - commonStock
+        - retainedEarnings
+        - additionalPaidInCapital
+        - accumulatedOtherComprehensiveIncomeLoss
+        - otherTotalStockholdersEquity
+        - totalStockholdersEquity
+        - totalEquity
+        - minorityInterest
+        - totalLiabilitiesAndTotalEquity
+        - totalInvestments
+        - totalDebt
+        - netDebt
     CashFlowStatementTtm:
       type: object
       properties:
@@ -2794,53 +2794,53 @@ components:
           format: double
           example: 0
       required:
-                    - date
-                    - symbol
-                    - reportedCurrency
-                    - cik
-                    - filingDate
-                    - acceptedDate
-                    - fiscalYear
-                    - period
-                    - netIncome
-                    - depreciationAndAmortization
-                    - deferredIncomeTax
-                    - stockBasedCompensation
-                    - changeInWorkingCapital
-                    - accountsReceivables
-                    - inventory
-                    - accountsPayables
-                    - otherWorkingCapital
-                    - otherNonCashItems
-                    - netCashProvidedByOperatingActivities
-                    - investmentsInPropertyPlantAndEquipment
-                    - acquisitionsNet
-                    - purchasesOfInvestments
-                    - salesMaturitiesOfInvestments
-                    - otherInvestingActivities
-                    - netCashProvidedByInvestingActivities
-                    - netDebtIssuance
-                    - longTermNetDebtIssuance
-                    - shortTermNetDebtIssuance
-                    - netStockIssuance
-                    - netCommonStockIssuance
-                    - commonStockIssuance
-                    - commonStockRepurchased
-                    - netPreferredStockIssuance
-                    - netDividendsPaid
-                    - commonDividendsPaid
-                    - preferredDividendsPaid
-                    - otherFinancingActivities
-                    - netCashProvidedByFinancingActivities
-                    - effectOfForexChangesOnCash
-                    - netChangeInCash
-                    - cashAtEndOfPeriod
-                    - cashAtBeginningOfPeriod
-                    - operatingCashFlow
-                    - capitalExpenditure
-                    - freeCashFlow
-                    - incomeTaxesPaid
-                    - interestPaid
+        - date
+        - symbol
+        - reportedCurrency
+        - cik
+        - filingDate
+        - acceptedDate
+        - fiscalYear
+        - period
+        - netIncome
+        - depreciationAndAmortization
+        - deferredIncomeTax
+        - stockBasedCompensation
+        - changeInWorkingCapital
+        - accountsReceivables
+        - inventory
+        - accountsPayables
+        - otherWorkingCapital
+        - otherNonCashItems
+        - netCashProvidedByOperatingActivities
+        - investmentsInPropertyPlantAndEquipment
+        - acquisitionsNet
+        - purchasesOfInvestments
+        - salesMaturitiesOfInvestments
+        - otherInvestingActivities
+        - netCashProvidedByInvestingActivities
+        - netDebtIssuance
+        - longTermNetDebtIssuance
+        - shortTermNetDebtIssuance
+        - netStockIssuance
+        - netCommonStockIssuance
+        - commonStockIssuance
+        - commonStockRepurchased
+        - netPreferredStockIssuance
+        - netDividendsPaid
+        - commonDividendsPaid
+        - preferredDividendsPaid
+        - otherFinancingActivities
+        - netCashProvidedByFinancingActivities
+        - effectOfForexChangesOnCash
+        - netChangeInCash
+        - cashAtEndOfPeriod
+        - cashAtBeginningOfPeriod
+        - operatingCashFlow
+        - capitalExpenditure
+        - freeCashFlow
+        - incomeTaxesPaid
+        - interestPaid
     KeyMetrics:
       type: object
       properties:
@@ -3565,23 +3565,23 @@ components:
           type: integer
           example: 1738702801
       required:
-            - symbol
-            - name
-            - price
-            - changePercentage
-            - change
-            - volume
-            - dayLow
-            - dayHigh
-            - yearHigh
-            - yearLow
-            - marketCap
-            - priceAvg50
-            - priceAvg200
-            - exchange
-            - open
-            - previousClose
-            - timestamp
+        - symbol
+        - name
+        - price
+        - changePercentage
+        - change
+        - volume
+        - dayLow
+        - dayHigh
+        - yearHigh
+        - yearLow
+        - marketCap
+        - priceAvg50
+        - priceAvg200
+        - exchange
+        - open
+        - previousClose
+        - timestamp
     ShortQuote:
       type: object
       properties:
