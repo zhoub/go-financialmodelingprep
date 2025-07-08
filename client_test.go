@@ -18,7 +18,10 @@ type clientSuite struct {
 
 func (r *clientSuite) SetupSuite() {
 	apiKey := os.Getenv("FMP_API_KEY")
-	r.c = MustClient(apiKey)
+	r.c = MustClient(&ClientOptions{
+		APIKey: apiKey,
+		Debug:  true,
+	})
 }
 
 func (r *clientSuite) TestGetCompanyProfile() {

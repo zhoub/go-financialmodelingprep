@@ -11,9 +11,9 @@ type restyDoer struct {
 	client *resty.Client
 }
 
-func newRestyDoer() *restyDoer {
+func newRestyDoer(debug bool) *restyDoer {
 	c := resty.New()
-	c.Debug = true
+	c.Debug = debug
 	return &restyDoer{
 		client: c,
 	}
@@ -35,19 +35,25 @@ func (r *restyDoer) Do(req *http.Request) (*http.Response, error) {
 	return resp.RawResponse, nil
 }
 
-func MustClient(apikey string) ClientInterface {
-	httpClientOption := WithHTTPClient(newRestyDoer())
-	apiKeyProvider, err := securityprovider.NewSecurityProviderApiKey("query", "apikey", apikey)
+type ClientOptions struct {
+	APIKey string
+
+	Debug bool
+}
+
+func MustClient(clientOptions *ClientOptions) ClientInterface {
+	httpClientOption := WithHTTPClient(newRestyDoer(clientOptions.Debug))
+	apiKeyProvider, err := securityprovider.NewSecurityProviderApiKey("query", "apikey", clientOptions.APIKey)
 	if err != nil {
 		panic(err)
 	}
-	opts := []ClientOption{
-		httpClientOption,
-		WithRequestEditorFn(apiKeyProvider.Intercept),
-	}
-	c, err := NewClient("https://financialmodelingprep.com/stable", opts...)
+	client, err := NewClient("https://financialmodelingprep.com/stable",
+		[]ClientOption{
+			httpClientOption,
+			WithRequestEditorFn(apiKeyProvider.Intercept),
+		}...)
 	if err != nil {
 		panic(err)
 	}
-	return c
+	return client
 }
