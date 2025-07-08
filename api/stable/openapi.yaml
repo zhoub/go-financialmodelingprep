@@ -1,7 +1,10 @@
 openapi: 3.0.3
 info:
-  title: FMP API
+  title: financialmodelingprep API
   version: stable
+  license:
+    name: MIT
+    url: https://mit-license.org/
 servers:
   - url: https://financialmodelingprep.com/stable
 security:
@@ -9,6 +12,8 @@ security:
 paths:
   /search-symbol:
     get:
+      summary: Easily find the ticker symbol of any stock with the FMP Stock Symbol Search API. Search by company name or symbol across multiple global markets.
+      operationId: SearchSymbolGet
       parameters:
         - in: query
           name: search-symbol
@@ -24,10 +29,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/SearchSymbol"
-    tag:
-      - search
+      tags:
+        - search
   /search-name:
     get:
+      summary: Search for ticker symbols, company names, and exchange details for equity securities and ETFs listed on various exchanges with the FMP Name Search API. This endpoint is useful for retrieving ticker symbols when you know the full or partial company or asset name but not the symbol identifier.
+      operationId: SearchNameGet
       parameters:
         - in: query
           name: search-symbol
@@ -53,10 +60,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/SearchSymbol"
-    tag:
-      - search
+      tags:
+        - search
   /analyst-estimates:
     get:
+      summary: Retrieve analyst financial estimates for stock symbols with the FMP Financial Estimates API. Access projected figures like revenue, earnings per share (EPS), and other key financial metrics as forecasted by industry analysts to inform your investment decisions.
+      operationId: AnalystEstimatesGet
       parameters:
         - in: query
           name: symbol
@@ -87,10 +96,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FinancialEstimates"
-    tag:
-      - analyst
+      tags:
+        - analyst
   /ratings-snapshot:
     get:
+      summary: Quickly assess the financial health and performance of companies with the FMP Ratings Snapshot API. This API provides a comprehensive snapshot of financial ratings for stock symbols in our database, based on various key financial ratios.
+      operationId: RatingsSnapshotGet
       parameters:
         - in: query
           name: symbol
@@ -111,10 +122,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/RatingSnapshot"
-    tag:
-      - analyst
+      tags:
+        - analyst
   /grades-latest-news:
     get:
+      summary: Stay informed on the latest stock rating changes with the FMP Grade Latest News API. This API provides the most recent updates on analyst ratings for all stock symbols, including links to the original news sources. Track stock price movements, grading firm actions, and market sentiment shifts in real time, sourced from trusted publishers.
+      operationId: GradesLatestNewsGet
       parameters:
         - in: query
           name: page
@@ -135,10 +148,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/News"
-    tag:
-      - analyst
+      tags:
+        - analyst
   /historical-price-eod/light:
     get:
+      summary: Access simplified stock chart data using the FMP Basic Stock Chart API. This API provides essential charting information, including date, price, and trading volume, making it ideal for tracking stock performance with minimal data and creating basic price and volume charts.
+      operationId: HistoricalPriceEodLightGet
       parameters:
         - in: query
           name: symbol
@@ -166,10 +181,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/LightCandle"
-    tag:
-      - chart
+      tags:
+        - chart
   /historical-price-eod/full:
     get:
+      summary: Access full price and volume data for any stock symbol using the FMP Comprehensive Stock Price and Volume Data API. Get detailed insights, including open, high, low, close prices, trading volume, price changes, percentage changes, and volume-weighted average price (VWAP).
+      operationId: HistoricalPriceEodFullGet
       parameters:
         - in: query
           name: symbol
@@ -197,10 +214,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FullCandle"
-    tag:
-      - chart
+      tags:
+        - chart
   /profile:
     get:
+      summary: Access detailed company profile data with the FMP Company Profile Data API. This API provides key financial and operational information for a specific stock symbol, including the company's market capitalization, stock price, industry, and much more.
+      operationId: ProfileGet
       parameters:
         - in: query
           name: symbol
@@ -216,10 +235,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CompanyProfile"
-    tag:
-      - company
+      tags:
+        - company
   /market-capitalization:
     get:
+      summary: Retrieve the market capitalization for a specific company on any given date using the FMP Company Market Capitalization API. This API provides essential data to assess the size and value of a company in the stock market, helping users gauge its overall market standing.
+      operationId: MarketCapitalizationGet
       parameters:
         - in: query
           name: symbol
@@ -235,10 +256,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CompanyCapitalization"
-    tag:
-      - company
+      tags:
+        - company
   /market-capitalization-batch:
     get:
+      summary: Retrieve market capitalization data for multiple companies in a single request with the FMP Batch Market Capitalization API. This API allows users to compare the market size of various companies simultaneously, streamlining the analysis of company valuations.
+      operationId: MarketCapitalizationBatchGet
       parameters:
         - in: query
           name: symbols
@@ -259,10 +282,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CompanyCapitalization"
-    tag:
-      - company
+      tags:
+        - company
   /shares-float:
     get:
+      summary: Understand the liquidity and volatility of a stock with the FMP Company Share Float and Liquidity API. Access the total number of publicly traded shares for any company to make informed investment decisions.
+      operationId: SharesFloatGet
       parameters:
         - in: query
           name: symbol
@@ -278,10 +303,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CompanySharesFloat"
-    tag:
-      - company
+      tags:
+        - company
   /treasury-rates:
     get:
+      summary: Access real-time and historical Treasury rates for all maturities with the FMP Treasury Rates API. Track key benchmarks for interest rates across the economy.
+      operationId: TreasuryRatesGet
       parameters:
         - in: query
           name: from
@@ -304,10 +331,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/TreasuryRates"
-    tag:
-      - economics
+      tags:
+        - economics
   /economic-calendar:
     get:
+      summary: Stay informed with the FMP Economic Data Releases Calendar API. Access a comprehensive calendar of upcoming economic data releases to prepare for market impacts and make informed investment decisions.
+      operationId: EconomicCalendarGet
       parameters:
         - in: query
           name: from
@@ -330,10 +359,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/EconomicRecord"
-    tag:
-      - economics
+      tags:
+        - economics
   /esg-disclosures:
     get:
+      summary: Align your investments with your values using the FMP ESG Investment Search API. Discover companies and funds based on Environmental, Social, and Governance (ESG) scores, performance, controversies, and business involvement criteria.
+      operationId: EsgDisclosuresGet
       parameters:
         - in: query
           name: symbol
@@ -349,10 +380,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/EconomicEsgDisclosure"
-    tag:
-      - economics
+      tags:
+        - economics
   /esg-ratings:
     get:
+      summary: Access comprehensive ESG ratings for companies and funds with the FMP ESG Ratings API. Make informed investment decisions based on environmental, social, and governance (ESG) performance data.
+      operationId: EsgRatingsGet
       parameters:
         - in: query
           name: symbol
@@ -368,10 +401,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/EconomicEsgRating"
-    tag:
-      - economics
+      tags:
+        - economics
   /income-statement:
     get:
+      summary: Access real-time income statement data for public companies, private companies, and ETFs with the FMP Real-Time Income Statements API. Track profitability, compare competitors, and identify business trends with up-to-date financial data.
+      operationId: IncomeStatementGet
       parameters:
         - in: query
           name: symbol
@@ -387,10 +422,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/IncomeStatement"
-    tag:
-      - statement
+      tags:
+        - statement
   /balance-sheet-statement:
     get:
+      summary: Access detailed balance sheet statements for publicly traded companies with the Balance Sheet Data API. Analyze assets, liabilities, and shareholder equity to gain insights into a company's financial health.
+      operationId: BalanceSheetStatementGet
       parameters:
         - in: query
           name: symbol
@@ -416,10 +453,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/BalanceSheetStatement"
-    tag:
-      - statement
+      tags:
+        - statement
   /cash-flow-statement:
     get:
+      summary: Gain insights into a company's cash flow activities with the Cash Flow Statements API. Analyze cash generated and used from operations, investments, and financing activities to evaluate the financial health and sustainability of a business.
+      operationId: CashFlowStatementGet
       parameters:
         - in: query
           name: symbol
@@ -445,10 +484,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CashFlowStatement"
-    tag:
-      - statement
+      tags:
+        - statement
   /income-statement-ttm:
     get:
+      summary: Get the trailing twelve months (TTM) income statement.
+      operationId: IncomeStatementTtmGet
       parameters:
         - in: query
           name: symbol
@@ -469,10 +510,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/IncomeStatementTtm"
-    tag:
-      - statement
+      tags:
+        - statement
   /balance-sheet-statement-ttm:
     get:
+      summary: Get the trailing twelve months (TTM) balance sheet statement.
+      operationId: BalanceSheetStatementTtmGet
       parameters:
         - in: query
           name: symbol
@@ -493,10 +536,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/BalanceSheetStatementTtm"
-    tag:
-      - statement
+      tags:
+        - statement
   /cash-flow-statement-ttm:
     get:
+      summary: Get the trailing twelve months (TTM) cash flow statement.
+      operationId: CashFlowStatementTtmGet
       parameters:
         - in: query
           name: symbol
@@ -517,10 +562,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CashFlowStatementTtm"
-    tag:
-      - statement
+      tags:
+        - statement
   /key-metrics:
     get:
+      summary: Access essential financial metrics for a company with the FMP Financial Key Metrics API. Evaluate revenue, net income, P/E ratio, and more to assess performance and compare it to competitors.
+      operationId: KeyMetricsGet
       parameters:
         - in: query
           name: symbol
@@ -546,10 +593,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/KeyMetrics"
-    tag:
-      - statement
+      tags:
+        - statement
   /ratios:
     get:
+      summary: Analyze a company's financial performance using the Financial Ratios API. This API provides detailed profitability, liquidity, and efficiency ratios, enabling users to assess a company's operational and financial health across various metrics.
+      operationId: RatiosGet
       parameters:
         - in: query
           name: symbol
@@ -575,10 +624,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FinancialRatios"
-    tag:
-      - statement
+      tags:
+        - statement
   /revenue-product-segmentation:
     get:
+      summary: Access detailed revenue breakdowns by product line with the Revenue Product Segmentation API. Understand which products drive a company's earnings and get insights into the performance of individual product segments.
+      operationId: RevenueProductSegmentationGet
       parameters:
         - in: query
           name: symbol
@@ -604,10 +655,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/RevenueSegmentation"
-    tag:
-      - statement
+      tags:
+        - statement
   /revenue-geographic-segmentation:
     get:
+      summary: Access detailed revenue breakdowns by geographic region with the Revenue Geographic Segments API. Analyze how different regions contribute to a company’s total revenue and identify key markets for growth.
+      operationId: RevenueGeographicSegmentationGet
       parameters:
         - in: query
           name: symbol
@@ -633,10 +686,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/RevenueSegmentation"
-    tag:
-      - statement
+      tags:
+        - statement
   /insider-trading/latest:
     get:
+      summary: Access the latest insider trading activity using the Latest Insider Trading API. Track which company insiders are buying or selling stocks and analyze their transactions.
+      operationId: InsiderTradingLatestGet
       parameters:
         - in: query
           name: date
@@ -663,10 +718,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/InsiderTransaction"
-    tag:
-      - insider-trading
+      tags:
+        - insider-trading
   /quote:
     get:
+      summary: Access real-time stock quotes with the FMP Stock Quote API. Get up-to-the-minute prices, changes, and volume data for individual stocks.
+      operationId: QuoteGet
       parameters:
         - in: query
           name: symbol
@@ -682,10 +739,11 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FullQuote"
-    tag:
-      - quote
+      tags:
+        - quote
   /quote-short:
     get:
+      operationId: QuoteShortGet
       parameters:
         - in: query
           name: symbol
@@ -701,10 +759,58 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/ShortQuote"
-    tag:
-      - quote
+      tags:
+        - quote
+  /batch-quote:
+    get:
+      summary: Access real-time stock quotes with the FMP Stock Quote API. Get up-to-the-minute prices, changes, and volume data for individual stocks.
+      operationId: BatchQuoteGet
+      parameters:
+        - in: query
+          name: symbols
+          schema:
+            type: array
+            items:
+              type: string
+          required: true
+      responses:
+        "200":
+          description: A list of full quote
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FullQuote"
+      tags:
+        - quote
+  /batch-quote-short:
+    get:
+      summary: Access real-time, short-form quotes for multiple stocks with the FMP Stock Batch Quote Short API. Get a quick snapshot of key stock data such as current price, change, and volume for several companies in one streamlined request.
+      operationId: BatchQuoteShortGet
+      parameters:
+        - in: query
+          name: symbols
+          schema:
+            type: array
+            items:
+              type: string
+          required: true
+      responses:
+        "200":
+          description: A list of full quote
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ShortQuote"
+      tags:
+        - quote
   /news/general-latest:
     get:
+      summary: Access the latest general news articles from a variety of sources with the FMP General News API. Obtain headlines, snippets, and publication URLs for comprehensive news coverage.
+      operationId: NewsGeneralLatestGet
       parameters:
         - in: query
           name: from
@@ -737,8 +843,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/NewsRecord"
-    tag:
-      - news
+      tags:
+        - news
 components:
   securitySchemes:
     ApiKeyAuth:
