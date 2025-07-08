@@ -1,6 +1,8 @@
 package financialmodelingprep
 
 import (
+	"bytes"
+	"io"
 	"net/http"
 
 	"github.com/go-resty/resty/v2"
@@ -32,7 +34,13 @@ func (r *restyDoer) Do(req *http.Request) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resp.RawResponse, nil
+	rawResp := resp.RawResponse
+	rawResp.Status = resp.Status()
+	rawResp.StatusCode = resp.StatusCode()
+	rawResp.Header = resp.Header()
+	rawResp.Body = io.NopCloser(bytes.NewBuffer(resp.Body()))
+	rawResp.ContentLength = resp.Size()
+	return rawResp, nil
 }
 
 type ClientOptions struct {
@@ -41,13 +49,13 @@ type ClientOptions struct {
 	Debug bool
 }
 
-func MustClient(clientOptions *ClientOptions) ClientInterface {
+func MustClient(clientOptions *ClientOptions) *ClientWithResponses {
 	httpClientOption := WithHTTPClient(newRestyDoer(clientOptions.Debug))
 	apiKeyProvider, err := securityprovider.NewSecurityProviderApiKey("query", "apikey", clientOptions.APIKey)
 	if err != nil {
 		panic(err)
 	}
-	client, err := NewClient("https://financialmodelingprep.com/stable",
+	client, err := NewClientWithResponses("https://financialmodelingprep.com/stable",
 		[]ClientOption{
 			httpClientOption,
 			WithRequestEditorFn(apiKeyProvider.Intercept),

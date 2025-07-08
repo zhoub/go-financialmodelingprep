@@ -13,7 +13,7 @@ type clientSuite struct {
 	suite.Suite
 	suite.SetupAllSuite
 
-	c ClientInterface
+	c ClientWithResponsesInterface
 }
 
 func (r *clientSuite) SetupSuite() {
@@ -24,23 +24,32 @@ func (r *clientSuite) SetupSuite() {
 	})
 }
 
-func (r *clientSuite) TestGetCompanyProfile() {
-	if resp, err := r.c.ProfileGet(context.Background(), &ProfileGetParams{
-		Symbol: "AAPL",
+func (r *clientSuite) TestCompanyProfileGet() {
+	symbol := "AAPL"
+	if resp, err := r.c.ProfileGetWithResponse(context.Background(), &ProfileGetParams{
+		Symbol: symbol,
 	}); err != nil {
 		r.NoError(err)
 	} else {
-		r.Equal(http.StatusOK, resp.StatusCode)
+		r.Equal(http.StatusOK, resp.StatusCode())
+
+		pList := *resp.JSON200
+		r.Len(pList, 1)
+		r.Equal(symbol, pList[0].Symbol)
+		r.Equal(1980, pList[0].IpoDate.Year())
 	}
 }
 
 func (r *clientSuite) TestBatchQuoteShortGet() {
-	if resp, err := r.c.BatchQuoteShortGet(context.Background(), &BatchQuoteShortGetParams{
+	if resp, err := r.c.BatchQuoteShortGetWithResponse(context.Background(), &BatchQuoteShortGetParams{
 		Symbols: "7201.T,7203.T",
 	}); err != nil {
 		r.NoError(err)
 	} else {
-		r.Equal(http.StatusOK, resp.StatusCode)
+		r.Equal(http.StatusOK, resp.StatusCode())
+
+		sqList := *resp.JSON200
+		r.Len(sqList, 2)
 	}
 }
 
