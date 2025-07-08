@@ -743,6 +743,7 @@ paths:
         - quote
   /quote-short:
     get:
+      summary: Get quick snapshots of real-time stock quotes with the FMP Stock Quote Short API. Access key stock data like current price, volume, and price changes for instant market insights.
       operationId: QuoteShortGet
       parameters:
         - in: query
