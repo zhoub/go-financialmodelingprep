@@ -29,6 +29,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/SearchSymbol"
+        "4xx":
+          description: An error occurred
       tags:
         - search
   /search-name:
@@ -60,6 +62,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/SearchSymbol"
+        "4xx":
+          description: An error occurred
       tags:
         - search
   /analyst-estimates:
@@ -96,6 +100,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FinancialEstimates"
+        "4xx":
+          description: An error occurred
       tags:
         - analyst
   /ratings-snapshot:
@@ -122,6 +128,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/RatingSnapshot"
+        "4xx":
+          description: An error occurred
       tags:
         - analyst
   /grades-latest-news:
@@ -148,6 +156,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/News"
+        "4xx":
+          description: An error occurred
       tags:
         - analyst
   /historical-price-eod/light:
@@ -181,6 +191,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/LightCandle"
+        "4xx":
+          description: An error occurred
       tags:
         - chart
   /historical-price-eod/full:
@@ -214,6 +226,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FullCandle"
+        "4xx":
+          description: An error occurred
       tags:
         - chart
   /profile:
@@ -235,6 +249,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CompanyProfile"
+        "4xx":
+          description: An error occurred
       tags:
         - company
   /market-capitalization:
@@ -256,6 +272,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CompanyCapitalization"
+        "4xx":
+          description: An error occurred
       tags:
         - company
   /market-capitalization-batch:
@@ -282,6 +300,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CompanyCapitalization"
+        "4xx":
+          description: An error occurred
       tags:
         - company
   /shares-float:
@@ -303,6 +323,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CompanySharesFloat"
+        "4xx":
+          description: An error occurred
       tags:
         - company
   /treasury-rates:
@@ -331,6 +353,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/TreasuryRates"
+        "4xx":
+          description: An error occurred
       tags:
         - economics
   /economic-calendar:
@@ -352,13 +376,15 @@ paths:
           required: false
       responses:
         "200":
-          description: A list of economic record
+          description: A list of economic event
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/EconomicRecord"
+                  $ref: "#/components/schemas/EconomicEvent"
+        "4xx":
+          description: An error occurred
       tags:
         - economics
   /esg-disclosures:
@@ -380,6 +406,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/EconomicEsgDisclosure"
+        "4xx":
+          description: An error occurred
       tags:
         - economics
   /esg-ratings:
@@ -401,6 +429,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/EconomicEsgRating"
+        "4xx":
+          description: An error occurred
       tags:
         - economics
   /income-statement:
@@ -422,6 +452,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/IncomeStatement"
+        "4xx":
+          description: An error occurred
       tags:
         - statement
   /balance-sheet-statement:
@@ -453,6 +485,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/BalanceSheetStatement"
+        "4xx":
+          description: An error occurred
       tags:
         - statement
   /cash-flow-statement:
@@ -484,6 +518,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CashFlowStatement"
+        "4xx":
+          description: An error occurred
       tags:
         - statement
   /income-statement-ttm:
@@ -510,6 +546,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/IncomeStatementTtm"
+        "4xx":
+          description: An error occurred
       tags:
         - statement
   /balance-sheet-statement-ttm:
@@ -536,6 +574,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/BalanceSheetStatementTtm"
+        "4xx":
+          description: An error occurred
       tags:
         - statement
   /cash-flow-statement-ttm:
@@ -562,6 +602,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CashFlowStatementTtm"
+        "4xx":
+          description: An error occurred
       tags:
         - statement
   /key-metrics:
@@ -593,6 +635,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/KeyMetrics"
+        "4xx":
+          description: An error occurred
       tags:
         - statement
   /ratios:
@@ -624,6 +668,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FinancialRatios"
+        "4xx":
+          description: An error occurred
       tags:
         - statement
   /revenue-product-segmentation:
@@ -655,6 +701,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/RevenueSegmentation"
+        "4xx":
+          description: An error occurred
       tags:
         - statement
   /revenue-geographic-segmentation:
@@ -686,6 +734,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/RevenueSegmentation"
+        "4xx":
+          description: An error occurred
       tags:
         - statement
   /insider-trading/latest:
@@ -718,6 +768,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/InsiderTransaction"
+        "4xx":
+          description: An error occurred
       tags:
         - insider-trading
   /quote:
@@ -739,6 +791,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FullQuote"
+        "4xx":
+          description: An error occurred
       tags:
         - quote
   /quote-short:
@@ -760,6 +814,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/ShortQuote"
+        "4xx":
+          description: An error occurred
       tags:
         - quote
   /batch-quote:
@@ -783,6 +839,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/FullQuote"
+        "4xx":
+          description: An error occurred
       tags:
         - quote
   /batch-quote-short:
@@ -806,6 +864,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/ShortQuote"
+        "4xx":
+          description: An error occurred
       tags:
         - quote
   /news/general-latest:
@@ -843,7 +903,9 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/NewsRecord"
+                  $ref: "#/components/schemas/NewsArticle"
+        "4xx":
+          description: An error occurred
       tags:
         - news
 components:
@@ -1417,7 +1479,7 @@ components:
         - year10
         - year20
         - year30
-    EconomicRecord:
+    EconomicEvent:
       type: object
       properties:
         date:
@@ -3711,7 +3773,7 @@ components:
         - price
         - change
         - volume
-    NewsRecord:
+    NewsArticle:
       type: object
       properties:
         symbol:
