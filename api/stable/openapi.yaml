@@ -1,0 +1,3818 @@
+openapi: 3.0.3
+info:
+  title: financialmodelingprep API
+  version: stable
+  license:
+    name: MIT
+    url: https://mit-license.org/
+servers:
+  - url: https://financialmodelingprep.com/stable
+security:
+  - ApiKeyAuth: []
+paths:
+  /search-symbol:
+    get:
+      summary: Easily find the ticker symbol of any stock with the FMP Stock Symbol Search API. Search by company name or symbol across multiple global markets.
+      operationId: SearchSymbolGet
+      parameters:
+        - in: query
+          name: search-symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of matching stocks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SearchSymbol"
+        "4xx":
+          description: An error occurred
+      tags:
+        - search
+  /search-name:
+    get:
+      summary: Search for ticker symbols, company names, and exchange details for equity securities and ETFs listed on various exchanges with the FMP Name Search API. This endpoint is useful for retrieving ticker symbols when you know the full or partial company or asset name but not the symbol identifier.
+      operationId: SearchNameGet
+      parameters:
+        - in: query
+          name: search-symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: exchange
+          schema:
+            type: string
+          required: false
+      responses:
+        "200":
+          description: A list of matching stocks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SearchSymbol"
+        "4xx":
+          description: An error occurred
+      tags:
+        - search
+  /analyst-estimates:
+    get:
+      summary: Retrieve analyst financial estimates for stock symbols with the FMP Financial Estimates API. Access projected figures like revenue, earnings per share (EPS), and other key financial metrics as forecasted by industry analysts to inform your investment decisions.
+      operationId: AnalystEstimatesGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: period
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: A list of analyst financial estimates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FinancialEstimates"
+        "4xx":
+          description: An error occurred
+      tags:
+        - analyst
+  /ratings-snapshot:
+    get:
+      summary: Quickly assess the financial health and performance of companies with the FMP Ratings Snapshot API. This API provides a comprehensive snapshot of financial ratings for stock symbols in our database, based on various key financial ratios.
+      operationId: RatingsSnapshotGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: A list of ratings snapshot
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RatingSnapshot"
+        "4xx":
+          description: An error occurred
+      tags:
+        - analyst
+  /grades-latest-news:
+    get:
+      summary: Stay informed on the latest stock rating changes with the FMP Grade Latest News API. This API provides the most recent updates on analyst ratings for all stock symbols, including links to the original news sources. Track stock price movements, grading firm actions, and market sentiment shifts in real time, sourced from trusted publishers.
+      operationId: GradesLatestNewsGet
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: A list of analyst financial estimates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/News"
+        "4xx":
+          description: An error occurred
+      tags:
+        - analyst
+  /historical-price-eod/light:
+    get:
+      summary: Access simplified stock chart data using the FMP Basic Stock Chart API. This API provides essential charting information, including date, price, and trading volume, making it ideal for tracking stock performance with minimal data and creating basic price and volume charts.
+      operationId: HistoricalPriceEodLightGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        "200":
+          description: A list of historical EOD price data (light)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LightCandle"
+        "4xx":
+          description: An error occurred
+      tags:
+        - chart
+  /historical-price-eod/full:
+    get:
+      summary: Access full price and volume data for any stock symbol using the FMP Comprehensive Stock Price and Volume Data API. Get detailed insights, including open, high, low, close prices, trading volume, price changes, percentage changes, and volume-weighted average price (VWAP).
+      operationId: HistoricalPriceEodFullGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        "200":
+          description: A list of historical EOD price data (full)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FullCandle"
+        "4xx":
+          description: An error occurred
+      tags:
+        - chart
+  /profile:
+    get:
+      summary: Access detailed company profile data with the FMP Company Profile Data API. This API provides key financial and operational information for a specific stock symbol, including the company's market capitalization, stock price, industry, and much more.
+      operationId: ProfileGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          $ref: "#/components/responses/ProfileGetResponse"
+        401:
+          $ref: "#/components/responses/ErrorResponse"
+      tags:
+        - company
+  /market-capitalization:
+    get:
+      summary: Retrieve the market capitalization for a specific company on any given date using the FMP Company Market Capitalization API. This API provides essential data to assess the size and value of a company in the stock market, helping users gauge its overall market standing.
+      operationId: MarketCapitalizationGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: Market capitalization data for the requested symbol
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CompanyCapitalization"
+        "4xx":
+          description: An error occurred
+      tags:
+        - company
+  /market-capitalization-batch:
+    get:
+      summary: Retrieve market capitalization data for multiple companies in a single request with the FMP Batch Market Capitalization API. This API allows users to compare the market size of various companies simultaneously, streamlining the analysis of company valuations.
+      operationId: MarketCapitalizationBatchGet
+      parameters:
+        - in: query
+          name: symbols
+          schema:
+            type: string
+          required: true
+          description: Array of symbols to fetch market capitalization data for
+          style: form
+          explode: true
+      responses:
+        "200":
+          description: Market capitalization data for the requested symbols
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CompanyCapitalization"
+        "4xx":
+          description: An error occurred
+      tags:
+        - company
+  /shares-float:
+    get:
+      summary: Understand the liquidity and volatility of a stock with the FMP Company Share Float and Liquidity API. Access the total number of publicly traded shares for any company to make informed investment decisions.
+      operationId: SharesFloatGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of float shares
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CompanySharesFloat"
+        "4xx":
+          description: An error occurred
+      tags:
+        - company
+  /treasury-rates:
+    get:
+      summary: Access real-time and historical Treasury rates for all maturities with the FMP Treasury Rates API. Track key benchmarks for interest rates across the economy.
+      operationId: TreasuryRatesGet
+      parameters:
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        "200":
+          description: A list of treasury rates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TreasuryRates"
+        "4xx":
+          description: An error occurred
+      tags:
+        - economics
+  /economic-calendar:
+    get:
+      summary: Stay informed with the FMP Economic Data Releases Calendar API. Access a comprehensive calendar of upcoming economic data releases to prepare for market impacts and make informed investment decisions.
+      operationId: EconomicCalendarGet
+      parameters:
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        "200":
+          description: A list of economic event
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EconomicEvent"
+        "4xx":
+          description: An error occurred
+      tags:
+        - economics
+  /esg-disclosures:
+    get:
+      summary: Align your investments with your values using the FMP ESG Investment Search API. Discover companies and funds based on Environmental, Social, and Governance (ESG) scores, performance, controversies, and business involvement criteria.
+      operationId: EsgDisclosuresGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of esg disclosure
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EconomicEsgDisclosure"
+        "4xx":
+          description: An error occurred
+      tags:
+        - economics
+  /esg-ratings:
+    get:
+      summary: Access comprehensive ESG ratings for companies and funds with the FMP ESG Ratings API. Make informed investment decisions based on environmental, social, and governance (ESG) performance data.
+      operationId: EsgRatingsGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of esg disclosure
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EconomicEsgRating"
+        "4xx":
+          description: An error occurred
+      tags:
+        - economics
+  /income-statement:
+    get:
+      summary: Access real-time income statement data for public companies, private companies, and ETFs with the FMP Real-Time Income Statements API. Track profitability, compare competitors, and identify business trends with up-to-date financial data.
+      operationId: IncomeStatementGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of income statement
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/IncomeStatement"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /balance-sheet-statement:
+    get:
+      summary: Access detailed balance sheet statements for publicly traded companies with the Balance Sheet Data API. Analyze assets, liabilities, and shareholder equity to gain insights into a company's financial health.
+      operationId: BalanceSheetStatementGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: period
+          schema:
+            $ref: "#/components/schemas/Period"
+          required: false
+      responses:
+        "200":
+          description: A list of balance sheet statement
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BalanceSheetStatement"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /cash-flow-statement:
+    get:
+      summary: Gain insights into a company's cash flow activities with the Cash Flow Statements API. Analyze cash generated and used from operations, investments, and financing activities to evaluate the financial health and sustainability of a business.
+      operationId: CashFlowStatementGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: period
+          schema:
+            $ref: "#/components/schemas/Period"
+          required: false
+      responses:
+        "200":
+          description: A list of cash flow statement
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CashFlowStatement"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /income-statement-ttm:
+    get:
+      summary: Get the trailing twelve months (TTM) income statement.
+      operationId: IncomeStatementTtmGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: A list of income statement ttm
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/IncomeStatementTtm"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /balance-sheet-statement-ttm:
+    get:
+      summary: Get the trailing twelve months (TTM) balance sheet statement.
+      operationId: BalanceSheetStatementTtmGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: A list of balance sheet statement ttm
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BalanceSheetStatementTtm"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /cash-flow-statement-ttm:
+    get:
+      summary: Get the trailing twelve months (TTM) cash flow statement.
+      operationId: CashFlowStatementTtmGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: A list of cash flow statement ttm
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CashFlowStatementTtm"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /key-metrics:
+    get:
+      summary: Access essential financial metrics for a company with the FMP Financial Key Metrics API. Evaluate revenue, net income, P/E ratio, and more to assess performance and compare it to competitors.
+      operationId: KeyMetricsGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: period
+          schema:
+            $ref: "#/components/schemas/Period"
+          required: false
+      responses:
+        "200":
+          description: A list of key metrics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/KeyMetrics"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /ratios:
+    get:
+      summary: Analyze a company's financial performance using the Financial Ratios API. This API provides detailed profitability, liquidity, and efficiency ratios, enabling users to assess a company's operational and financial health across various metrics.
+      operationId: RatiosGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: period
+          schema:
+            $ref: "#/components/schemas/Period"
+          required: false
+      responses:
+        "200":
+          description: A list of financial ratios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FinancialRatios"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /revenue-product-segmentation:
+    get:
+      summary: Access detailed revenue breakdowns by product line with the Revenue Product Segmentation API. Understand which products drive a company's earnings and get insights into the performance of individual product segments.
+      operationId: RevenueProductSegmentationGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: period
+          schema:
+            $ref: "#/components/schemas/Period"
+          required: false
+        - in: query
+          name: structure
+          schema:
+            type: string
+          required: false
+      responses:
+        "200":
+          description: A list of revenue segmentation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RevenueSegmentation"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /revenue-geographic-segmentation:
+    get:
+      summary: Access detailed revenue breakdowns by geographic region with the Revenue Geographic Segments API. Analyze how different regions contribute to a company’s total revenue and identify key markets for growth.
+      operationId: RevenueGeographicSegmentationGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: period
+          schema:
+            $ref: "#/components/schemas/Period"
+          required: false
+        - in: query
+          name: structure
+          schema:
+            type: string
+          required: false
+      responses:
+        "200":
+          description: A list of revenue segmentation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RevenueSegmentation"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /insider-trading/latest:
+    get:
+      summary: Access the latest insider trading activity using the Latest Insider Trading API. Track which company insiders are buying or selling stocks and analyze their transactions.
+      operationId: InsiderTradingLatestGet
+      parameters:
+        - in: query
+          name: date
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: A list of insider transaction
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InsiderTransaction"
+        "4xx":
+          description: An error occurred
+      tags:
+        - insider-trading
+  /quote:
+    get:
+      summary: Access real-time stock quotes with the FMP Stock Quote API. Get up-to-the-minute prices, changes, and volume data for individual stocks.
+      operationId: QuoteGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of full quote
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FullQuote"
+        "4xx":
+          description: An error occurred
+      tags:
+        - quote
+  /quote-short:
+    get:
+      summary: Get quick snapshots of real-time stock quotes with the FMP Stock Quote Short API. Access key stock data like current price, volume, and price changes for instant market insights.
+      operationId: QuoteShortGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of short quote
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ShortQuote"
+        "4xx":
+          description: An error occurred
+      tags:
+        - quote
+  /batch-quote:
+    get:
+      summary: Access real-time stock quotes with the FMP Stock Quote API. Get up-to-the-minute prices, changes, and volume data for individual stocks.
+      operationId: BatchQuoteGet
+      parameters:
+        - in: query
+          name: symbols
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of full quote
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FullQuote"
+        "4xx":
+          description: An error occurred
+      tags:
+        - quote
+  /batch-quote-short:
+    get:
+      summary: Access real-time, short-form quotes for multiple stocks with the FMP Stock Batch Quote Short API. Get a quick snapshot of key stock data such as current price, change, and volume for several companies in one streamlined request.
+      operationId: BatchQuoteShortGet
+      parameters:
+        - in: query
+          name: symbols
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of full quote
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ShortQuote"
+        "4xx":
+          description: An error occurred
+      tags:
+        - quote
+  /news/general-latest:
+    get:
+      summary: Access the latest general news articles from a variety of sources with the FMP General News API. Obtain headlines, snippets, and publication URLs for comprehensive news coverage.
+      operationId: NewsGeneralLatestGet
+      parameters:
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: A list of news event
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NewsArticle"
+        "4xx":
+          description: An error occurred
+      tags:
+        - news
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: apikey
+  schemas:
+    Period:
+      type: string
+      description: Reporting period
+      enum:
+        - Q1
+        - Q2
+        - Q3
+        - Q4
+        - FY
+    SearchSymbol:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        name:
+          type: string
+          example: "Apple Inc."
+        currency:
+          type: string
+          example: "USD"
+        exchangeFullName:
+          type: string
+          example: "NASDAQ Global Select"
+        exchange:
+          type: string
+          example: "NASDAQ"
+      required:
+        - symbol
+        - name
+        - currency
+        - exchangeFullName
+        - exchange
+    FinancialEstimates:
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          format: date
+          example: "2029-09-28"
+        revenueLow:
+          type: number
+          format: double
+          example: 483092500000
+        revenueHigh:
+          type: number
+          format: double
+          example: 483093500000
+        revenueAvg:
+          type: number
+          format: double
+          example: 483093000000
+        ebitdaLow:
+          type: number
+          example: 155952166036
+        ebitdaHigh:
+          type: number
+          format: double
+          example: 155952488856
+        ebitdaAvg:
+          type: number
+          format: double
+          example: 155952327446
+        ebitLow:
+          type: number
+          format: double
+          example: 140628295747
+        ebitHigh:
+          type: number
+          example: 140628586847
+        ebitAvg:
+          type: number
+          format: double
+          example: 140628441297
+        netIncomeLow:
+          type: number
+          format: double
+          example: 139446957701
+        netIncomeHigh:
+          type: number
+          example: 157185372990
+        netIncomeAvg:
+          type: number
+          format: double
+          example: 149150359609
+        sgaExpenseLow:
+          type: number
+          format: double
+          example: 31694652812
+        sgaExpenseHigh:
+          type: number
+          format: double
+          example: 31694718420
+        sgaExpenseAvg:
+          type: number
+          format: double
+          example: 31694685616
+        epsAvg:
+          type: number
+          format: double
+          example: 9.68
+        epsHigh:
+          type: number
+          format: double
+          example: 10.20148
+        epsLow:
+          type: number
+          format: double
+          example: 9.05024
+        numAnalystsRevenue:
+          type: integer
+          example: 16
+        numAnalystsEps:
+          type: integer
+          example: 6
+      required:
+        - symbol
+        - date
+        - revenueLow
+        - revenueHigh
+        - revenueAvg
+        - ebitdaLow
+        - ebitdaHigh
+        - ebitdaAvg
+        - ebitLow
+        - ebitHigh
+        - ebitAvg
+        - netIncomeLow
+        - netIncomeHigh
+        - netIncomeAvg
+        - sgaExpenseLow
+        - sgaExpenseHigh
+        - sgaExpenseAvg
+        - epsAvg
+        - epsHigh
+        - epsLow
+        - numAnalystsRevenue
+        - numAnalystsEps
+    RatingSnapshot:
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        rating:
+          type: string
+          example: "A-"
+        overallScore:
+          type: integer
+          example: 4
+        discountedCashFlowScore:
+          type: integer
+          example: 3
+        returnOnEquityScore:
+          type: integer
+          example: 5
+        returnOnAssetsScore:
+          type: integer
+          example: 5
+        debtToEquityScore:
+          type: integer
+          example: 4
+        priceToEarningsScore:
+          type: integer
+          example: 2
+        priceToBookScore:
+          type: integer
+          example: 1
+      required:
+        - symbol
+        - rating
+        - overallScore
+        - discountedCashFlowScore
+        - returnOnEquityScore
+        - returnOnAssetsScore
+        - debtToEquityScore
+        - priceToEarningsScore
+        - priceToBookScore
+    News:
+      properties:
+        symbol:
+          type: string
+          example: "PYPL"
+        publishedDate:
+          type: string
+          format: date-time
+          example: "2025-02-04T19:18:04.000Z"
+        newsURL:
+          type: string
+          format: uri
+          example: "https://www.benzinga.com/25/02/43475080/paypal-beats-q4-estimates-as-transaction-margins-and-payment-volume-drive-growth-eyes-2025-growth-with-strong-tmd"
+        newsTitle:
+          type: string
+          example: "PayPal Transaction Margins and Payment Volume Drive Growth, Eyes 2025 Growth With Strong TMD Ahead of Investor Day: Analyst"
+        newsBaseURL:
+          type: string
+          example: "benzinga.com"
+        newsPublisher:
+          type: string
+          example: "Benzinga"
+        newGrade:
+          type: string
+          example: "Overweight"
+        previousGrade:
+          type: string
+          example: "Overweight"
+        gradingCompany:
+          type: string
+          example: "J.P. Morgan"
+        action:
+          type: string
+          example: "hold"
+        priceWhenPosted:
+          type: number
+          example: 77.725
+      required:
+        - symbol
+        - publishedDate
+        - newsURL
+        - newsTitle
+        - newsBaseURL
+        - newsPublisher
+        - newGrade
+        - previousGrade
+        - gradingCompany
+        - action
+        - priceWhenPosted
+    LightCandle:
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          format: date
+          example: "2025-02-04"
+        price:
+          type: number
+          example: 232.8
+        volume:
+          type: integer
+          example: 44489128
+      required:
+        - symbol
+        - date
+        - price
+        - volume
+    FullCandle:
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          format: date
+          example: "2025-02-04"
+        open:
+          type: number
+          format: double
+          example: 227.2
+        high:
+          type: number
+          format: double
+          example: 233.13
+        low:
+          type: number
+          format: double
+          example: 226.65
+        close:
+          type: number
+          format: double
+          example: 232.8
+        volume:
+          type: integer
+          example: 44489128
+        change:
+          type: number
+          format: double
+          example: 5.6
+        changePercent:
+          type: number
+          format: double
+          example: 2.46479
+        vwap:
+          type: number
+          format: double
+          example: 230.86
+      required:
+        - symbol
+        - date
+        - open
+        - high
+        - low
+        - close
+        - volume
+        - change
+        - changePercent
+        - vwap
+    CompanyProfile:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        price:
+          type: number
+          format: double
+          example: 232.8
+        marketCap:
+          type: integer
+          example: 3500823120000
+        beta:
+          type: number
+          format: double
+          example: 1.24
+        lastDividend:
+          type: number
+          format: double
+          example: 0.99
+        range:
+          type: string
+          example: "164.08-260.1"
+        change:
+          type: number
+          format: double
+          example: 4.79
+        changePercentage:
+          type: number
+          format: double
+          example: 2.1008
+        volume:
+          type: integer
+          example: 0
+        averageVolume:
+          type: integer
+          example: 50542058
+        companyName:
+          type: string
+          example: "Apple Inc."
+        currency:
+          type: string
+          example: "USD"
+        cik:
+          type: string
+          example: "0000320193"
+        isin:
+          type: string
+          example: "US0378331005"
+        cusip:
+          type: string
+          example: "037833100"
+        exchangeFullName:
+          type: string
+          example: "NASDAQ Global Select"
+        exchange:
+          type: string
+          example: "NASDAQ"
+        industry:
+          type: string
+          example: "Consumer Electronics"
+        website:
+          type: string
+          example: "https://www.apple.com"
+        description:
+          type: string
+          example: "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories comprising AirPods, Apple TV, Apple Watch, Beats products, and HomePod. It also provides AppleCare support and cloud services; and operates various platforms, including the App Store that allow customers to discov..."
+        ceo:
+          type: string
+          example: "Mr. Timothy D. Cook"
+        sector:
+          type: string
+          example: "Technology"
+        country:
+          type: string
+          example: "US"
+        fullTimeEmployees:
+          type: string
+          example: "164000"
+        phone:
+          type: string
+          example: "(408) 996-1010"
+        address:
+          type: string
+          example: "One Apple Park Way"
+        city:
+          type: string
+          example: "Cupertino"
+        state:
+          type: string
+          example: "CA"
+        zip:
+          type: string
+          example: "95014"
+        image:
+          type: string
+          example: "https://images.financialmodelingprep.com/symbol/AAPL.png"
+        ipoDate:
+          type: string
+          format: date
+          example: "1980-12-12"
+        defaultImage:
+          type: boolean
+          example: false
+        isEtf:
+          type: boolean
+          example: false
+        isActivelyTrading:
+          type: boolean
+          example: true
+        isAdr:
+          type: boolean
+          example: false
+        isFund:
+          type: boolean
+          example: false
+      required:
+        - symbol
+        - price
+        - marketCap
+        - beta
+        - lastDividend
+        - range
+        - change
+        - changePercentage
+        - volume
+        - averageVolume
+        - companyName
+        - currency
+        - cik
+        - isin
+        - cusip
+        - exchangeFullName
+        - exchange
+        - industry
+        - website
+        - description
+        - ceo
+        - sector
+        - country
+        - fullTimeEmployees
+        - phone
+        - address
+        - city
+        - state
+        - zip
+        - image
+        - ipoDate
+        - defaultImage
+        - isEtf
+        - isActivelyTrading
+        - isAdr
+        - isFund
+    CompanyCapitalization:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          format: date
+          example: "2025-02-04"
+        marketCap:
+          type: integer
+          example: 3500823120000
+      required:
+        - symbol
+        - date
+        - marketCap
+    CompanySharesFloat:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          example: "2025-02-04 17:01:35"
+        freeFloat:
+          type: number
+          format: double
+          example: 99.9095
+        floatShares:
+          type: integer
+          example: 15024290700
+        outstandingShares:
+          type: integer
+          example: 15037900000
+      required:
+        - symbol
+        - date
+        - freeFloat
+        - floatShares
+        - outstandingShares
+    TreasuryRates:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2024-02-29"
+        month1:
+          type: number
+          format: double
+          example: 5.53
+        month2:
+          type: number
+          format: double
+          example: 5.5
+        month3:
+          type: number
+          format: double
+          example: 5.45
+        month6:
+          type: number
+          format: double
+          example: 5.3
+        year1:
+          type: number
+          format: double
+          example: 5.01
+        year2:
+          type: number
+          format: double
+          example: 4.64
+        year3:
+          type: number
+          format: double
+          example: 4.43
+        year5:
+          type: number
+          format: double
+          example: 4.26
+        year7:
+          type: number
+          format: double
+          example: 4.28
+        year10:
+          type: number
+          format: double
+          example: 4.25
+        year20:
+          type: number
+          format: double
+          example: 4.51
+        year30:
+          type: number
+          format: double
+          example: 4.38
+      required:
+        - date
+        - month1
+        - month2
+        - month3
+        - month6
+        - year1
+        - year2
+        - year3
+        - year5
+        - year7
+        - year10
+        - year20
+        - year30
+    EconomicEvent:
+      type: object
+      properties:
+        date:
+          type: string
+          example: "2024-03-01 03:35:00"
+        country:
+          type: string
+          example: "JP"
+        event:
+          type: string
+          example: "3-Month Bill Auction"
+        currency:
+          type: string
+          example: "JPY"
+        previous:
+          type: number
+          format: double
+          example: -0.112
+        estimate:
+          type: number
+          format: double
+          nullable: true
+        actual:
+          type: number
+          format: double
+          example: -0.096
+        change:
+          type: number
+          format: double
+          example: 0.016
+        impact:
+          type: string
+          example: "Low"
+        changePercentage:
+          type: number
+          format: double
+          example: 14.286
+      required:
+        - date
+        - country
+        - event
+        - currency
+        - previous
+        - actual
+        - change
+        - impact
+        - changePercentage
+    EconomicEsgDisclosure:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2024-12-28"
+        acceptedDate:
+          type: string
+          format: date
+          example: "2025-01-30"
+        symbol:
+          type: string
+          example: "AAPL"
+        cik:
+          type: string
+          example: "0000320193"
+        companyName:
+          type: string
+          example: "Apple Inc."
+        formType:
+          type: string
+          example: "8-K"
+        environmentalScore:
+          type: number
+          format: double
+          example: 52.52
+        socialScore:
+          type: number
+          format: double
+          example: 45.18
+        governanceScore:
+          type: number
+          format: double
+          example: 60.74
+        ESGScore:
+          type: number
+          format: double
+          example: 52.81
+        url:
+          type: string
+          format: uri
+          example: "https://www.sec.gov/Archives/edgar/data/320193/000032019325000007/0000320193-25-000007-index.htm"
+      required:
+        - date
+        - acceptedDate
+        - symbol
+        - cik
+        - companyName
+        - formType
+        - environmentalScore
+        - socialScore
+        - governanceScore
+        - ESGScore
+        - url
+    EconomicEsgRating:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        cik:
+          type: string
+          example: "0000320193"
+        companyName:
+          type: string
+          example: "Apple Inc."
+        industry:
+          type: string
+          example: "CONSUMER ELECTRONICS"
+        fiscalYear:
+          type: integer
+          example: 2024
+        ESGRiskRating:
+          type: string
+          example: "B"
+        industryRank:
+          type: string
+          example: "4 out of 5"
+      required:
+        - symbol
+        - cik
+        - companyName
+        - industry
+        - fiscalYear
+        - ESGRiskRating
+        - industryRank
+    IncomeStatement:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2024-09-28"
+        symbol:
+          type: string
+          example: "AAPL"
+        reportedCurrency:
+          type: string
+          example: "USD"
+        cik:
+          type: string
+          example: "0000320193"
+        filingDate:
+          type: string
+          format: date
+          example: "2024-11-01"
+        acceptedDate:
+          type: string
+          example: "2024-11-01 06:01:36"
+        fiscalYear:
+          type: string
+          example: "2024"
+        period:
+          type: string
+          example: "FY"
+        revenue:
+          type: number
+          format: double
+          example: 391035000000
+        costOfRevenue:
+          type: number
+          format: double
+          example: 210352000000
+        grossProfit:
+          type: number
+          format: double
+          example: 180683000000
+        researchAndDevelopmentExpenses:
+          type: number
+          format: double
+          example: 31370000000
+        generalAndAdministrativeExpenses:
+          type: number
+          format: double
+          example: 0
+        sellingAndMarketingExpenses:
+          type: number
+          format: double
+          example: 0
+        sellingGeneralAndAdministrativeExpenses:
+          type: number
+          format: double
+          example: 26097000000
+        otherExpenses:
+          type: number
+          format: double
+          example: 0
+        operatingExpenses:
+          type: number
+          format: double
+          example: 57467000000
+        costAndExpenses:
+          type: number
+          format: double
+          example: 267819000000
+        netInterestIncome:
+          type: number
+          format: double
+          example: 0
+        interestIncome:
+          type: number
+          format: double
+          example: 0
+        interestExpense:
+          type: number
+          format: double
+          example: 0
+        depreciationAndAmortization:
+          type: number
+          format: double
+          example: 11445000000
+        ebitda:
+          type: number
+          format: double
+          example: 134661000000
+        ebit:
+          type: number
+          format: double
+          example: 123216000000
+        nonOperatingIncomeExcludingInterest:
+          type: number
+          format: double
+          example: 0
+        operatingIncome:
+          type: number
+          format: double
+          example: 123216000000
+        totalOtherIncomeExpensesNet:
+          type: number
+          format: double
+          example: 269000000
+        incomeBeforeTax:
+          type: number
+          format: double
+          example: 123485000000
+        incomeTaxExpense:
+          type: number
+          format: double
+          example: 29749000000
+        netIncomeFromContinuingOperations:
+          type: number
+          format: double
+          example: 93736000000
+        netIncomeFromDiscontinuedOperations:
+          type: number
+          format: double
+          example: 0
+        otherAdjustmentsToNetIncome:
+          type: number
+          format: double
+          example: 0
+        netIncome:
+          type: number
+          format: double
+          example: 93736000000
+        netIncomeDeductions:
+          type: number
+          format: double
+          example: 0
+        bottomLineNetIncome:
+          type: number
+          format: double
+          example: 93736000000
+        eps:
+          type: number
+          format: double
+          example: 6.11
+        epsDiluted:
+          type: number
+          format: double
+          example: 6.08
+        weightedAverageShsOut:
+          type: number
+          format: double
+          example: 15343783000
+        weightedAverageShsOutDil:
+          type: number
+          format: double
+          example: 15408095000
+      required:
+        - date
+        - symbol
+        - reportedCurrency
+        - cik
+        - filingDate
+        - acceptedDate
+        - fiscalYear
+        - period
+        - revenue
+        - costOfRevenue
+        - grossProfit
+        - researchAndDevelopmentExpenses
+        - generalAndAdministrativeExpenses
+        - sellingAndMarketingExpenses
+        - sellingGeneralAndAdministrativeExpenses
+        - otherExpenses
+        - operatingExpenses
+        - costAndExpenses
+        - netInterestIncome
+        - interestIncome
+        - interestExpense
+        - depreciationAndAmortization
+        - ebitda
+        - ebit
+        - nonOperatingIncomeExcludingInterest
+        - operatingIncome
+        - totalOtherIncomeExpensesNet
+        - incomeBeforeTax
+        - incomeTaxExpense
+        - netIncomeFromContinuingOperations
+        - netIncomeFromDiscontinuedOperations
+        - otherAdjustmentsToNetIncome
+        - netIncome
+        - netIncomeDeductions
+        - bottomLineNetIncome
+        - eps
+        - epsDiluted
+        - weightedAverageShsOut
+        - weightedAverageShsOutDil
+    BalanceSheetStatement:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2024-09-28"
+        symbol:
+          type: string
+          example: "AAPL"
+        reportedCurrency:
+          type: string
+          example: "USD"
+        cik:
+          type: string
+          example: "0000320193"
+        filingDate:
+          type: string
+          format: date
+          example: "2024-11-01"
+        acceptedDate:
+          type: string
+          example: "2024-11-01 06:01:36"
+        fiscalYear:
+          type: string
+          example: "2024"
+        period:
+          type: string
+          example: "FY"
+        cashAndCashEquivalents:
+          type: number
+          format: double
+          example: 29943000000
+        shortTermInvestments:
+          type: number
+          format: double
+          example: 35228000000
+        cashAndShortTermInvestments:
+          type: number
+          format: double
+          example: 65171000000
+        netReceivables:
+          type: number
+          format: double
+          example: 66243000000
+        accountsReceivables:
+          type: number
+          format: double
+          example: 33410000000
+        otherReceivables:
+          type: number
+          format: double
+          example: 32833000000
+        inventory:
+          type: number
+          format: double
+          example: 7286000000
+        prepaids:
+          type: number
+          format: double
+          example: 0
+        otherCurrentAssets:
+          type: number
+          format: double
+          example: 14287000000
+        totalCurrentAssets:
+          type: number
+          format: double
+          example: 152987000000
+        propertyPlantEquipmentNet:
+          type: number
+          format: double
+          example: 45680000000
+        goodwill:
+          type: number
+          format: double
+          example: 0
+        intangibleAssets:
+          type: number
+          format: double
+          example: 0
+        goodwillAndIntangibleAssets:
+          type: number
+          format: double
+          example: 0
+        longTermInvestments:
+          type: number
+          format: double
+          example: 91479000000
+        taxAssets:
+          type: number
+          format: double
+          example: 19499000000
+        otherNonCurrentAssets:
+          type: number
+          format: double
+          example: 55335000000
+        totalNonCurrentAssets:
+          type: number
+          format: double
+          example: 211993000000
+        otherAssets:
+          type: number
+          format: double
+          example: 0
+        totalAssets:
+          type: number
+          format: double
+          example: 364980000000
+        totalPayables:
+          type: number
+          format: double
+          example: 95561000000
+        accountPayables:
+          type: number
+          format: double
+          example: 68960000000
+        otherPayables:
+          type: number
+          format: double
+          example: 26601000000
+        accruedExpenses:
+          type: number
+          format: double
+          example: 0
+        shortTermDebt:
+          type: number
+          format: double
+          example: 20879000000
+        capitalLeaseObligationsCurrent:
+          type: number
+          format: double
+          example: 1632000000
+        taxPayables:
+          type: number
+          format: double
+          example: 26601000000
+        deferredRevenue:
+          type: number
+          format: double
+          example: 8249000000
+        otherCurrentLiabilities:
+          type: number
+          format: double
+          example: 50071000000
+        totalCurrentLiabilities:
+          type: number
+          format: double
+          example: 176392000000
+        longTermDebt:
+          type: number
+          format: double
+          example: 85750000000
+        deferredRevenueNonCurrent:
+          type: number
+          format: double
+          example: 10798000000
+        deferredTaxLiabilitiesNonCurrent:
+          type: number
+          format: double
+          example: 0
+        otherNonCurrentLiabilities:
+          type: number
+          format: double
+          example: 35090000000
+        totalNonCurrentLiabilities:
+          type: number
+          format: double
+          example: 131638000000
+        otherLiabilities:
+          type: number
+          format: double
+          example: 0
+        capitalLeaseObligations:
+          type: number
+          format: double
+          example: 12430000000
+        totalLiabilities:
+          type: number
+          format: double
+          example: 308030000000
+        treasuryStock:
+          type: number
+          format: double
+          example: 0
+        preferredStock:
+          type: number
+          format: double
+          example: 0
+        commonStock:
+          type: number
+          format: double
+          example: 83276000000
+        retainedEarnings:
+          type: number
+          format: double
+          example: -19154000000
+        additionalPaidInCapital:
+          type: number
+          format: double
+          example: 0
+        accumulatedOtherComprehensiveIncomeLoss:
+          type: number
+          format: double
+          example: -7172000000
+        otherTotalStockholdersEquity:
+          type: number
+          format: double
+          example: 0
+        totalStockholdersEquity:
+          type: number
+          format: double
+          example: 56950000000
+        totalEquity:
+          type: number
+          format: double
+          example: 56950000000
+        minorityInterest:
+          type: number
+          format: double
+          example: 0
+        totalLiabilitiesAndTotalEquity:
+          type: number
+          format: double
+          example: 364980000000
+        totalInvestments:
+          type: number
+          format: double
+          example: 126707000000
+        totalDebt:
+          type: number
+          format: double
+          example: 106629000000
+        netDebt:
+          type: number
+          format: double
+          example: 76686000000
+      required:
+        - date
+        - symbol
+        - reportedCurrency
+        - cik
+        - filingDate
+        - acceptedDate
+        - fiscalYear
+        - period
+        - cashAndCashEquivalents
+        - shortTermInvestments
+        - cashAndShortTermInvestments
+        - netReceivables
+        - accountsReceivables
+        - otherReceivables
+        - inventory
+        - prepaids
+        - otherCurrentAssets
+        - totalCurrentAssets
+        - propertyPlantEquipmentNet
+        - goodwill
+        - intangibleAssets
+        - goodwillAndIntangibleAssets
+        - longTermInvestments
+        - taxAssets
+        - otherNonCurrentAssets
+        - totalNonCurrentAssets
+        - otherAssets
+        - totalAssets
+        - totalPayables
+        - accountPayables
+        - otherPayables
+        - accruedExpenses
+        - shortTermDebt
+        - capitalLeaseObligationsCurrent
+        - taxPayables
+        - deferredRevenue
+        - otherCurrentLiabilities
+        - totalCurrentLiabilities
+        - longTermDebt
+        - deferredRevenueNonCurrent
+        - deferredTaxLiabilitiesNonCurrent
+        - otherNonCurrentLiabilities
+        - totalNonCurrentLiabilities
+        - otherLiabilities
+        - capitalLeaseObligations
+        - totalLiabilities
+        - treasuryStock
+        - preferredStock
+        - commonStock
+        - retainedEarnings
+        - additionalPaidInCapital
+        - accumulatedOtherComprehensiveIncomeLoss
+        - otherTotalStockholdersEquity
+        - totalStockholdersEquity
+        - totalEquity
+        - minorityInterest
+        - totalLiabilitiesAndTotalEquity
+        - totalInvestments
+        - totalDebt
+        - netDebt
+    CashFlowStatement:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2024-09-28"
+        symbol:
+          type: string
+          example: "AAPL"
+        reportedCurrency:
+          type: string
+          example: "USD"
+        cik:
+          type: string
+          example: "0000320193"
+        filingDate:
+          type: string
+          format: date
+          example: "2024-11-01"
+        acceptedDate:
+          type: string
+          example: "2024-11-01 06:01:36"
+        fiscalYear:
+          type: string
+          example: "2024"
+        period:
+          type: string
+          example: "FY"
+        netIncome:
+          type: number
+          format: double
+          example: 93736000000
+        depreciationAndAmortization:
+          type: number
+          format: double
+          example: 11445000000
+        deferredIncomeTax:
+          type: number
+          format: double
+          example: 0
+        stockBasedCompensation:
+          type: number
+          format: double
+          example: 11688000000
+        changeInWorkingCapital:
+          type: number
+          format: double
+          example: 3651000000
+        accountsReceivables:
+          type: number
+          format: double
+          example: -5144000000
+        inventory:
+          type: number
+          format: double
+          example: -1046000000
+        accountsPayables:
+          type: number
+          format: double
+          example: 6020000000
+        otherWorkingCapital:
+          type: number
+          format: double
+          example: 3821000000
+        otherNonCashItems:
+          type: number
+          format: double
+          example: -2266000000
+        netCashProvidedByOperatingActivities:
+          type: number
+          format: double
+          example: 118254000000
+        investmentsInPropertyPlantAndEquipment:
+          type: number
+          format: double
+          example: -9447000000
+        acquisitionsNet:
+          type: number
+          format: double
+          example: 0
+        purchasesOfInvestments:
+          type: number
+          format: double
+          example: -48656000000
+        salesMaturitiesOfInvestments:
+          type: number
+          format: double
+          example: 62346000000
+        otherInvestingActivities:
+          type: number
+          format: double
+          example: -1308000000
+        netCashProvidedByInvestingActivities:
+          type: number
+          format: double
+          example: 2935000000
+        netDebtIssuance:
+          type: number
+          format: double
+          example: -5998000000
+        longTermNetDebtIssuance:
+          type: number
+          format: double
+          example: -9958000000
+        shortTermNetDebtIssuance:
+          type: number
+          format: double
+          example: 3960000000
+        netStockIssuance:
+          type: number
+          format: double
+          example: -94949000000
+        netCommonStockIssuance:
+          type: number
+          format: double
+          example: -94949000000
+        commonStockIssuance:
+          type: number
+          format: double
+          example: 0
+        commonStockRepurchased:
+          type: number
+          format: double
+          example: -94949000000
+        netPreferredStockIssuance:
+          type: number
+          format: double
+          example: 0
+        netDividendsPaid:
+          type: number
+          format: double
+          example: -15234000000
+        commonDividendsPaid:
+          type: number
+          format: double
+          example: -15234000000
+        preferredDividendsPaid:
+          type: number
+          format: double
+          example: 0
+        otherFinancingActivities:
+          type: number
+          format: double
+          example: -5802000000
+        netCashProvidedByFinancingActivities:
+          type: number
+          format: double
+          example: -121983000000
+        effectOfForexChangesOnCash:
+          type: number
+          format: double
+          example: 0
+        netChangeInCash:
+          type: number
+          format: double
+          example: -794000000
+        cashAtEndOfPeriod:
+          type: number
+          format: double
+          example: 29943000000
+        cashAtBeginningOfPeriod:
+          type: number
+          format: double
+          example: 30737000000
+        operatingCashFlow:
+          type: number
+          format: double
+          example: 118254000000
+        capitalExpenditure:
+          type: number
+          format: double
+          example: -9447000000
+        freeCashFlow:
+          type: number
+          format: double
+          example: 108807000000
+        incomeTaxesPaid:
+          type: number
+          format: double
+          example: 26102000000
+        interestPaid:
+          type: number
+          format: double
+          example: 0
+      required:
+        - date
+        - symbol
+        - reportedCurrency
+        - cik
+        - filingDate
+        - acceptedDate
+        - fiscalYear
+        - period
+        - netIncome
+        - depreciationAndAmortization
+        - deferredIncomeTax
+        - stockBasedCompensation
+        - changeInWorkingCapital
+        - accountsReceivables
+        - inventory
+        - accountsPayables
+        - otherWorkingCapital
+        - otherNonCashItems
+        - netCashProvidedByOperatingActivities
+        - investmentsInPropertyPlantAndEquipment
+        - acquisitionsNet
+        - purchasesOfInvestments
+        - salesMaturitiesOfInvestments
+        - otherInvestingActivities
+        - netCashProvidedByInvestingActivities
+        - netDebtIssuance
+        - longTermNetDebtIssuance
+        - shortTermNetDebtIssuance
+        - netStockIssuance
+        - netCommonStockIssuance
+        - commonStockIssuance
+        - commonStockRepurchased
+        - netPreferredStockIssuance
+        - netDividendsPaid
+        - commonDividendsPaid
+        - preferredDividendsPaid
+        - otherFinancingActivities
+        - netCashProvidedByFinancingActivities
+        - effectOfForexChangesOnCash
+        - netChangeInCash
+        - cashAtEndOfPeriod
+        - cashAtBeginningOfPeriod
+        - operatingCashFlow
+        - capitalExpenditure
+        - freeCashFlow
+        - incomeTaxesPaid
+        - interestPaid
+    IncomeStatementTtm:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2024-12-28"
+        symbol:
+          type: string
+          example: "AAPL"
+        reportedCurrency:
+          type: string
+          example: "USD"
+        cik:
+          type: string
+          example: "0000320193"
+        filingDate:
+          type: string
+          format: date
+          example: "2025-01-31"
+        acceptedDate:
+          type: string
+          example: "2025-01-31 06:01:27"
+        fiscalYear:
+          type: string
+          example: "2025"
+        period:
+          type: string
+          example: "Q1"
+        revenue:
+          type: number
+          format: double
+          example: 395760000000
+        costOfRevenue:
+          type: number
+          format: double
+          example: 211657000000
+        grossProfit:
+          type: number
+          format: double
+          example: 184103000000
+        researchAndDevelopmentExpenses:
+          type: number
+          format: double
+          example: 31942000000
+        generalAndAdministrativeExpenses:
+          type: number
+          format: double
+          example: 0
+        sellingAndMarketingExpenses:
+          type: number
+          format: double
+          example: 0
+        sellingGeneralAndAdministrativeExpenses:
+          type: number
+          format: double
+          example: 26486000000
+        otherExpenses:
+          type: number
+          format: double
+          example: 0
+        operatingExpenses:
+          type: number
+          format: double
+          example: 58428000000
+        costAndExpenses:
+          type: number
+          format: double
+          example: 270085000000
+        netInterestIncome:
+          type: number
+          format: double
+          example: 0
+        interestIncome:
+          type: number
+          format: double
+          example: 0
+        interestExpense:
+          type: number
+          format: double
+          example: 0
+        depreciationAndAmortization:
+          type: number
+          format: double
+          example: 11677000000
+        ebitda:
+          type: number
+          format: double
+          example: 137352000000
+        ebit:
+          type: number
+          format: double
+          example: 125675000000
+        nonOperatingIncomeExcludingInterest:
+          type: number
+          format: double
+          example: 0
+        operatingIncome:
+          type: number
+          format: double
+          example: 125675000000
+        totalOtherIncomeExpensesNet:
+          type: number
+          format: double
+          example: 71000000
+        incomeBeforeTax:
+          type: number
+          format: double
+          example: 125746000000
+        incomeTaxExpense:
+          type: number
+          format: double
+          example: 29596000000
+        netIncomeFromContinuingOperations:
+          type: number
+          format: double
+          example: 96150000000
+        netIncomeFromDiscontinuedOperations:
+          type: number
+          format: double
+          example: 0
+        otherAdjustmentsToNetIncome:
+          type: number
+          format: double
+          example: 0
+        netIncome:
+          type: number
+          format: double
+          example: 96150000000
+        netIncomeDeductions:
+          type: number
+          format: double
+          example: 0
+        bottomLineNetIncome:
+          type: number
+          format: double
+          example: 96150000000
+        eps:
+          type: number
+          format: double
+          example: 6.31
+        epsDiluted:
+          type: number
+          format: double
+          example: 6.3
+        weightedAverageShsOut:
+          type: number
+          format: double
+          example: 15081724000
+        weightedAverageShsOutDil:
+          type: number
+          format: double
+          example: 15150865000
+      required:
+        - date
+        - symbol
+        - reportedCurrency
+        - cik
+        - filingDate
+        - acceptedDate
+        - fiscalYear
+        - period
+        - revenue
+        - costOfRevenue
+        - grossProfit
+        - researchAndDevelopmentExpenses
+        - generalAndAdministrativeExpenses
+        - sellingAndMarketingExpenses
+        - sellingGeneralAndAdministrativeExpenses
+        - otherExpenses
+        - operatingExpenses
+        - costAndExpenses
+        - netInterestIncome
+        - interestIncome
+        - interestExpense
+        - depreciationAndAmortization
+        - ebitda
+        - ebit
+        - nonOperatingIncomeExcludingInterest
+        - operatingIncome
+        - totalOtherIncomeExpensesNet
+        - incomeBeforeTax
+        - incomeTaxExpense
+        - netIncomeFromContinuingOperations
+        - netIncomeFromDiscontinuedOperations
+        - otherAdjustmentsToNetIncome
+        - netIncome
+        - netIncomeDeductions
+        - bottomLineNetIncome
+        - eps
+        - epsDiluted
+        - weightedAverageShsOut
+        - weightedAverageShsOutDil
+    BalanceSheetStatementTtm:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2024-12-28"
+        symbol:
+          type: string
+          example: "AAPL"
+        reportedCurrency:
+          type: string
+          example: "USD"
+        cik:
+          type: string
+          example: "0000320193"
+        filingDate:
+          type: string
+          format: date
+          example: "2025-01-31"
+        acceptedDate:
+          type: string
+          example: "2025-01-31 06:01:27"
+        fiscalYear:
+          type: string
+          example: "2025"
+        period:
+          type: string
+          example: "Q1"
+        cashAndCashEquivalents:
+          type: number
+          example: 30299000000
+        shortTermInvestments:
+          type: number
+          example: 23476000000
+        cashAndShortTermInvestments:
+          type: number
+          example: 53775000000
+        netReceivables:
+          type: number
+          example: 59306000000
+        accountsReceivables:
+          type: number
+          example: 29639000000
+        otherReceivables:
+          type: number
+          example: 29667000000
+        inventory:
+          type: number
+          example: 6911000000
+        prepaids:
+          type: number
+          example: 0
+        otherCurrentAssets:
+          type: number
+          example: 13248000000
+        totalCurrentAssets:
+          type: number
+          example: 133240000000
+        propertyPlantEquipmentNet:
+          type: number
+          example: 46069000000
+        goodwill:
+          type: number
+          example: 0
+        intangibleAssets:
+          type: number
+          example: 0
+        goodwillAndIntangibleAssets:
+          type: number
+          example: 0
+        longTermInvestments:
+          type: number
+          example: 87593000000
+        taxAssets:
+          type: number
+          example: 0
+        otherNonCurrentAssets:
+          type: number
+          example: 77183000000
+        totalNonCurrentAssets:
+          type: number
+          example: 210845000000
+        otherAssets:
+          type: number
+          example: 0
+        totalAssets:
+          type: number
+          example: 344085000000
+        totalPayables:
+          type: number
+          example: 61910000000
+        accountPayables:
+          type: number
+          example: 61910000000
+        otherPayables:
+          type: number
+          example: 0
+        accruedExpenses:
+          type: number
+          example: 0
+        shortTermDebt:
+          type: number
+          example: 12843000000
+        capitalLeaseObligationsCurrent:
+          type: number
+          example: 0
+        taxPayables:
+          type: number
+          example: 0
+        deferredRevenue:
+          type: number
+          example: 8461000000
+        otherCurrentLiabilities:
+          type: number
+          example: 61151000000
+        totalCurrentLiabilities:
+          type: number
+          example: 144365000000
+        longTermDebt:
+          type: number
+          example: 83956000000
+        deferredRevenueNonCurrent:
+          type: number
+          example: 0
+        deferredTaxLiabilitiesNonCurrent:
+          type: number
+          example: 0
+        otherNonCurrentLiabilities:
+          type: number
+          example: 49006000000
+        totalNonCurrentLiabilities:
+          type: number
+          example: 132962000000
+        otherLiabilities:
+          type: number
+          example: 0
+        capitalLeaseObligations:
+          type: number
+          example: 0
+        totalLiabilities:
+          type: number
+          example: 277327000000
+        treasuryStock:
+          type: number
+          example: 0
+        preferredStock:
+          type: number
+          example: 0
+        commonStock:
+          type: number
+          example: 84768000000
+        retainedEarnings:
+          type: number
+          example: -11221000000
+        additionalPaidInCapital:
+          type: number
+          example: 0
+        accumulatedOtherComprehensiveIncomeLoss:
+          type: number
+          example: -6789000000
+        otherTotalStockholdersEquity:
+          type: number
+          example: 0
+        totalStockholdersEquity:
+          type: number
+          example: 66758000000
+        totalEquity:
+          type: number
+          example: 66758000000
+        minorityInterest:
+          type: number
+          example: 0
+        totalLiabilitiesAndTotalEquity:
+          type: number
+          example: 344085000000
+        totalInvestments:
+          type: number
+          example: 111069000000
+        totalDebt:
+          type: number
+          example: 96799000000
+        netDebt:
+          type: number
+          example: 66500000000
+      required:
+        - date
+        - symbol
+        - reportedCurrency
+        - cik
+        - filingDate
+        - acceptedDate
+        - fiscalYear
+        - period
+        - cashAndCashEquivalents
+        - shortTermInvestments
+        - cashAndShortTermInvestments
+        - netReceivables
+        - accountsReceivables
+        - otherReceivables
+        - inventory
+        - prepaids
+        - otherCurrentAssets
+        - totalCurrentAssets
+        - propertyPlantEquipmentNet
+        - goodwill
+        - intangibleAssets
+        - goodwillAndIntangibleAssets
+        - longTermInvestments
+        - taxAssets
+        - otherNonCurrentAssets
+        - totalNonCurrentAssets
+        - otherAssets
+        - totalAssets
+        - totalPayables
+        - accountPayables
+        - otherPayables
+        - accruedExpenses
+        - shortTermDebt
+        - capitalLeaseObligationsCurrent
+        - taxPayables
+        - deferredRevenue
+        - otherCurrentLiabilities
+        - totalCurrentLiabilities
+        - longTermDebt
+        - deferredRevenueNonCurrent
+        - deferredTaxLiabilitiesNonCurrent
+        - otherNonCurrentLiabilities
+        - totalNonCurrentLiabilities
+        - otherLiabilities
+        - capitalLeaseObligations
+        - totalLiabilities
+        - treasuryStock
+        - preferredStock
+        - commonStock
+        - retainedEarnings
+        - additionalPaidInCapital
+        - accumulatedOtherComprehensiveIncomeLoss
+        - otherTotalStockholdersEquity
+        - totalStockholdersEquity
+        - totalEquity
+        - minorityInterest
+        - totalLiabilitiesAndTotalEquity
+        - totalInvestments
+        - totalDebt
+        - netDebt
+    CashFlowStatementTtm:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2024-12-28"
+        symbol:
+          type: string
+          example: "AAPL"
+        reportedCurrency:
+          type: string
+          example: "USD"
+        cik:
+          type: string
+          example: "0000320193"
+        filingDate:
+          type: string
+          format: date
+          example: "2025-01-31"
+        acceptedDate:
+          type: string
+          example: "2025-01-31 06:01:27"
+        fiscalYear:
+          type: string
+          example: "2025"
+        period:
+          type: string
+          example: "Q1"
+        netIncome:
+          type: number
+          format: double
+          example: 96150000000
+        depreciationAndAmortization:
+          type: number
+          format: double
+          example: 11677000000
+        deferredIncomeTax:
+          type: number
+          format: double
+          example: 0
+        stockBasedCompensation:
+          type: number
+          format: double
+          example: 11977000000
+        changeInWorkingCapital:
+          type: number
+          format: double
+          example: -8224000000
+        accountsReceivables:
+          type: number
+          format: double
+          example: -9505000000
+        inventory:
+          type: number
+          format: double
+          example: -694000000
+        accountsPayables:
+          type: number
+          format: double
+          example: 3891000000
+        otherWorkingCapital:
+          type: number
+          format: double
+          example: -1916000000
+        otherNonCashItems:
+          type: number
+          format: double
+          example: -3286000000
+        netCashProvidedByOperatingActivities:
+          type: number
+          format: double
+          example: 108294000000
+        investmentsInPropertyPlantAndEquipment:
+          type: number
+          format: double
+          example: -9995000000
+        acquisitionsNet:
+          type: number
+          format: double
+          example: 0
+        purchasesOfInvestments:
+          type: number
+          format: double
+          example: -45000000000
+        salesMaturitiesOfInvestments:
+          type: number
+          format: double
+          example: 67422000000
+        otherInvestingActivities:
+          type: number
+          format: double
+          example: -1627000000
+        netCashProvidedByInvestingActivities:
+          type: number
+          format: double
+          example: 10800000000
+        netDebtIssuance:
+          type: number
+          format: double
+          example: -10967000000
+        longTermNetDebtIssuance:
+          type: number
+          format: double
+          example: -10967000000
+        shortTermNetDebtIssuance:
+          type: number
+          format: double
+          example: 0
+        netStockIssuance:
+          type: number
+          format: double
+          example: -98416000000
+        netCommonStockIssuance:
+          type: number
+          format: double
+          example: -98416000000
+        commonStockIssuance:
+          type: number
+          format: double
+          example: 0
+        commonStockRepurchased:
+          type: number
+          format: double
+          example: -98416000000
+        netPreferredStockIssuance:
+          type: number
+          format: double
+          example: 0
+        netDividendsPaid:
+          type: number
+          format: double
+          example: -15265000000
+        commonDividendsPaid:
+          type: number
+          format: double
+          example: -15265000000
+        preferredDividendsPaid:
+          type: number
+          format: double
+          example: 0
+        otherFinancingActivities:
+          type: number
+          format: double
+          example: -6121000000
+        netCashProvidedByFinancingActivities:
+          type: number
+          format: double
+          example: -130769000000
+        effectOfForexChangesOnCash:
+          type: number
+          format: double
+          example: 0
+        netChangeInCash:
+          type: number
+          format: double
+          example: -11675000000
+        cashAtEndOfPeriod:
+          type: number
+          format: double
+          example: 30299000000
+        cashAtBeginningOfPeriod:
+          type: number
+          format: double
+          example: 41974000000
+        operatingCashFlow:
+          type: number
+          format: double
+          example: 108294000000
+        capitalExpenditure:
+          type: number
+          format: double
+          example: -9995000000
+        freeCashFlow:
+          type: number
+          format: double
+          example: 98299000000
+        incomeTaxesPaid:
+          type: number
+          format: double
+          example: 37498000000
+        interestPaid:
+          type: number
+          format: double
+          example: 0
+      required:
+        - date
+        - symbol
+        - reportedCurrency
+        - cik
+        - filingDate
+        - acceptedDate
+        - fiscalYear
+        - period
+        - netIncome
+        - depreciationAndAmortization
+        - deferredIncomeTax
+        - stockBasedCompensation
+        - changeInWorkingCapital
+        - accountsReceivables
+        - inventory
+        - accountsPayables
+        - otherWorkingCapital
+        - otherNonCashItems
+        - netCashProvidedByOperatingActivities
+        - investmentsInPropertyPlantAndEquipment
+        - acquisitionsNet
+        - purchasesOfInvestments
+        - salesMaturitiesOfInvestments
+        - otherInvestingActivities
+        - netCashProvidedByInvestingActivities
+        - netDebtIssuance
+        - longTermNetDebtIssuance
+        - shortTermNetDebtIssuance
+        - netStockIssuance
+        - netCommonStockIssuance
+        - commonStockIssuance
+        - commonStockRepurchased
+        - netPreferredStockIssuance
+        - netDividendsPaid
+        - commonDividendsPaid
+        - preferredDividendsPaid
+        - otherFinancingActivities
+        - netCashProvidedByFinancingActivities
+        - effectOfForexChangesOnCash
+        - netChangeInCash
+        - cashAtEndOfPeriod
+        - cashAtBeginningOfPeriod
+        - operatingCashFlow
+        - capitalExpenditure
+        - freeCashFlow
+        - incomeTaxesPaid
+        - interestPaid
+    KeyMetrics:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          format: date
+          example: "2024-09-28"
+        fiscalYear:
+          type: string
+          example: "2024"
+        period:
+          type: string
+          example: "FY"
+        reportedCurrency:
+          type: string
+          example: "USD"
+        marketCap:
+          type: number
+          format: double
+          example: 3495160329570
+        enterpriseValue:
+          type: number
+          format: double
+          example: 3571846329570
+        evToSales:
+          type: number
+          format: double
+          example: 9.134339201273542
+        evToOperatingCashFlow:
+          type: number
+          format: double
+          example: 30.204866893043786
+        evToFreeCashFlow:
+          type: number
+          format: double
+          example: 32.82735788662494
+        evToEBITDA:
+          type: number
+          format: double
+          example: 26.524727497716487
+        netDebtToEBITDA:
+          type: number
+          format: double
+          example: 0.5694744580836323
+        currentRatio:
+          type: number
+          format: double
+          example: 0.8673125765340832
+        incomeQuality:
+          type: number
+          format: double
+          example: 1.2615643936161134
+        grahamNumber:
+          type: number
+          format: double
+          example: 22.587017267616833
+        grahamNetNet:
+          type: number
+          format: double
+          example: -12.352478525015636
+        taxBurden:
+          type: number
+          format: double
+          example: 0.7590881483581001
+        interestBurden:
+          type: number
+          format: double
+          example: 1.0021831580314244
+        workingCapital:
+          type: number
+          format: double
+          example: -23405000000
+        investedCapital:
+          type: number
+          format: double
+          example: 22275000000
+        returnOnAssets:
+          type: number
+          format: double
+          example: 0.25682503150857583
+        operatingReturnOnAssets:
+          type: number
+          format: double
+          example: 0.3434290787011036
+        returnOnTangibleAssets:
+          type: number
+          format: double
+          example: 0.25682503150857583
+        returnOnEquity:
+          type: number
+          format: double
+          example: 1.6459350307287095
+        returnOnInvestedCapital:
+          type: number
+          format: double
+          example: 0.4430708117427921
+        returnOnCapitalEmployed:
+          type: number
+          format: double
+          example: 0.6533607652660827
+        earningsYield:
+          type: number
+          format: double
+          example: 0.026818798327209237
+        freeCashFlowYield:
+          type: number
+          format: double
+          example: 0.03113076074921754
+        capexToOperatingCashFlow:
+          type: number
+          format: double
+          example: 0.07988736110406414
+        capexToDepreciation:
+          type: number
+          format: double
+          example: 0.8254259501965924
+        capexToRevenue:
+          type: number
+          format: double
+          example: 0.02415896275269477
+        salesGeneralAndAdministrativeToRevenue:
+          type: number
+          format: double
+          example: 0
+        researchAndDevelopementToRevenue:
+          type: number
+          format: double
+          example: 0.08022299794136074
+        stockBasedCompensationToRevenue:
+          type: number
+          format: double
+          example: 0.02988990755303234
+        intangiblesToTotalAssets:
+          type: number
+          format: double
+          example: 0
+        averageReceivables:
+          type: number
+          format: double
+          example: 63614000000
+        averagePayables:
+          type: number
+          format: double
+          example: 65785500000
+        averageInventory:
+          type: number
+          format: double
+          example: 6808500000
+        daysOfSalesOutstanding:
+          type: number
+          format: double
+          example: 61.83255974529134
+        daysOfPayablesOutstanding:
+          type: number
+          format: double
+          example: 119.65847721913745
+        daysOfInventoryOutstanding:
+          type: number
+          format: double
+          example: 12.642570548414087
+        operatingCycle:
+          type: number
+          format: double
+          example: 74.47513029370543
+        cashConversionCycle:
+          type: number
+          format: double
+          example: -45.18334692543202
+        freeCashFlowToEquity:
+          type: number
+          format: double
+          example: 32121000000
+        freeCashFlowToFirm:
+          type: number
+          format: double
+          example: 117192805288.09166
+        tangibleAssetValue:
+          type: number
+          format: double
+          example: 56950000000
+        netCurrentAssetValue:
+          type: number
+          format: double
+          example: -155043000000
+      required:
+        - symbol
+        - date
+        - fiscalYear
+        - period
+        - reportedCurrency
+        - marketCap
+        - enterpriseValue
+        - evToSales
+        - evToOperatingCashFlow
+        - evToFreeCashFlow
+        - evToEBITDA
+        - netDebtToEBITDA
+        - currentRatio
+        - incomeQuality
+        - grahamNumber
+        - grahamNetNet
+        - taxBurden
+        - interestBurden
+        - workingCapital
+        - investedCapital
+        - returnOnAssets
+        - operatingReturnOnAssets
+        - returnOnTangibleAssets
+        - returnOnEquity
+        - returnOnInvestedCapital
+        - returnOnCapitalEmployed
+        - earningsYield
+        - freeCashFlowYield
+        - capexToOperatingCashFlow
+        - capexToDepreciation
+        - capexToRevenue
+        - salesGeneralAndAdministrativeToRevenue
+        - researchAndDevelopementToRevenue
+        - stockBasedCompensationToRevenue
+        - intangiblesToTotalAssets
+        - averageReceivables
+        - averagePayables
+        - averageInventory
+        - daysOfSalesOutstanding
+        - daysOfPayablesOutstanding
+        - daysOfInventoryOutstanding
+        - operatingCycle
+        - cashConversionCycle
+        - freeCashFlowToEquity
+        - freeCashFlowToFirm
+        - tangibleAssetValue
+        - netCurrentAssetValue
+    FinancialRatios:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          format: date
+          example: "2024-09-28"
+        fiscalYear:
+          type: string
+          example: "2024"
+        period:
+          type: string
+          example: "FY"
+        reportedCurrency:
+          type: string
+          example: "USD"
+        grossProfitMargin:
+          type: number
+          format: double
+          example: 0.4620634981523393
+        ebitMargin:
+          type: number
+          format: double
+          example: 0.31510222870075566
+        ebitdaMargin:
+          type: number
+          format: double
+          example: 0.3443707085043538
+        operatingProfitMargin:
+          type: number
+          format: double
+          example: 0.31510222870075566
+        pretaxProfitMargin:
+          type: number
+          format: double
+          example: 0.3157901466620635
+        continuousOperationsProfitMargin:
+          type: number
+          format: double
+          example: 0.23971255769943867
+        netProfitMargin:
+          type: number
+          format: double
+          example: 0.23971255769943867
+        bottomLineProfitMargin:
+          type: number
+          format: double
+          example: 0.23971255769943867
+        receivablesTurnover:
+          type: number
+          format: double
+          example: 5.903038811648023
+        payablesTurnover:
+          type: number
+          format: double
+          example: 3.0503480278422272
+        inventoryTurnover:
+          type: number
+          format: double
+          example: 28.870710952511665
+        fixedAssetTurnover:
+          type: number
+          format: double
+          example: 8.560310858143607
+        assetTurnover:
+          type: number
+          format: double
+          example: 1.0713874732862074
+        currentRatio:
+          type: number
+          format: double
+          example: 0.8673125765340832
+        quickRatio:
+          type: number
+          format: double
+          example: 0.8260068483831466
+        solvencyRatio:
+          type: number
+          format: double
+          example: 0.3414634938155374
+        cashRatio:
+          type: number
+          format: double
+          example: 0.16975259648963673
+        priceToEarningsRatio:
+          type: number
+          format: double
+          example: 37.287278415656736
+        priceToEarningsGrowthRatio:
+          type: number
+          format: double
+          example: -45.93792700808932
+        forwardPriceToEarningsGrowthRatio:
+          type: number
+          format: double
+          example: -45.93792700808932
+        priceToBookRatio:
+          type: number
+          format: double
+          example: 61.37243774486391
+        priceToSalesRatio:
+          type: number
+          format: double
+          example: 8.93822887866815
+        priceToFreeCashFlowRatio:
+          type: number
+          format: double
+          example: 32.12256867269569
+        priceToOperatingCashFlowRatio:
+          type: number
+          format: double
+          example: 29.55638142954995
+        debtToAssetsRatio:
+          type: number
+          format: double
+          example: 0.29215025480848267
+        debtToEquityRatio:
+          type: number
+          format: double
+          example: 1.872326602282704
+        debtToCapitalRatio:
+          type: number
+          format: double
+          example: 0.6518501763673821
+        longTermDebtToCapitalRatio:
+          type: number
+          format: double
+          example: 0.6009110021023125
+        financialLeverageRatio:
+          type: number
+          format: double
+          example: 6.408779631255487
+        workingCapitalTurnoverRatio:
+          type: number
+          format: double
+          example: -31.099932397502684
+        operatingCashFlowRatio:
+          type: number
+          format: double
+          example: 0.6704045534944896
+        operatingCashFlowSalesRatio:
+          type: number
+          format: double
+          example: 0.3024128274962599
+        freeCashFlowOperatingCashFlowRatio:
+          type: number
+          format: double
+          example: 0.9201126388959359
+        debtServiceCoverageRatio:
+          type: number
+          format: double
+          example: 5.024761722304708
+        interestCoverageRatio:
+          type: number
+          format: double
+          example: 0
+        shortTermOperatingCashFlowCoverageRatio:
+          type: number
+          format: double
+          example: 5.663777000814215
+        operatingCashFlowCoverageRatio:
+          type: number
+          format: double
+          example: 1.109022873702276
+        capitalExpenditureCoverageRatio:
+          type: number
+          format: double
+          example: 12.517624642743728
+        dividendPaidAndCapexCoverageRatio:
+          type: number
+          format: double
+          example: 4.7912969490701345
+        dividendPayoutRatio:
+          type: number
+          format: double
+          example: 0.16252026969360758
+        dividendYield:
+          type: number
+          format: double
+          example: 0.0043585983369965175
+        dividendYieldPercentage:
+          type: number
+          format: double
+          example: 0.43585983369965176
+        revenuePerShare:
+          type: number
+          format: double
+          example: 25.484914639368924
+        netIncomePerShare:
+          type: number
+          format: double
+          example: 6.109054070954992
+        interestDebtPerShare:
+          type: number
+          format: double
+          example: 6.949329249507765
+        cashPerShare:
+          type: number
+          format: double
+          example: 4.247388013764271
+        bookValuePerShare:
+          type: number
+          format: double
+          example: 3.711600978715614
+        tangibleBookValuePerShare:
+          type: number
+          format: double
+          example: 3.711600978715614
+        shareholdersEquityPerShare:
+          type: number
+          format: double
+          example: 3.711600978715614
+        operatingCashFlowPerShare:
+          type: number
+          format: double
+          example: 7.706965094592383
+        capexPerShare:
+          type: number
+          format: double
+          example: 0.6156891035281195
+        freeCashFlowPerShare:
+          type: number
+          format: double
+          example: 7.091275991064264
+        netIncomePerEBT:
+          type: number
+          format: double
+          example: 0.7590881483581001
+        ebtPerEbit:
+          type: number
+          format: double
+          example: 1.0021831580314244
+        priceToFairValue:
+          type: number
+          format: double
+          example: 61.37243774486391
+        debtToMarketCap:
+          type: number
+          format: double
+          example: 0.03050761336980449
+        effectiveTaxRate:
+          type: number
+          format: double
+          example: 0.24091185164189982
+        enterpriseValueMultiple:
+          type: number
+          format: double
+          example: 26.524727497716487
+      required:
+        - symbol
+        - date
+        - fiscalYear
+        - period
+        - reportedCurrency
+        - grossProfitMargin
+        - ebitMargin
+        - ebitdaMargin
+        - operatingProfitMargin
+        - pretaxProfitMargin
+        - continuousOperationsProfitMargin
+        - netProfitMargin
+        - bottomLineProfitMargin
+        - receivablesTurnover
+        - payablesTurnover
+        - inventoryTurnover
+        - fixedAssetTurnover
+        - assetTurnover
+        - currentRatio
+        - quickRatio
+        - solvencyRatio
+        - cashRatio
+        - priceToEarningsRatio
+        - priceToEarningsGrowthRatio
+        - forwardPriceToEarningsGrowthRatio
+        - priceToBookRatio
+        - priceToSalesRatio
+        - priceToFreeCashFlowRatio
+        - priceToOperatingCashFlowRatio
+        - debtToAssetsRatio
+        - debtToEquityRatio
+        - debtToCapitalRatio
+        - longTermDebtToCapitalRatio
+        - financialLeverageRatio
+        - workingCapitalTurnoverRatio
+        - operatingCashFlowRatio
+        - operatingCashFlowSalesRatio
+        - freeCashFlowOperatingCashFlowRatio
+        - debtServiceCoverageRatio
+        - interestCoverageRatio
+        - shortTermOperatingCashFlowCoverageRatio
+        - operatingCashFlowCoverageRatio
+        - capitalExpenditureCoverageRatio
+        - dividendPaidAndCapexCoverageRatio
+        - dividendPayoutRatio
+        - dividendYield
+        - dividendYieldPercentage
+        - revenuePerShare
+        - netIncomePerShare
+        - interestDebtPerShare
+        - cashPerShare
+        - bookValuePerShare
+        - tangibleBookValuePerShare
+        - shareholdersEquityPerShare
+        - operatingCashFlowPerShare
+        - capexPerShare
+        - freeCashFlowPerShare
+        - netIncomePerEBT
+        - ebtPerEbit
+        - priceToFairValue
+        - debtToMarketCap
+        - effectiveTaxRate
+        - enterpriseValueMultiple
+    RevenueSegmentation:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        fiscalYear:
+          type: integer
+          example: 2024
+        period:
+          type: string
+          example: "FY"
+        reportedCurrency:
+          type: string
+          nullable: true
+          example: null
+        date:
+          type: string
+          format: date
+          example: "2024-09-28"
+        data:
+          type: object
+          additionalProperties:
+            type: number
+          example:
+            Mac: 29984000000
+            Service: 96169000000
+            "Wearables, Home and Accessories": 37005000000
+            iPad: 26694000000
+            iPhone: 201183000000
+      required:
+        - symbol
+        - fiscalYear
+        - period
+        - reportedCurrency
+        - date
+        - data
+    InsiderTransaction:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "APA"
+        filingDate:
+          type: string
+          format: date
+          example: "2025-02-04"
+        transactionDate:
+          type: string
+          format: date
+          example: "2025-02-01"
+        reportingCik:
+          type: string
+          example: "0001380034"
+        companyCik:
+          type: string
+          example: "0001841666"
+        transactionType:
+          type: string
+          example: "M-Exempt"
+        securitiesOwned:
+          type: integer
+          example: 104398
+        reportingName:
+          type: string
+          example: "Hoyt Rebecca A"
+        typeOfOwner:
+          type: string
+          example: "officer: Sr. VP, Chief Acct Officer"
+        acquisitionOrDisposition:
+          type: string
+          example: "A"
+        directOrIndirect:
+          type: string
+          example: "D"
+        formType:
+          type: string
+          example: "4"
+        securitiesTransacted:
+          type: integer
+          example: 3450
+        price:
+          type: number
+          example: 0
+        securityName:
+          type: string
+          example: "Common Stock"
+        url:
+          type: string
+          format: uri
+          example: "https://www.sec.gov/Archives/edgar/data/1841666/000194906025000035/0001949060-25-000035-index.htm"
+      required:
+        - symbol
+        - filingDate
+        - transactionDate
+        - reportingCik
+        - companyCik
+        - transactionType
+        - securitiesOwned
+        - reportingName
+        - typeOfOwner
+        - acquisitionOrDisposition
+        - directOrIndirect
+        - formType
+        - securitiesTransacted
+        - price
+        - securityName
+        - url
+    FullQuote:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        name:
+          type: string
+          example: "Apple Inc."
+        price:
+          type: number
+          format: double
+          example: 232.8
+        changePercentage:
+          type: number
+          format: double
+          example: 2.1008
+        change:
+          type: number
+          format: double
+          example: 4.79
+        volume:
+          type: integer
+          example: 44489128
+        dayLow:
+          type: number
+          format: double
+          example: 226.65
+        dayHigh:
+          type: number
+          format: double
+          example: 233.13
+        yearHigh:
+          type: number
+          format: double
+          example: 260.1
+        yearLow:
+          type: number
+          format: double
+          example: 164.08
+        marketCap:
+          type: integer
+          example: 3500823120000
+        priceAvg50:
+          type: number
+          format: double
+          example: 240.2278
+        priceAvg200:
+          type: number
+          format: double
+          example: 219.98755
+        exchange:
+          type: string
+          example: "NASDAQ"
+        open:
+          type: number
+          format: double
+          example: 227.2
+        previousClose:
+          type: number
+          format: double
+          example: 228.01
+        timestamp:
+          type: integer
+          example: 1738702801
+      required:
+        - symbol
+        - name
+        - price
+        - changePercentage
+        - change
+        - volume
+        - dayLow
+        - dayHigh
+        - yearHigh
+        - yearLow
+        - marketCap
+        - priceAvg50
+        - priceAvg200
+        - exchange
+        - open
+        - previousClose
+        - timestamp
+    ShortQuote:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        price:
+          type: number
+          format: double
+          example: 232.8
+        change:
+          type: number
+          format: double
+          example: 4.79
+        volume:
+          type: integer
+          example: 44489128
+      required:
+        - symbol
+        - price
+        - change
+        - volume
+    NewsArticle:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "BTCUSD"
+        publishedDate:
+          type: string
+          format: date-time
+          example: "2025-02-03 23:32:19"
+        publisher:
+          type: string
+          example: "Coingape"
+        title:
+          type: string
+          example: "Crypto Prices Today Feb 4: BTC & Altcoins Recover Amid Pause On Trump's Tariffs"
+        image:
+          type: string
+          format: uri
+          example: "https://images.financialmodelingprep.com/news/crypto-prices-today-feb-4-btc-altcoins-recover-amid-20250203.webp"
+        site:
+          type: string
+          example: "coingape.com"
+        text:
+          type: string
+          example: "Crypto prices today have shown signs of recovery as U.S. President Donald Trump's newly announced import tariffs on Canada and Mexico were paused for 30 days. Bitcoin (BTC) price regained its value, hitting a $102K high amid broader market recovery."
+        url:
+          type: string
+          format: uri
+          example: "https://coingape.com/crypto-prices-today-feb-4-btc-altcoins-recover-amid-pause-on-trumps-tariffs/"
+      required:
+        - symbol
+        - publishedDate
+        - publisher
+        - title
+        - image
+        - site
+        - text
+        - url
+  responses:
+    ErrorResponse:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+    ProfileGetResponse:
+      description: Response from ProfileGet
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/CompanyProfile"
