@@ -241,16 +241,10 @@ paths:
             type: string
           required: true
       responses:
-        "200":
-          description: A list of company profile
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/CompanyProfile"
-        "4xx":
-          description: An error occurred
+        200:
+          $ref: "#/components/responses/ProfileGetResponse"
+        401:
+          $ref: "#/components/responses/ErrorResponse"
       tags:
         - company
   /market-capitalization:
@@ -3806,3 +3800,19 @@ components:
         - site
         - text
         - url
+  responses:
+    ErrorResponse:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+    ProfileGetResponse:
+      description: Response from ProfileGet
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/CompanyProfile"
