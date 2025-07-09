@@ -43,23 +43,38 @@ func (r *restyDoer) Do(req *http.Request) (*http.Response, error) {
 	return rawResp, nil
 }
 
-type ClientOptions struct {
+type ClientConfig struct {
 	APIKey string
+
+	Endpoint string
 
 	Debug bool
 }
 
-func MustClient(clientOptions *ClientOptions) *ClientWithResponses {
-	httpClientOption := WithHTTPClient(newRestyDoer(clientOptions.Debug))
-	apiKeyProvider, err := securityprovider.NewSecurityProviderApiKey("query", "apikey", clientOptions.APIKey)
+func MustClient(cfg *ClientConfig) *ClientWithResponses {
+	// Prepare server URL.
+	swagger, err := GetSwagger()
 	if err != nil {
 		panic(err)
 	}
-	client, err := NewClientWithResponses("https://financialmodelingprep.com/stable",
-		[]ClientOption{
-			httpClientOption,
-			WithRequestEditorFn(apiKeyProvider.Intercept),
-		}...)
+	server := swagger.Servers[0].URL
+	if len(cfg.Endpoint) > 0 {
+		server = cfg.Endpoint
+	}
+
+	// Prepare options.
+	httpClientOption := WithHTTPClient(newRestyDoer(cfg.Debug))
+	apiKeyProvider, err := securityprovider.NewSecurityProviderApiKey("query", "apikey", cfg.APIKey)
+	if err != nil {
+		panic(err)
+	}
+	clientOptions := []ClientOption{
+		httpClientOption,
+		WithRequestEditorFn(apiKeyProvider.Intercept),
+	}
+
+	// Return client.
+	client, err := NewClientWithResponses(server, clientOptions...)
 	if err != nil {
 		panic(err)
 	}
