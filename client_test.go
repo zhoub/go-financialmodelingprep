@@ -2,6 +2,7 @@ package financialmodelingprep
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 	"os"
 	"testing"
@@ -13,12 +14,12 @@ type clientSuite struct {
 	suite.Suite
 	suite.SetupAllSuite
 
-	c ClientWithResponsesInterface
+	c *ClientWithResponses
 }
 
 func (r *clientSuite) SetupSuite() {
 	apiKey := os.Getenv("FMP_API_KEY")
-	r.c = MustClient(&ClientOptions{
+	r.c = MustClient(&ClientConfig{
 		APIKey: apiKey,
 		Debug:  true,
 	})
@@ -50,6 +51,38 @@ func (r *clientSuite) TestBatchQuoteShortGet() {
 
 		sqList := *resp.JSON200
 		r.Len(sqList, 2)
+	}
+}
+
+func (r *clientSuite) TestGetSharesFloatGetOperationPath() {
+	const symbol = "AMZN"
+	if resp, err := Get(context.Background(), r.c, SharesFloatGetOperationPath, map[string]interface{}{"symbol": symbol}); err != nil {
+		r.NoError(err)
+	} else {
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var csfList []CompanySharesFloat
+		err = json.NewDecoder(resp.Body).Decode(&csfList)
+		r.NoError(err)
+
+		r.Len(csfList, 1)
+		r.Equal(symbol, csfList[0].Symbol)
+	}
+}
+
+func (r *clientSuite) TestGetSearchSymbolGetOperationPath() {
+	queries := map[string]interface{}{"query": "AMZN", "limit": 1}
+	if resp, err := Get(context.Background(), r.c, SearchSymbolGetOperationPath, queries); err != nil {
+		r.NoError(err)
+	} else {
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var csfList []CompanySharesFloat
+		err = json.NewDecoder(resp.Body).Decode(&csfList)
+		r.NoError(err)
+
+		r.Len(csfList, 1)
+		r.Equal(queries["query"], csfList[0].Symbol)
 	}
 }
 
