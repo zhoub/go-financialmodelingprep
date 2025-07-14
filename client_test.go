@@ -54,7 +54,7 @@ func (r *clientSuite) TestBatchQuoteShortGet() {
 	}
 }
 
-func (r *clientSuite) TestGet() {
+func (r *clientSuite) TestGetSharesFloatGetOperationPath() {
 	const symbol = "AMZN"
 	if resp, err := Get(context.Background(), r.c, SharesFloatGetOperationPath, map[string]interface{}{"symbol": symbol}); err != nil {
 		r.NoError(err)
@@ -67,6 +67,22 @@ func (r *clientSuite) TestGet() {
 
 		r.Len(csfList, 1)
 		r.Equal(symbol, csfList[0].Symbol)
+	}
+}
+
+func (r *clientSuite) TestGetSearchSymbolGetOperationPath() {
+	queries := map[string]interface{}{"query": "AMZN", "limit": 1}
+	if resp, err := Get(context.Background(), r.c, SearchSymbolGetOperationPath, queries); err != nil {
+		r.NoError(err)
+	} else {
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var csfList []CompanySharesFloat
+		err = json.NewDecoder(resp.Body).Decode(&csfList)
+		r.NoError(err)
+
+		r.Len(csfList, 1)
+		r.Equal(queries["query"], csfList[0].Symbol)
 	}
 }
 
