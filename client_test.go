@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/suite"
@@ -41,16 +42,48 @@ func (r *clientSuite) TestCompanyProfileGet() {
 	}
 }
 
-func (r *clientSuite) TestBatchQuoteShortGet() {
-	if resp, err := r.c.BatchQuoteShortGetWithResponse(context.Background(), &BatchQuoteShortGetParams{
-		Symbols: "7201.T,7203.T",
+var batchSymbos = []string{
+	"1329.T",
+	"7201.T",
+	"7203.T",
+	"7733.T",
+	"AAPL",
+	"AMZN",
+	"MSFT",
+	"PFE",
+	"QQQ",
+	"SPY",
+	"TQQQ",
+	"USDAUD",
+	"USDCNY",
+	"USDEUR",
+	"USDJPY",
+	"USDZAR",
+}
+
+func (r *clientSuite) TestBatchQuoteGet() {
+	if resp, err := r.c.BatchQuoteGetWithResponse(context.Background(), &BatchQuoteGetParams{
+		Symbols: strings.Join(batchSymbos, ","),
 	}); err != nil {
 		r.NoError(err)
 	} else {
 		r.Equal(http.StatusOK, resp.StatusCode())
 
 		sqList := *resp.JSON200
-		r.Len(sqList, 2)
+		r.Len(sqList, len(batchSymbos))
+	}
+}
+
+func (r *clientSuite) TestBatchQuoteShortGet() {
+	if resp, err := r.c.BatchQuoteShortGetWithResponse(context.Background(), &BatchQuoteShortGetParams{
+		Symbols: strings.Join(batchSymbos, ","),
+	}); err != nil {
+		r.NoError(err)
+	} else {
+		r.Equal(http.StatusOK, resp.StatusCode())
+
+		sqList := *resp.JSON200
+		r.Len(sqList, len(batchSymbos))
 	}
 }
 
