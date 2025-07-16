@@ -1221,7 +1221,8 @@ components:
           format: double
           example: 232.8
         marketCap:
-          type: integer
+          type: number
+          format: double
           example: 3500823120000
         beta:
           type: number
@@ -1375,7 +1376,8 @@ components:
           format: date
           example: "2025-02-04"
         marketCap:
-          type: integer
+          type: number
+          format: double
           example: 3500823120000
       required:
         - symbol
@@ -3705,7 +3707,8 @@ components:
           format: double
           example: 164.08
         marketCap:
-          type: integer
+          type: number
+          format: double
           example: 3500823120000
         priceAvg50:
           type: number
