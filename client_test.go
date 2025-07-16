@@ -48,6 +48,7 @@ var batchSymbos = []string{
 	"7203.T",
 	"7733.T",
 	"AAPL",
+	"AMZN",
 	"MSFT",
 	"PFE",
 	"QQQ",
