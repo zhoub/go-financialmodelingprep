@@ -74,6 +74,23 @@ paths:
           description: An error occurred
       tags:
         - search
+  /available-exchanges:
+    get:
+      summary: Access a complete list of supported stock exchanges using the FMP Available Exchanges API. This API provides a comprehensive overview of global stock exchanges, allowing users to identify where securities are traded and filter data by specific exchanges for further analysis.
+      operationId: AvailableExchangesGet
+      responses:
+        "200":
+          description: A list of available exchanges
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Exchange"
+        "4xx":
+          description: An error occurred
+      tags:
+        - directory
   /analyst-estimates:
     get:
       summary: Retrieve analyst financial estimates for stock symbols with the FMP Financial Estimates API. Access projected figures like revenue, earnings per share (EPS), and other key financial metrics as forecasted by industry analysts to inform your investment decisions.
@@ -954,6 +971,34 @@ components:
         - currency
         - exchangeFullName
         - exchange
+    Exchange:
+      type: object
+      properties:
+        exchange:
+          type: string
+          example: "AMEX"
+        name:
+          type: string
+          example: "New York Stock Exchange Arca"
+        countryName:
+          type: string
+          example: "United States of America"
+        countryCode:
+          type: string
+          example: "US"
+        symbolSuffix:
+          type: string
+          example: "N/A"
+        delay:
+          type: string
+          example: "Real-time"
+      required:
+        - exchange
+        - name
+        - countryName
+        - countryCode
+        - symbolSuffix
+        - delay
     FinancialEstimates:
       properties:
         symbol:
