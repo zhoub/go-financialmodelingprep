@@ -85,7 +85,7 @@ var batchSymbos = []string{
 	"USDZAR",
 }
 
-func (r *clientSuite) TestBatchQuoteGet() {
+func (r *clientSuite) TestBatchQuote() {
 	if resp, err := r.c.BatchQuoteGetWithResponse(context.Background(), &BatchQuoteGetParams{
 		Symbols: strings.Join(batchSymbos, ","),
 	}); err != nil {
@@ -98,7 +98,7 @@ func (r *clientSuite) TestBatchQuoteGet() {
 	}
 }
 
-func (r *clientSuite) TestBatchQuoteShortGet() {
+func (r *clientSuite) TestBatchQuoteShort() {
 	if resp, err := r.c.BatchQuoteShortGetWithResponse(context.Background(), &BatchQuoteShortGetParams{
 		Symbols: strings.Join(batchSymbos, ","),
 	}); err != nil {
@@ -111,9 +111,12 @@ func (r *clientSuite) TestBatchQuoteShortGet() {
 	}
 }
 
-func (r *clientSuite) TestGetSharesFloatGetOperationPath() {
+func (r *clientSuite) TestSharesFloatAMZN() {
 	const symbol = "AMZN"
-	if resp, err := Get(context.Background(), r.c, SharesFloatGetOperationPath, map[string]interface{}{"symbol": symbol}); err != nil {
+	params := map[string]interface{}{
+		"symbol": symbol,
+	}
+	if resp, err := Get(context.Background(), r.c, SharesFloatGetOperationPath, params); err != nil {
 		r.NoError(err)
 	} else {
 		r.Equal(http.StatusOK, resp.StatusCode)
@@ -127,7 +130,7 @@ func (r *clientSuite) TestGetSharesFloatGetOperationPath() {
 	}
 }
 
-func (r *clientSuite) TestGetSearchSymbolGetOperationPath() {
+func (r *clientSuite) TestSearchSymbolAMZN() {
 	queries := map[string]interface{}{"query": "AMZN", "limit": 1}
 	if resp, err := Get(context.Background(), r.c, SearchSymbolGetOperationPath, queries); err != nil {
 		r.NoError(err)
@@ -143,24 +146,46 @@ func (r *clientSuite) TestGetSearchSymbolGetOperationPath() {
 	}
 }
 
-func (r *clientSuite) TestGetKeyMetricsGetOperationPath() {
+func (r *clientSuite) TestBalanceSheetStatementAAPL() {
 	const symbol = "AAPL"
 	params := map[string]interface{}{
 		"symbol": symbol,
 		"period": "FY",
 		"limit":  1,
 	}
-	if resp, err := Get(context.Background(), r.c, KeyMetricsGetOperationPath, params); err != nil {
+	if resp, err := Get(context.Background(), r.c, BalanceSheetStatementGetOperationPath, params); err != nil {
 		r.NoError(err)
 	} else {
 		r.NoError(err)
 		r.Equal(http.StatusOK, resp.StatusCode)
 
-		var metricsList []KeyMetrics
-		err = json.NewDecoder(resp.Body).Decode(&metricsList)
+		var bsList []BalanceSheetStatement
+		err = json.NewDecoder(resp.Body).Decode(&bsList)
 		r.NoError(err)
-		r.Len(metricsList, 1)
-		r.Equal(symbol, metricsList[0].Symbol)
+		r.Len(bsList, 1)
+		r.Equal(symbol, bsList[0].Symbol)
+	}
+}
+
+func (r *clientSuite) TestBalanceSheetStatementSAIMC() {
+	const symbol = "SAI.MC"
+	params := map[string]interface{}{
+		"symbol": symbol,
+		"period": FY,
+		"limit":  1,
+	}
+	if resp, err := Get(context.Background(), r.c, BalanceSheetStatementGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var bssList []BalanceSheetStatement
+		err = json.NewDecoder(resp.Body).Decode(&bssList)
+		r.NoError(err)
+
+		r.Len(bssList, 1)
+		r.Equal(symbol, bssList[0].Symbol)
 	}
 }
 
