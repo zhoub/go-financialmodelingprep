@@ -1331,8 +1331,9 @@ components:
           type: integer
           example: 0
         averageVolume:
-          type: integer
-          example: 50542058
+          type: number
+          format: double
+          example: 61946.7
         companyName:
           type: string
           example: "Apple Inc."
