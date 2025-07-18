@@ -189,6 +189,28 @@ func (r *clientSuite) TestBalanceSheetStatementSAIMC() {
 	}
 }
 
+func (r *clientSuite) TestIncomeStatementSAIMC() {
+	const symbol = "SAI.MC"
+	params := map[string]interface{}{
+		"symbol": symbol,
+		"period": FY,
+		"limit":  2,
+	}
+	if resp, err := Get(context.Background(), r.c, IncomeStatementGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var isList []IncomeStatement
+		err = json.NewDecoder(resp.Body).Decode(&isList)
+		r.NoError(err)
+
+		r.Len(isList, params["limit"].(int))
+		r.Equal(symbol, isList[0].Symbol)
+	}
+}
+
 func TestClientSuite(t *testing.T) {
 	suite.Run(t, new(clientSuite))
 }
