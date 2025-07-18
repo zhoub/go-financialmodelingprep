@@ -26,7 +26,7 @@ func (r *clientSuite) SetupSuite() {
 	})
 }
 
-func (r *clientSuite) TestCompanyProfileGet() {
+func (r *clientSuite) TestProfileAAPL() {
 	symbol := "AAPL"
 	if resp, err := r.c.ProfileGetWithResponse(context.Background(), &ProfileGetParams{
 		Symbol: symbol,
@@ -38,7 +38,31 @@ func (r *clientSuite) TestCompanyProfileGet() {
 		pList := *resp.JSON200
 		r.Len(pList, 1)
 		r.Equal(symbol, pList[0].Symbol)
-		r.Equal(1980, pList[0].IpoDate.Year())
+		r.Contains(pList[0].IpoDate, "1980")
+	}
+}
+
+func (r *clientSuite) TestProfileEQV() {
+	const symbol = "EQV"
+	params := map[string]interface{}{
+		"symbol": symbol,
+	}
+	if resp, err := Get(context.Background(), r.c, ProfileGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var profiles []CompanyProfile
+		err = json.NewDecoder(resp.Body).Decode(&profiles)
+		r.NoError(err)
+		r.NotEmpty(profiles)
+
+		// Validate symbol.
+		r.Equal(symbol, profiles[0].Symbol)
+
+		// The field "ipoDate" is empty string.
+		r.Empty(profiles[0].IpoDate)
 	}
 }
 
@@ -116,6 +140,27 @@ func (r *clientSuite) TestGetSearchSymbolGetOperationPath() {
 
 		r.Len(csfList, 1)
 		r.Equal(queries["query"], csfList[0].Symbol)
+	}
+}
+
+func (r *clientSuite) TestGetKeyMetricsGetOperationPath() {
+	const symbol = "AAPL"
+	params := map[string]interface{}{
+		"symbol": symbol,
+		"period": "FY",
+		"limit":  1,
+	}
+	if resp, err := Get(context.Background(), r.c, KeyMetricsGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var metricsList []KeyMetrics
+		err = json.NewDecoder(resp.Body).Decode(&metricsList)
+		r.NoError(err)
+		r.Len(metricsList, 1)
+		r.Equal(symbol, metricsList[0].Symbol)
 	}
 }
 
