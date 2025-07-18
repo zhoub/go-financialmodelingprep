@@ -443,6 +443,14 @@ paths:
           schema:
             type: string
           required: true
+        - in: query
+          name: limit
+          schema: 
+            type: integer
+        - in: query
+          name: period
+          schema: 
+            $ref: "#/components/schemas/Period"
       responses:
         "200":
           description: A list of income statement
@@ -920,6 +928,8 @@ components:
         - Q3
         - Q4
         - FY
+        - annual
+        - quarter
     SearchSymbol:
       type: object
       properties:
@@ -1311,8 +1321,6 @@ components:
           example: "https://images.financialmodelingprep.com/symbol/AAPL.png"
         ipoDate:
           type: string
-          format: date
-          example: "1980-12-12"
         defaultImage:
           type: boolean
           example: false

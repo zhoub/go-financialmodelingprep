@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/suite"
 )
@@ -26,7 +27,7 @@ func (r *clientSuite) SetupSuite() {
 	})
 }
 
-func (r *clientSuite) TestCompanyProfileGet() {
+func (r *clientSuite) TestProfileAAPL() {
 	symbol := "AAPL"
 	if resp, err := r.c.ProfileGetWithResponse(context.Background(), &ProfileGetParams{
 		Symbol: symbol,
@@ -38,7 +39,31 @@ func (r *clientSuite) TestCompanyProfileGet() {
 		pList := *resp.JSON200
 		r.Len(pList, 1)
 		r.Equal(symbol, pList[0].Symbol)
-		r.Equal(1980, pList[0].IpoDate.Year())
+		r.Contains(pList[0].IpoDate, "1980")
+	}
+}
+
+func (r *clientSuite) TestProfileEQV() {
+	const symbol = "EQV"
+	params := map[string]interface{}{
+		"symbol": symbol,
+	}
+	if resp, err := Get(context.Background(), r.c, ProfileGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var profiles []CompanyProfile
+		err = json.NewDecoder(resp.Body).Decode(&profiles)
+		r.NoError(err)
+		r.NotEmpty(profiles)
+
+		// Validate symbol.
+		r.Equal(symbol, profiles[0].Symbol)
+
+		// The field "ipoDate" is empty string.
+		r.Empty(profiles[0].IpoDate)
 	}
 }
 
@@ -61,7 +86,7 @@ var batchSymbos = []string{
 	"USDZAR",
 }
 
-func (r *clientSuite) TestBatchQuoteGet() {
+func (r *clientSuite) TestBatchQuote() {
 	if resp, err := r.c.BatchQuoteGetWithResponse(context.Background(), &BatchQuoteGetParams{
 		Symbols: strings.Join(batchSymbos, ","),
 	}); err != nil {
@@ -74,7 +99,7 @@ func (r *clientSuite) TestBatchQuoteGet() {
 	}
 }
 
-func (r *clientSuite) TestBatchQuoteShortGet() {
+func (r *clientSuite) TestBatchQuoteShort() {
 	if resp, err := r.c.BatchQuoteShortGetWithResponse(context.Background(), &BatchQuoteShortGetParams{
 		Symbols: strings.Join(batchSymbos, ","),
 	}); err != nil {
@@ -87,9 +112,12 @@ func (r *clientSuite) TestBatchQuoteShortGet() {
 	}
 }
 
-func (r *clientSuite) TestGetSharesFloatGetOperationPath() {
+func (r *clientSuite) TestSharesFloatAMZN() {
 	const symbol = "AMZN"
-	if resp, err := Get(context.Background(), r.c, SharesFloatGetOperationPath, map[string]interface{}{"symbol": symbol}); err != nil {
+	params := map[string]interface{}{
+		"symbol": symbol,
+	}
+	if resp, err := Get(context.Background(), r.c, SharesFloatGetOperationPath, params); err != nil {
 		r.NoError(err)
 	} else {
 		r.Equal(http.StatusOK, resp.StatusCode)
@@ -103,7 +131,7 @@ func (r *clientSuite) TestGetSharesFloatGetOperationPath() {
 	}
 }
 
-func (r *clientSuite) TestGetSearchSymbolGetOperationPath() {
+func (r *clientSuite) TestSearchSymbolAMZN() {
 	queries := map[string]interface{}{"query": "AMZN", "limit": 1}
 	if resp, err := Get(context.Background(), r.c, SearchSymbolGetOperationPath, queries); err != nil {
 		r.NoError(err)
@@ -116,6 +144,96 @@ func (r *clientSuite) TestGetSearchSymbolGetOperationPath() {
 
 		r.Len(csfList, 1)
 		r.Equal(queries["query"], csfList[0].Symbol)
+	}
+}
+
+func (r *clientSuite) TestBalanceSheetStatementAAPL() {
+	const symbol = "AAPL"
+	params := map[string]interface{}{
+		"symbol": symbol,
+		"period": "FY",
+		"limit":  1,
+	}
+	if resp, err := Get(context.Background(), r.c, BalanceSheetStatementGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var bsList []BalanceSheetStatement
+		err = json.NewDecoder(resp.Body).Decode(&bsList)
+		r.NoError(err)
+		r.Len(bsList, 1)
+		r.Equal(symbol, bsList[0].Symbol)
+	}
+}
+
+func (r *clientSuite) TestBalanceSheetStatementSAIMC() {
+	const symbol = "SAI.MC"
+	params := map[string]interface{}{
+		"symbol": symbol,
+		"period": FY,
+		"limit":  1,
+	}
+	if resp, err := Get(context.Background(), r.c, BalanceSheetStatementGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var bssList []BalanceSheetStatement
+		err = json.NewDecoder(resp.Body).Decode(&bssList)
+		r.NoError(err)
+
+		r.Len(bssList, 1)
+		r.Equal(symbol, bssList[0].Symbol)
+	}
+}
+
+func (r *clientSuite) TestIncomeStatementSAIMC() {
+	const symbol = "SAI.MC"
+	params := map[string]interface{}{
+		"symbol": symbol,
+		"period": FY,
+		"limit":  2,
+	}
+	if resp, err := Get(context.Background(), r.c, IncomeStatementGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var isList []IncomeStatement
+		err = json.NewDecoder(resp.Body).Decode(&isList)
+		r.NoError(err)
+
+		r.Len(isList, params["limit"].(int))
+		r.Equal(symbol, isList[0].Symbol)
+	}
+}
+
+func (r *clientSuite) TestKeyMetricsNMG() {
+	const symbol = "NMG"
+	params := map[string]interface{}{
+		"symbol": symbol,
+		"period": FY,
+		"limit":  2,
+	}
+	if resp, err := Get(context.Background(), r.c, KeyMetricsGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var kmList []KeyMetrics
+		err = json.NewDecoder(resp.Body).Decode(&kmList)
+		r.NoError(err)
+
+		r.Len(kmList, params["limit"].(int))
+		for _, km := range kmList {
+			r.Equal(symbol, km.Symbol)
+		}
+		r.Equal(time.Date(2024, time.December, 31, 0, 0, 0, 0, time.UTC), kmList[0].Date.Time)
 	}
 }
 
