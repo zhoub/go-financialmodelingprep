@@ -27,6 +27,18 @@ func (r *clientSuite) SetupSuite() {
 	})
 }
 
+func (r *clientSuite) TestAvailableExchanges() {
+	if resp, err := r.c.AvailableExchangesGetWithResponse(context.Background()); err != nil {
+		r.NoError(err)
+	} else {
+		r.Equal(http.StatusOK, resp.StatusCode())
+		r.NotNil(resp.JSON200)
+
+		xchgs := *resp.JSON200
+		r.NotEmpty(xchgs)
+	}
+}
+
 func (r *clientSuite) TestProfileAAPL() {
 	symbol := "AAPL"
 	if resp, err := r.c.ProfileGetWithResponse(context.Background(), &ProfileGetParams{
