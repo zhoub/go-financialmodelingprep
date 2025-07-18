@@ -443,6 +443,14 @@ paths:
           schema:
             type: string
           required: true
+        - in: query
+          name: limit
+          schema: 
+            type: integer
+        - in: query
+          name: period
+          schema: 
+            $ref: "#/components/schemas/Period"
       responses:
         "200":
           description: A list of income statement
