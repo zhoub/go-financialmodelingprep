@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/suite"
 )
@@ -208,6 +209,31 @@ func (r *clientSuite) TestIncomeStatementSAIMC() {
 
 		r.Len(isList, params["limit"].(int))
 		r.Equal(symbol, isList[0].Symbol)
+	}
+}
+
+func (r *clientSuite) TestKeyMetricsNMG() {
+	const symbol = "NMG"
+	params := map[string]interface{}{
+		"symbol": symbol,
+		"period": FY,
+		"limit":  2,
+	}
+	if resp, err := Get(context.Background(), r.c, KeyMetricsGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var kmList []KeyMetrics
+		err = json.NewDecoder(resp.Body).Decode(&kmList)
+		r.NoError(err)
+
+		r.Len(kmList, params["limit"].(int))
+		for _, km := range kmList {
+			r.Equal(symbol, km.Symbol)
+		}
+		r.Equal(time.Date(2024, time.December, 31, 0, 0, 0, 0, time.UTC), kmList[0].Date.Time)
 	}
 }
 
