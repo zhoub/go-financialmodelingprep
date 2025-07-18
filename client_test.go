@@ -39,6 +39,18 @@ func (r *clientSuite) TestAvailableExchanges() {
 	}
 }
 
+func (r *clientSuite) TestStockList() {
+	if resp, err := r.c.StockListGetWithResponse(context.Background()); err != nil {
+		r.NoError(err)
+	} else {
+		r.Equal(http.StatusOK, resp.StatusCode())
+		r.NotNil(resp.JSON200)
+
+		csList := *resp.JSON200
+		r.NotEmpty(csList)
+	}
+}
+
 func (r *clientSuite) TestProfileAAPL() {
 	symbol := "AAPL"
 	if resp, err := r.c.ProfileGetWithResponse(context.Background(), &ProfileGetParams{

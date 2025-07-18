@@ -74,6 +74,23 @@ paths:
           description: An error occurred
       tags:
         - search
+  /stock-list:
+    get:
+      summary: Easily retrieve a comprehensive list of financial symbols with the FMP Company Symbols List API. Access a broad range of stock symbols and other tradable financial instruments from various global exchanges, helping you explore the full range of available securities.
+      operationId: StockListGet
+      responses:
+        "200":
+          description: A list of company symbols
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CompanySymbol"
+        "4xx":
+          description: An error occurred
+      tags:
+        - directory
   /available-exchanges:
     get:
       summary: Access a complete list of supported stock exchanges using the FMP Available Exchanges API. This API provides a comprehensive overview of global stock exchanges, allowing users to identify where securities are traded and filter data by specific exchanges for further analysis.
@@ -999,6 +1016,18 @@ components:
         - countryCode
         - symbolSuffix
         - delay
+    CompanySymbol:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "6898.HK"
+        companyName:
+          type: string
+          example: "China Aluminum Cans Holdings Limited"
+      required:
+        - symbol
+        - companyName
     FinancialEstimates:
       properties:
         symbol:
