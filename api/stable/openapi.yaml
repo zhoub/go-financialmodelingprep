@@ -920,6 +920,8 @@ components:
         - Q3
         - Q4
         - FY
+        - annual
+        - quarter
     SearchSymbol:
       type: object
       properties:
