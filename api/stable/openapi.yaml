@@ -3473,6 +3473,50 @@ components:
           type: number
           format: double
           example: -144087000000
+      required:
+        - symbol
+        - marketCapTTM
+        - enterpriseValueTTM
+        - evToSalesTTM
+        - evToOperatingCashFlowTTM
+        - evToFreeCashFlowTTM
+        - evToEBITDATTM
+        - netDebtToEBITDATTM
+        - currentRatioTTM
+        - incomeQualityTTM
+        - grahamNumberTTM
+        - grahamNetNetTTM
+        - taxBurdenTTM
+        - interestBurdenTTM
+        - workingCapitalTTM
+        - investedCapitalTTM
+        - returnOnAssetsTTM
+        - operatingReturnOnAssetsTTM
+        - returnOnTangibleAssetsTTM
+        - returnOnEquityTTM
+        - returnOnInvestedCapitalTTM
+        - returnOnCapitalEmployedTTM
+        - earningsYieldTTM
+        - freeCashFlowYieldTTM
+        - capexToOperatingCashFlowTTM
+        - capexToDepreciationTTM
+        - capexToRevenueTTM
+        - salesGeneralAndAdministrativeToRevenueTTM
+        - researchAndDevelopementToRevenueTTM
+        - stockBasedCompensationToRevenueTTM
+        - intangiblesToTotalAssetsTTM
+        - averageReceivablesTTM
+        - averagePayablesTTM
+        - averageInventoryTTM
+        - daysOfSalesOutstandingTTM
+        - daysOfPayablesOutstandingTTM
+        - daysOfInventoryOutstandingTTM
+        - operatingCycleTTM
+        - cashConversionCycleTTM
+        - freeCashFlowToEquityTTM
+        - freeCashFlowToFirmTTM
+        - tangibleAssetValueTTM
+        - netCurrentAssetValueTTM
     KeyMetrics:
       type: object
       properties:
