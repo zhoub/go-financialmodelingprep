@@ -942,6 +942,29 @@ paths:
           description: An error occurred
       tags:
         - statement
+  /enterprise-values:
+    get:
+      summary: Access a company's enterprise value using the Enterprise Values API. This metric offers a comprehensive view of a company's total market value by combining both its equity (market capitalization) and debt, providing a better understanding of its worth.
+      operationId: EnterpriseValueGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses: 
+        "200":
+          description: A list of enterprise values
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EnterpriseValue"
+        "4xx":
+          description: An error occurred
+      tags: 
+        - statement
   /insider-trading/latest:
     get:
       summary: Access the latest insider trading activity using the Latest Insider Trading API. Track which company insiders are buying or selling stocks and analyze their transactions.
@@ -4157,6 +4180,48 @@ components:
         - date
         - numerator
         - denominator
+    EnterpriseValue:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        date:
+          type: string
+          format: date
+          example: "2024-09-28"
+        stockPrice:
+          type: number
+          format: double
+          example: 227.79
+        numberOfShares:
+          type: integer
+          example: 15343783000
+        marketCapitalization:
+          type: number
+          format: double
+          example: 3495160329570
+        minusCashAndCashEquivalents:
+          type: number
+          format: double
+          example: 29943000000
+        addTotalDebt:
+          type: number
+          format: double
+          example: 106629000000
+        enterpriseValue:
+          type: number
+          format: double
+          example: 3571846329570
+      required:
+        - symbol
+        - date
+        - stockPrice
+        - numberOfShares
+        - marketCapitalization
+        - minusCashAndCashEquivalents
+        - addTotalDebt
+        - enterpriseValue
   responses:
     ErrorResponse:
       description: Error response
