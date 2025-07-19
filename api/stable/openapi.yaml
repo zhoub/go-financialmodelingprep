@@ -729,7 +729,7 @@ paths:
   /income-statement-ttm:
     get:
       summary: Get the trailing twelve months (TTM) income statement.
-      operationId: IncomeStatementTtmGet
+      operationId: IncomeStatementTTMGet
       parameters:
         - in: query
           name: symbol
@@ -749,7 +749,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/IncomeStatementTtm"
+                  $ref: "#/components/schemas/IncomeStatementTTM"
         "4xx":
           description: An error occurred
       tags:
@@ -757,7 +757,7 @@ paths:
   /balance-sheet-statement-ttm:
     get:
       summary: Get the trailing twelve months (TTM) balance sheet statement.
-      operationId: BalanceSheetStatementTtmGet
+      operationId: BalanceSheetStatementTTMGet
       parameters:
         - in: query
           name: symbol
@@ -777,7 +777,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/BalanceSheetStatementTtm"
+                  $ref: "#/components/schemas/BalanceSheetStatementTTM"
         "4xx":
           description: An error occurred
       tags:
@@ -785,7 +785,7 @@ paths:
   /cash-flow-statement-ttm:
     get:
       summary: Get the trailing twelve months (TTM) cash flow statement.
-      operationId: CashFlowStatementTtmGet
+      operationId: CashFlowStatementTTMGet
       parameters:
         - in: query
           name: symbol
@@ -805,7 +805,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/CashFlowStatementTtm"
+                  $ref: "#/components/schemas/CashFlowStatementTTM"
         "4xx":
           description: An error occurred
       tags:
@@ -839,6 +839,29 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/KeyMetrics"
+        "4xx":
+          description: An error occurred
+      tags:
+        - statement
+  /key-metrics-ttm:
+    get:
+      summary: Retrieve a comprehensive set of trailing twelve-month (TTM) key performance metrics with the TTM Key Metrics API. Access data related to a company's profitability, capital efficiency, and liquidity, allowing for detailed analysis of its financial health over the past year.
+      operationId: KeyMetricsTTMGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of key metrics TTM
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/KeyMetricsTTM"
         "4xx":
           description: An error occurred
       tags:
@@ -2604,7 +2627,7 @@ components:
         - freeCashFlow
         - incomeTaxesPaid
         - interestPaid
-    IncomeStatementTtm:
+    IncomeStatementTTM:
       type: object
       properties:
         date:
@@ -2797,7 +2820,7 @@ components:
         - epsDiluted
         - weightedAverageShsOut
         - weightedAverageShsOutDil
-    BalanceSheetStatementTtm:
+    BalanceSheetStatementTTM:
       type: object
       properties:
         date:
@@ -3043,7 +3066,7 @@ components:
         - totalInvestments
         - totalDebt
         - netDebt
-    CashFlowStatementTtm:
+    CashFlowStatementTTM:
       type: object
       properties:
         date:
@@ -3276,6 +3299,180 @@ components:
         - freeCashFlow
         - incomeTaxesPaid
         - interestPaid
+    KeyMetricsTTM:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        marketCap:
+          type: number
+          format: double
+          example: 3149833928000
+        enterpriseValueTTM:
+          type: number
+          format: double
+          example: 3216333928000
+        evToSalesTTM:
+          type: number
+          format: double
+          example: 8.126980816656559
+        evToOperatingCashFlowTTM:
+          type: number
+          format: double
+          example: 29.70001965021146
+        evToFreeCashFlowTTM:
+          type: number
+          format: double
+          example: 32.71990486169747
+        evToEBITDATTM:
+          type: number
+          format: double
+          example: 23.41672438697653
+        netDebtToEBITDATTM:
+          type: number
+          format: double
+          example: 0.48415749315627005
+        currentRatioTTM:
+          type: number
+          format: double
+          example: 0.9229383853427077
+        incomeQualityTTM:
+          type: number
+          format: double
+          example: 1.1263026521060842
+        grahamNumberTTM:
+          type: number
+          format: double
+          example: 25.198029099282905
+        grahamNetNetTTM:
+          type: number
+          format: double
+          example: -11.64435843011051
+        taxBurdenTTM:
+          type: number
+          format: double
+          example: 0.7646366484818603
+        interestBurdenTTM:
+          type: number
+          format: double
+          example: 1.0005649492739208
+        workingCapitalTTM:
+          type: number
+          format: double
+          example: -11125000000
+        investedCapitalTTM:
+          type: number
+          format: double
+          example: 34944000000
+        returnOnAssetsTTM:
+          type: number
+          format: double
+          example: 0.27943676707790227
+        operatingReturnOnAssetsTTM:
+          type: number
+          format: double
+          example: 0.35448090090471257
+        returnOnTangibleAssetsTTM:
+          type: number
+          format: double
+          example: 0.27943676707790227
+        returnOnEquityTTM:
+          type: number
+          format: double
+          example: 1.4534598087751787
+        returnOnInvestedCapitalTTM:
+          type: number
+          format: double
+          example: 0.45208108089346594
+        returnOnCapitalEmployedTTM:
+          type: number
+          format: double
+          example: 0.6292559583416784
+        earningsYieldTTM:
+          type: number
+          format: double
+          example: 0.030404739849149914
+        freeCashFlowYieldTTM:
+          type: number
+          format: double
+          example: 0.03120767705439485
+        capexToOperatingCashFlowTTM:
+          type: number
+          format: double
+          example: 0.09229504866382256
+        capexToDepreciationTTM:
+          type: number
+          format: double
+          example: 0.855956153121521
+        capexToRevenueTTM:
+          type: number
+          format: double
+          example: 0.025255205174853447
+        salesGeneralAndAdministrativeToRevenueTTM:
+          type: number
+          format: double
+          example: 0
+        researchAndDevelopementToRevenueTTM:
+          type: number
+          format: double
+          example: 0.08071053163533455
+        stockBasedCompensationToRevenueTTM:
+          type: number
+          format: double
+          example: 0.030263290883363655
+        intangiblesToTotalAssetsTTM:
+          type: number
+          format: double
+          example: 0
+        averageReceivablesTTM:
+          type: number
+          format: double
+          example: 62774500000
+        averagePayablesTTM:
+          type: number
+          format: double
+          example: 65435000000
+        averageInventoryTTM:
+          type: number
+          format: double
+          example: 7098500000
+        daysOfSalesOutstandingTTM:
+          type: number
+          format: double
+          example: 54.69650798463715
+        daysOfPayablesOutstandingTTM:
+          type: number
+          format: double
+          example: 106.76306476988712
+        daysOfInventoryOutstandingTTM:
+          type: number
+          format: double
+          example: 11.917937984569374
+        operatingCycleTTM:
+          type: number
+          format: double
+          example: 66.61444596920653
+        cashConversionCycleTTM:
+          type: number
+          format: double
+          example: -40.148618800680595
+        freeCashFlowToEquityTTM:
+          type: number
+          format: double
+          example: 31799000000
+        freeCashFlowToFirmTTM:
+          type: number
+          format: double
+          example: 85497710797.9578
+        tangibleAssetValueTTM:
+          type: number
+          format: double
+          example: 66758000000
+        netCurrentAssetValueTTM:
+          type: number
+          format: double
+          example: -144087000000
     KeyMetrics:
       type: object
       properties:
