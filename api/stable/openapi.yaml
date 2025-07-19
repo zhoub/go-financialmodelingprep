@@ -202,6 +202,33 @@ paths:
           description: An error occurred
       tags:
         - analyst
+  /dividends-calendar:
+    get:
+      summary: Stay informed on upcoming dividend events with the Dividend Events Calendar API. Access a comprehensive schedule of dividend-related dates for all stocks, including record dates, payment dates, declaration dates, and dividend yields.
+      parameters:
+        - in: query
+          name: from
+          schema: 
+            type: string
+            format: date
+        - in: query
+          name: to
+          schema: 
+            type: string
+            format: date
+      responses:
+        "200":
+          description: A list of dividend events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DividendEvent"
+        "4xx":
+          description: An error occurred
+      tags:
+        - calendar
   /historical-price-eod/light:
     get:
       summary: Access simplified stock chart data using the FMP Basic Stock Chart API. This API provides essential charting information, including date, price, and trading volume, making it ideal for tracking stock performance with minimal data and creating basic price and volume charts.
@@ -3894,6 +3921,50 @@ components:
         - site
         - text
         - url
+    DividendEvent:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "1D0.SI"
+        date:
+          type: string
+          format: date
+          example: "2025-02-04"
+        recordDate:
+          type: string
+          example: ""
+        paymentDate:
+          type: string
+          example: ""
+        declarationDate:
+          type: string
+          example: ""
+        adjDividend:
+          type: number
+          format: double
+          example: 0.01
+        dividend:
+          type: number
+          format: double
+          example: 0.01
+        yield:
+          type: number
+          format: double
+          example: 6.25
+        frequency:
+          type: string
+          example: "Semi-Annual"
+      required:
+        - symbol
+        - date
+        - recordDate
+        - paymentDate
+        - declarationDate
+        - adjDividend
+        - dividend
+        - yield
+        - frequency
   responses:
     ErrorResponse:
       description: Error response
