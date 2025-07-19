@@ -256,6 +256,33 @@ paths:
           description: An error occurred
       tags:
         - calendar
+  /splits-calendar:
+    get:
+      summary: Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
+      parameters:
+        - in: query
+          name: from
+          schema: 
+            type: string
+            format: date
+        - in: query
+          name: to
+          schema: 
+            type: string
+            format: date
+      responses:
+        "200":
+          description: A list of split events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SplitEvent"
+        "4xx":
+          description: An error occurred
+      tags:
+        - calendar
   /historical-price-eod/light:
     get:
       summary: Access simplified stock chart data using the FMP Basic Stock Chart API. This API provides essential charting information, including date, price, and trading volume, making it ideal for tracking stock performance with minimal data and creating basic price and volume charts.
@@ -4028,6 +4055,27 @@ components:
         - revenueActual
         - revenueEstimated
         - lastUpdated
+    SplitEvent:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "EYEN"
+        date:
+          type: string
+          format: date
+          example: "2025-02-03"
+        numerator:
+          type: integer
+          example: 1
+        denominator:
+          type: integer
+          example: 80
+      required:
+        - symbol
+        - date
+        - numerator
+        - denominator
   responses:
     ErrorResponse:
       description: Error response
