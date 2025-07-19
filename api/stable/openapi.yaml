@@ -729,7 +729,7 @@ paths:
   /income-statement-ttm:
     get:
       summary: Get the trailing twelve months (TTM) income statement.
-      operationId: IncomeStatementTtmGet
+      operationId: IncomeStatementTTMGet
       parameters:
         - in: query
           name: symbol
@@ -749,7 +749,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/IncomeStatementTtm"
+                  $ref: "#/components/schemas/IncomeStatementTTM"
         "4xx":
           description: An error occurred
       tags:
@@ -757,7 +757,7 @@ paths:
   /balance-sheet-statement-ttm:
     get:
       summary: Get the trailing twelve months (TTM) balance sheet statement.
-      operationId: BalanceSheetStatementTtmGet
+      operationId: BalanceSheetStatementTTMGet
       parameters:
         - in: query
           name: symbol
@@ -777,7 +777,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/BalanceSheetStatementTtm"
+                  $ref: "#/components/schemas/BalanceSheetStatementTTM"
         "4xx":
           description: An error occurred
       tags:
@@ -785,7 +785,7 @@ paths:
   /cash-flow-statement-ttm:
     get:
       summary: Get the trailing twelve months (TTM) cash flow statement.
-      operationId: CashFlowStatementTtmGet
+      operationId: CashFlowStatementTTMGet
       parameters:
         - in: query
           name: symbol
@@ -805,7 +805,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/CashFlowStatementTtm"
+                  $ref: "#/components/schemas/CashFlowStatementTTM"
         "4xx":
           description: An error occurred
       tags:
@@ -2627,7 +2627,7 @@ components:
         - freeCashFlow
         - incomeTaxesPaid
         - interestPaid
-    IncomeStatementTtm:
+    IncomeStatementTTM:
       type: object
       properties:
         date:
@@ -2820,7 +2820,7 @@ components:
         - epsDiluted
         - weightedAverageShsOut
         - weightedAverageShsOutDil
-    BalanceSheetStatementTtm:
+    BalanceSheetStatementTTM:
       type: object
       properties:
         date:
@@ -3066,7 +3066,7 @@ components:
         - totalInvestments
         - totalDebt
         - netDebt
-    CashFlowStatementTtm:
+    CashFlowStatementTTM:
       type: object
       properties:
         date:
