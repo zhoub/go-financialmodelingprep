@@ -105,12 +105,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.BalanceSheetStatementGet(ctx, &p)
-	case BalanceSheetStatementTtmGetOperationPath:
-		var p BalanceSheetStatementTtmGetParams
+	case BalanceSheetStatementTTMGetOperationPath:
+		var p BalanceSheetStatementTTMGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
 			return nil, err
 		}
-		resp, err = c.BalanceSheetStatementTtmGet(ctx, &p)
+		resp, err = c.BalanceSheetStatementTTMGet(ctx, &p)
 	case BatchQuoteGetOperationPath:
 		var p BatchQuoteGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
@@ -129,12 +129,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.CashFlowStatementGet(ctx, &p)
-	case CashFlowStatementTtmGetOperationPath:
-		var p CashFlowStatementTtmGetParams
+	case CashFlowStatementTTMGetOperationPath:
+		var p CashFlowStatementTTMGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
 			return nil, err
 		}
-		resp, err = c.CashFlowStatementTtmGet(ctx, &p)
+		resp, err = c.CashFlowStatementTTMGet(ctx, &p)
 	case EconomicCalendarGetOperationPath:
 		var p EconomicCalendarGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
@@ -177,12 +177,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.IncomeStatementGet(ctx, &p)
-	case IncomeStatementTtmGetOperationPath:
-		var p IncomeStatementTtmGetParams
+	case IncomeStatementTTMGetOperationPath:
+		var p IncomeStatementTTMGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
 			return nil, err
 		}
-		resp, err = c.IncomeStatementTtmGet(ctx, &p)
+		resp, err = c.IncomeStatementTTMGet(ctx, &p)
 	case InsiderTradingLatestGetOperationPath:
 		var p InsiderTradingLatestGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
