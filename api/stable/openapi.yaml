@@ -899,6 +899,29 @@ paths:
           description: An error occurred
       tags:
         - statement
+  /ratios-ttm:
+    get:
+      summary: Gain access to trailing twelve-month (TTM) financial ratios with the TTM Ratios API. This API provides key performance metrics over the past year, including profitability, liquidity, and efficiency ratios.
+      operationId: RatiosTTMGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of financial ratios TTM
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RatiosTTM"
+        "4xx":
+          description: An error occurred
+      tags: 
+        - statement
   /revenue-product-segmentation:
     get:
       summary: Access detailed revenue breakdowns by product line with the Revenue Product Segmentation API. Understand which products drive a company's earnings and get insights into the performance of individual product segments.
@@ -934,7 +957,7 @@ paths:
         - statement
   /revenue-geographic-segmentation:
     get:
-      summary: Access detailed revenue breakdowns by geographic region with the Revenue Geographic Segments API. Analyze how different regions contribute to a company’s total revenue and identify key markets for growth.
+      summary: Access detailed revenue breakdowns by geographic region with the Revenue Geographic Segments API. Analyze how different regions contribute to a company's total revenue and identify key markets for growth.
       operationId: RevenueGeographicSegmentationGet
       parameters:
         - in: query
@@ -4067,6 +4090,246 @@ components:
         - debtToMarketCap
         - effectiveTaxRate
         - enterpriseValueMultiple
+    RatiosTTM:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "AAPL"
+        grossProfitMarginTTM:
+          type: number
+          format: double
+        ebitMarginTTM:
+          type: number
+          format: double
+        ebitdaMarginTTM:
+          type: number
+          format: double
+        operatingProfitMarginTTM:
+          type: number
+          format: double
+        pretaxProfitMarginTTM:
+          type: number
+          format: double
+        continuousOperationsProfitMarginTTM:
+          type: number
+          format: double
+        netProfitMarginTTM:
+          type: number
+          format: double
+        bottomLineProfitMarginTTM:
+          type: number
+          format: double
+        receivablesTurnoverTTM:
+          type: number
+          format: double
+        payablesTurnoverTTM:
+          type: number
+          format: double
+        inventoryTurnoverTTM:
+          type: number
+          format: double
+        fixedAssetTurnoverTTM:
+          type: number
+          format: double
+        assetTurnoverTTM:
+          type: number
+          format: double
+        currentRatioTTM:
+          type: number
+          format: double
+        quickRatioTTM:
+          type: number
+          format: double
+        solvencyRatioTTM:
+          type: number
+          format: double
+        cashRatioTTM:
+          type: number
+          format: double
+        priceToEarningsRatioTTM:
+          type: number
+          format: double
+        priceToEarningsGrowthRatioTTM:
+          type: number
+          format: double
+        forwardPriceToEarningsGrowthRatioTTM:
+          type: number
+          format: double
+        priceToBookRatioTTM:
+          type: number
+          format: double
+        priceToSalesRatioTTM:
+          type: number
+          format: double
+        priceToFreeCashFlowRatioTTM:
+          type: number
+          format: double
+        priceToOperatingCashFlowRatioTTM:
+          type: number
+          format: double
+        debtToAssetsRatioTTM:
+          type: number
+          format: double
+        debtToEquityRatioTTM:
+          type: number
+          format: double
+        debtToCapitalRatioTTM:
+          type: number
+          format: double
+        longTermDebtToCapitalRatioTTM:
+          type: number
+          format: double
+        financialLeverageRatioTTM:
+          type: number
+          format: double
+        workingCapitalTurnoverRatioTTM:
+          type: number
+          format: double
+        operatingCashFlowRatioTTM:
+          type: number
+          format: double
+        operatingCashFlowSalesRatioTTM:
+          type: number
+          format: double
+        freeCashFlowOperatingCashFlowRatioTTM:
+          type: number
+          format: double
+        debtServiceCoverageRatioTTM:
+          type: number
+          format: double
+        interestCoverageRatioTTM:
+          type: number
+          format: double
+        shortTermOperatingCashFlowCoverageRatioTTM:
+          type: number
+          format: double
+        operatingCashFlowCoverageRatioTTM:
+          type: number
+          format: double
+        capitalExpenditureCoverageRatioTTM:
+          type: number
+          format: double
+        dividendPaidAndCapexCoverageRatioTTM:
+          type: number
+          format: double
+        dividendPayoutRatioTTM:
+          type: number
+          format: double
+        dividendYieldTTM:
+          type: number
+          format: double
+        enterpriseValueTTM:
+          type: number
+          format: double
+        revenuePerShareTTM:
+          type: number
+          format: double
+        netIncomePerShareTTM:
+          type: number
+          format: double
+        interestDebtPerShareTTM:
+          type: number
+          format: double
+        cashPerShareTTM:
+          type: number
+          format: double
+        bookValuePerShareTTM:
+          type: number
+          format: double
+        tangibleBookValuePerShareTTM:
+          type: number
+          format: double
+        shareholdersEquityPerShareTTM:
+          type: number
+          format: double
+        operatingCashFlowPerShareTTM:
+          type: number
+          format: double
+        capexPerShareTTM:
+          type: number
+          format: double
+        freeCashFlowPerShareTTM:
+          type: number
+          format: double
+        netIncomePerEBTTTM:
+          type: number
+          format: double
+        ebtPerEbitTTM:
+          type: number
+          format: double
+        priceToFairValueTTM:
+          type: number
+          format: double
+        debtToMarketCapTTM:
+          type: number
+          format: double
+        effectiveTaxRateTTM:
+          type: number
+          format: double
+        enterpriseValueMultipleTTM:
+          type: number
+          format: double
+      required:
+        - symbol
+        - grossProfitMarginTTM
+        - ebitMarginTTM
+        - ebitdaMarginTTM
+        - operatingProfitMarginTTM
+        - pretaxProfitMarginTTM
+        - continuousOperationsProfitMarginTTM
+        - netProfitMarginTTM
+        - bottomLineProfitMarginTTM
+        - receivablesTurnoverTTM
+        - payablesTurnoverTTM
+        - inventoryTurnoverTTM
+        - fixedAssetTurnoverTTM
+        - assetTurnoverTTM
+        - currentRatioTTM
+        - quickRatioTTM
+        - solvencyRatioTTM
+        - cashRatioTTM
+        - priceToEarningsRatioTTM
+        - priceToEarningsGrowthRatioTTM
+        - forwardPriceToEarningsGrowthRatioTTM
+        - priceToBookRatioTTM
+        - priceToSalesRatioTTM
+        - priceToFreeCashFlowRatioTTM
+        - priceToOperatingCashFlowRatioTTM
+        - debtToAssetsRatioTTM
+        - debtToEquityRatioTTM
+        - debtToCapitalRatioTTM
+        - longTermDebtToCapitalRatioTTM
+        - financialLeverageRatioTTM
+        - workingCapitalTurnoverRatioTTM
+        - operatingCashFlowRatioTTM
+        - operatingCashFlowSalesRatioTTM
+        - freeCashFlowOperatingCashFlowRatioTTM
+        - debtServiceCoverageRatioTTM
+        - interestCoverageRatioTTM
+        - shortTermOperatingCashFlowCoverageRatioTTM
+        - operatingCashFlowCoverageRatioTTM
+        - capitalExpenditureCoverageRatioTTM
+        - dividendPaidAndCapexCoverageRatioTTM
+        - dividendPayoutRatioTTM
+        - dividendYieldTTM
+        - enterpriseValueTTM
+        - revenuePerShareTTM
+        - netIncomePerShareTTM
+        - interestDebtPerShareTTM
+        - cashPerShareTTM
+        - bookValuePerShareTTM
+        - tangibleBookValuePerShareTTM
+        - shareholdersEquityPerShareTTM
+        - operatingCashFlowPerShareTTM
+        - capexPerShareTTM
+        - freeCashFlowPerShareTTM
+        - netIncomePerEBTTTM
+        - ebtPerEbitTTM
+        - priceToFairValueTTM
+        - debtToMarketCapTTM
+        - effectiveTaxRateTTM
+        - enterpriseValueMultipleTTM
     RevenueSegmentation:
       type: object
       properties:
