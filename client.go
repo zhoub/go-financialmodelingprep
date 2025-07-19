@@ -279,6 +279,64 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.TreasuryRatesGet(ctx, &p)
+	case AvailableExchangesGetOperationPath:
+		resp, err = c.AvailableExchangesGet(ctx)
+	case DividendsGetOperationPath:
+		var p DividendsGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.DividendsGet(ctx, &p)
+	case DividendsCalendarGetOperationPath:
+		var p DividendsCalendarGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.DividendsCalendarGet(ctx, &p)
+	case EarningsGetOperationPath:
+		var p EarningsGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.EarningsGet(ctx, &p)
+	case GetEarningsCalendarOperationPath:
+		var p GetEarningsCalendarParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.GetEarningsCalendar(ctx, &p)
+	case EnterpriseValueGetOperationPath:
+		var p EnterpriseValueGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.EnterpriseValueGet(ctx, &p)
+	case KeyMetricsTTMGetOperationPath:
+		var p KeyMetricsTTMGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.KeyMetricsTTMGet(ctx, &p)
+	case RatiosTTMGetOperationPath:
+		var p RatiosTTMGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.RatiosTTMGet(ctx, &p)
+	case GetSplitsOperationPath:
+		var p GetSplitsParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.GetSplits(ctx, &p)
+	case GetSplitsCalendarOperationPath:
+		var p GetSplitsCalendarParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.GetSplitsCalendar(ctx, &p)
+	case StockListGetOperationPath:
+		resp, err = c.StockListGet(ctx)
 	default:
 		return nil, fmt.Errorf("%s", string(path))
 	}
