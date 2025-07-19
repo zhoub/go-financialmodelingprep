@@ -197,7 +197,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/News"
+                  $ref: "#/components/schemas/GradeNews"
         "4xx":
           description: An error occurred
       tags:
@@ -1336,7 +1336,7 @@ components:
         - debtToEquityScore
         - priceToEarningsScore
         - priceToBookScore
-    News:
+    GradeNews:
       properties:
         symbol:
           type: string
