@@ -202,6 +202,87 @@ paths:
           description: An error occurred
       tags:
         - analyst
+  /dividends-calendar:
+    get:
+      summary: Stay informed on upcoming dividend events with the Dividend Events Calendar API. Access a comprehensive schedule of dividend-related dates for all stocks, including record dates, payment dates, declaration dates, and dividend yields.
+      parameters:
+        - in: query
+          name: from
+          schema: 
+            type: string
+            format: date
+        - in: query
+          name: to
+          schema: 
+            type: string
+            format: date
+      responses:
+        "200":
+          description: A list of dividend events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DividendEvent"
+        "4xx":
+          description: An error occurred
+      tags:
+        - calendar
+  /earnings-calendar:
+    get:
+      summary: Stay informed on upcoming and past earnings announcements with the FMP Earnings Calendar API. Access key data, including announcement dates, estimated earnings per share (EPS), and actual EPS for publicly traded companies.
+      parameters:
+        - in: query
+          name: from
+          schema: 
+            type: string
+            format: date
+        - in: query
+          name: to
+          schema: 
+            type: string
+            format: date
+      responses:
+        "200":
+          description: A list of earning events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EarningEvent"
+        "4xx":
+          description: An error occurred
+      tags:
+        - calendar
+  /splits-calendar:
+    get:
+      summary: Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
+      parameters:
+        - in: query
+          name: from
+          schema: 
+            type: string
+            format: date
+        - in: query
+          name: to
+          schema: 
+            type: string
+            format: date
+      responses:
+        "200":
+          description: A list of split events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SplitEvent"
+        "4xx":
+          description: An error occurred
+      tags:
+        - calendar
   /historical-price-eod/light:
     get:
       summary: Access simplified stock chart data using the FMP Basic Stock Chart API. This API provides essential charting information, including date, price, and trading volume, making it ideal for tracking stock performance with minimal data and creating basic price and volume charts.
@@ -3894,6 +3975,107 @@ components:
         - site
         - text
         - url
+    DividendEvent:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "1D0.SI"
+        date:
+          type: string
+          format: date
+          example: "2025-02-04"
+        recordDate:
+          type: string
+          example: ""
+        paymentDate:
+          type: string
+          example: ""
+        declarationDate:
+          type: string
+          example: ""
+        adjDividend:
+          type: number
+          format: double
+          example: 0.01
+        dividend:
+          type: number
+          format: double
+          example: 0.01
+        yield:
+          type: number
+          format: double
+          example: 6.25
+        frequency:
+          type: string
+          example: "Semi-Annual"
+      required:
+        - symbol
+        - date
+        - recordDate
+        - paymentDate
+        - declarationDate
+        - adjDividend
+        - dividend
+        - yield
+        - frequency
+    EarningEvent:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "KEC.NS"
+        date:
+          type: string
+          format: date
+          example: "2024-11-04"
+        epsActual:
+          type: number
+          format: double
+          example: 3.32
+        epsEstimated:
+          type: number
+          format: double
+          example: 4.97
+        revenueActual:
+          type: integer
+          example: 51133100000
+        revenueEstimated:
+          type: integer
+          example: 44687400000
+        lastUpdated:
+          type: string
+          format: date
+          example: "2024-12-08"
+      required:
+        - symbol
+        - date
+        - epsActual
+        - epsEstimated
+        - revenueActual
+        - revenueEstimated
+        - lastUpdated
+    SplitEvent:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "EYEN"
+        date:
+          type: string
+          format: date
+          example: "2025-02-03"
+        numerator:
+          type: integer
+          example: 1
+        denominator:
+          type: integer
+          example: 80
+      required:
+        - symbol
+        - date
+        - numerator
+        - denominator
   responses:
     ErrorResponse:
       description: Error response
