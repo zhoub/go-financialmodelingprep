@@ -4646,10 +4646,12 @@ components:
           format: double
           example: 4.97
         revenueActual:
-          type: integer
+          type: number
+          format: double
           example: 51133100000
         revenueEstimated:
-          type: integer
+          type: number
+          format: double
           example: 44687400000
         lastUpdated:
           type: string
