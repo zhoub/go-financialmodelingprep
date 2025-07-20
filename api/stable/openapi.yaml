@@ -4676,10 +4676,12 @@ components:
           format: date
           example: "2025-02-03"
         numerator:
-          type: integer
+          type: number
+          format: double
           example: 1
         denominator:
-          type: integer
+          type: number
+          format: double
           example: 80
       required:
         - symbol
