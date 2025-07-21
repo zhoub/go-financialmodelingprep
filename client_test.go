@@ -39,6 +39,23 @@ func (r *clientSuite) TestAvailableExchanges() {
 	}
 }
 
+func (r *clientSuite) TestAnalystEstimates() {
+	const symbol = "INTC"
+	params := AnalystEstimatesGetParams{
+		Symbol: symbol,
+		Period: Annual,
+	}
+	if resp, err := r.c.AnalystEstimatesGetWithResponse(context.Background(), &params); err != nil {
+		r.NoError(err)
+	} else {
+		r.Equal(http.StatusOK, resp.StatusCode())
+		r.NotNil(resp.JSON200)
+
+		feList := *resp.JSON200
+		r.NotEmpty(feList)
+	}
+}
+
 func (r *clientSuite) TestStockList() {
 	if resp, err := r.c.StockListGetWithResponse(context.Background()); err != nil {
 		r.NoError(err)
