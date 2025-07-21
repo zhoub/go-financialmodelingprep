@@ -189,6 +189,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.InsiderTradingLatestGet(ctx, &p)
+	case InsiderTradingSearchGetOperationPath:
+		var p InsiderTradingSearchGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.InsiderTradingSearchGet(ctx, &p)
 	case KeyMetricsGetOperationPath:
 		var p KeyMetricsGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
