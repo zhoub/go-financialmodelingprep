@@ -121,18 +121,16 @@ paths:
         - in: query
           name: period
           schema:
-            type: string
+            $ref: "#/components/schemas/Period"
           required: true
         - in: query
           name: page
           schema:
             type: integer
-          required: false
         - in: query
           name: limit
           schema:
             type: integer
-          required: false
       responses:
         "200":
           description: A list of analyst financial estimates
