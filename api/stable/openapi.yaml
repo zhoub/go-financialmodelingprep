@@ -1045,6 +1045,45 @@ paths:
           description: An error occurred
       tags:
         - insider-trading
+  /insider-trading/search:
+    get:
+      summary: Search insider trading activity by company or symbol using the Search Insider Trades API. Find specific trades made by corporate insiders, including executives and directors.
+      operationId: InsiderTradingSearchGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          schema:
+            type: integer
+        - in: query
+          name: reportingCik
+          schema:
+            type: string
+        - in: query
+          name: transactionType
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A list of insider transaction
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InsiderTransaction"
+        "4xx":
+          description: An error occurred
+      tags:
+        - insider-trading
   /quote:
     get:
       summary: Access real-time stock quotes with the FMP Stock Quote API. Get up-to-the-minute prices, changes, and volume data for individual stocks.
