@@ -4593,7 +4593,6 @@ components:
           example: "BTCUSD"
         publishedDate:
           type: string
-          format: date-time
           example: "2025-02-03 23:32:19"
         publisher:
           type: string
