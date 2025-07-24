@@ -1537,7 +1537,8 @@ components:
           format: double
           example: 232.8
         volume:
-          type: integer
+          type: number
+          format: double
           example: 44489128
         change:
           type: number
@@ -4497,7 +4498,8 @@ components:
           format: double
           example: 4.79
         volume:
-          type: integer
+          type: number
+          format: double
           example: 44489128
         dayLow:
           type: number
