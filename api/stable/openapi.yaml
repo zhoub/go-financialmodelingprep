@@ -4429,7 +4429,8 @@ components:
           type: string
           example: "M-Exempt"
         securitiesOwned:
-          type: integer
+          type: number
+          format: double
           example: 104398
         reportingName:
           type: string
