@@ -4448,7 +4448,8 @@ components:
           type: string
           example: "4"
         securitiesTransacted:
-          type: integer
+          type: number
+          format: double
           example: 3450
         price:
           type: number
