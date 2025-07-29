@@ -1872,9 +1872,6 @@ components:
         - country
         - event
         - currency
-        - previous
-        - actual
-        - change
         - impact
         - changePercentage
     EconomicEsgDisclosure:
@@ -4615,7 +4612,6 @@ components:
           format: uri
           example: "https://coingape.com/crypto-prices-today-feb-4-btc-altcoins-recover-amid-pause-on-trumps-tariffs/"
       required:
-        - symbol
         - publishedDate
         - publisher
         - title
