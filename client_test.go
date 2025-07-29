@@ -278,6 +278,35 @@ func (r *clientSuite) TestKeyMetricsNMG() {
 	}
 }
 
+func (r *clientSuite) TestTechnicalIndicatorsRsi() {
+	const symbol = "AAPL"
+	params := map[string]interface{}{
+		"symbol":       symbol,
+		"periodLength": 14,
+		"timeframe":    "1day",
+		"from":         "2025-01-01",
+		"to":           "2025-01-15",
+	}
+	if resp, err := Get(context.Background(), r.c, TechnicalIndicatorsRsiGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var tiList []TechnicalIndicator
+		err = json.NewDecoder(resp.Body).Decode(&tiList)
+		r.NoError(err)
+
+		r.NotEmpty(tiList)
+		for _, ti := range tiList {
+			r.NotNil(ti.Rsi)
+		}
+
+		r.InDelta(*tiList[0].Rsi, 42.108, 1e-3)
+		r.InDelta(*tiList[len(tiList)-1].Rsi, 46.026, 1e-3)
+	}
+}
+
 func TestClientSuite(t *testing.T) {
 	suite.Run(t, new(clientSuite))
 }
