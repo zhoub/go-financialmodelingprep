@@ -1214,6 +1214,50 @@ paths:
           description: An error occurred
       tags:
         - news
+  /technical-indicators/rsi:
+    get:
+      summary: Get the Relative Strength Index(RSI) technical indicator for a given symbol and time period.
+      operationId: TechnicalIndicatorsRsiGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: periodLength
+          schema:
+            type: integer
+            example: 10
+          required: true
+        - in: query
+          name: timeframe
+          schema:
+            $ref: "#/components/schemas/Timeframe"
+          required: true
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: A list of TechnicalIndicators
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TechnicalIndicator"
+        "4xx":
+          description: An error occurred
+      tags:
+        - technical-indicator
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -1232,6 +1276,11 @@ components:
         - FY
         - annual
         - quarter
+    Timeframe:
+      type: string
+      description: Time frame
+      enum:
+        - 1day
     SearchSymbol:
       type: object
       properties:
@@ -4766,6 +4815,42 @@ components:
         - minusCashAndCashEquivalents
         - addTotalDebt
         - enterpriseValue
+    TechnicalIndicator:
+      type: object
+      properties:
+        date:
+          type: string
+          example: date-time
+        open:
+          type: number
+          format: double
+          example: 227.2
+        high:
+          type: number
+          format: double
+          example: 233.13
+        low:
+          type: number
+          format: double
+          example: 226.65
+        close:
+          type: number
+          format: double
+          example: 232.8
+        volume:
+          type: integer
+          example: 44489128
+        rsi:
+          type: number
+          format: double
+          example: 231.215
+      required:
+        - date
+        - open
+        - high
+        - low
+        - close
+        - volume
   responses:
     ErrorResponse:
       description: Error response
