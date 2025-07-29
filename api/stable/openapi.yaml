@@ -4838,7 +4838,8 @@ components:
           format: double
           example: 232.8
         volume:
-          type: integer
+          type: number
+          format: double
           example: 44489128
         rsi:
           type: number
