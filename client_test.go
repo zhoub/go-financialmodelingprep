@@ -307,6 +307,52 @@ func (r *clientSuite) TestTechnicalIndicatorsRsi() {
 	}
 }
 
+func (r *clientSuite) TestNewsGeneralLatest() {
+	params := map[string]interface{}{
+		"limit": 2,
+	}
+	if resp, err := Get(context.Background(), r.c, NewsGeneralLatestGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var naList []NewsArticle
+		err = json.NewDecoder(resp.Body).Decode(&naList)
+		r.NoError(err)
+		r.NotEmpty(naList)
+
+		r.LessOrEqual(len(naList), params["limit"].(int))
+		for _, news := range naList {
+			r.NotEmpty(news.Title)
+			r.NotEmpty(news.PublishedDate)
+		}
+	}
+}
+
+func (r *clientSuite) TestNewsStockLatest() {
+	params := map[string]interface{}{
+		"limit": 1,
+	}
+	if resp, err := Get(context.Background(), r.c, NewsStockLatestGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var naList []NewsArticle
+		err = json.NewDecoder(resp.Body).Decode(&naList)
+		r.NoError(err)
+		r.NotEmpty(naList)
+
+		r.LessOrEqual(len(naList), params["limit"].(int))
+		for _, news := range naList {
+			r.NotEmpty(news.Title)
+			r.NotEmpty(news.PublishedDate)
+		}
+	}
+}
+
 func TestClientSuite(t *testing.T) {
 	suite.Run(t, new(clientSuite))
 }
