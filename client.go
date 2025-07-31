@@ -343,6 +343,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 		resp, err = c.GetSplitsCalendar(ctx, &p)
 	case StockListGetOperationPath:
 		resp, err = c.StockListGet(ctx)
+	case NewsStockLatestGetOperationPath:
+		var p NewsStockLatestGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.NewsStockLatestGet(ctx, &p)
 	case TechnicalIndicatorsRsiGetOperationPath:
 		var p TechnicalIndicatorsRsiGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
