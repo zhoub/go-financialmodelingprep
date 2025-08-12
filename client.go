@@ -135,6 +135,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.CashFlowStatementTTMGet(ctx, &p)
+	case DelistedCompaniesOperationPath:
+		var p DelistedCompaniesParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.DelistedCompanies(ctx, &p)
 	case EconomicCalendarGetOperationPath:
 		var p EconomicCalendarGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {

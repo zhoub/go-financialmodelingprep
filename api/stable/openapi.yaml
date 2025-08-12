@@ -449,6 +449,34 @@ paths:
           $ref: "#/components/responses/ErrorResponse"
       tags:
         - company
+  /delisted-companies:
+    get:
+      summary: Stay informed with the FMP Delisted Companies API. Access a comprehensive list of companies that have been delisted from US exchanges to avoid trading in risky stocks and identify potential financial troubles.
+      operationId: DelistedCompanies
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: A list of delisted companies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DelistedCompany"
+        "4xx":
+          description: An error occurred
+      tags:
+        - company
   /market-capitalization:
     get:
       summary: Retrieve the market capitalization for a specific company on any given date using the FMP Company Market Capitalization API. This API provides essential data to assess the size and value of a company in the stock market, helping users gauge its overall market standing.
@@ -1806,6 +1834,32 @@ components:
         - isActivelyTrading
         - isAdr
         - isFund
+    DelistedCompany:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "BRQSF"
+        companyName:
+          type: string
+          example: "Borqs Technologies, Inc."
+        exchange:
+          type: string
+          example: "PNK"
+        ipoDate:
+          type: string
+          format: date
+          example: "2017-08-24"
+        delistedDate:
+          type: string
+          format: date
+          example: "2025-02-03"
+      required:
+        - symbol
+        - companyName
+        - exchange
+        - ipoDate
+        - delistedDate
     CompanyCapitalization:
       type: object
       properties:

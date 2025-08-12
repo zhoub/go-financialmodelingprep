@@ -108,6 +108,21 @@ func (r *clientSuite) TestProfileEQV() {
 	}
 }
 
+func (r *clientSuite) TestCompanyDelisted() {
+	limit := 100
+	if resp, err := r.c.DelistedCompaniesWithResponse(context.Background(), &DelistedCompaniesParams{
+		Limit: &limit,
+	}); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		dcList := *resp.JSON200
+		r.NotEmpty(dcList)
+	}
+}
+
 var batchSymbos = []string{
 	"1329.T",
 	"7201.T",
