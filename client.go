@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/oapi-codegen/oapi-codegen/v2/pkg/securityprovider"
@@ -17,8 +18,14 @@ type restyDoer struct {
 }
 
 func newRestyDoer(debug bool) *restyDoer {
+	// Create resty clinet with retry.
 	c := resty.New()
+
 	c.Debug = debug
+
+	c.RetryCount = 100
+	c.RetryWaitTime = 10 * time.Second
+
 	return &restyDoer{
 		client: c,
 	}
