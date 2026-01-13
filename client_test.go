@@ -116,7 +116,7 @@ func (r *clientSuite) TestCompanyDelisted() {
 		r.NoError(err)
 	} else {
 		r.NoError(err)
-		r.Equal(http.StatusOK, resp.StatusCode)
+		r.Equal(http.StatusOK, resp.StatusCode())
 
 		dcList := *resp.JSON200
 		r.NotEmpty(dcList)
@@ -365,6 +365,27 @@ func (r *clientSuite) TestNewsStockLatest() {
 			r.NotEmpty(news.Title)
 			r.NotEmpty(news.PublishedDate)
 		}
+	}
+}
+
+func (r *clientSuite) TestHistoricalChart15Min() {
+	const symbol = "AAPL"
+	params := map[string]interface{}{
+		"symbol": symbol,
+		"from":   time.Now().AddDate(0, 0, -2).Format(time.DateOnly),
+		"to":     time.Now().AddDate(0, 0, -1).Format(time.DateOnly),
+	}
+	if resp, err := Get(context.Background(), r.c, HistoricalChart15MinGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var dcList []DetailedCandle
+		err = json.NewDecoder(resp.Body).Decode(&dcList)
+		r.NoError(err)
+
+		r.NotEmpty(dcList)
 	}
 }
 

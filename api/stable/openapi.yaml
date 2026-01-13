@@ -362,6 +362,46 @@ paths:
           description: An error occurred
       tags:
         - calendar
+  /historical-chart/15min:
+    get:
+      summary: Access stock price and volume data with the FMP 15-Minute Interval Stock Chart API. Retrieve detailed stock data in 15-minute intervals, including open, high, low, close prices, and trading volume. This API is ideal for creating intraday charts and analyzing medium-term price trends during the trading day.
+      operationId: HistoricalChart15MinGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+          required: false
+        - in: query
+          name: nonadjusted
+          schema:
+            type: boolean
+          required: false
+      responses:
+        "200":
+          description: A list of historical 15-min price data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DetailedCandle"
+        "4xx":
+          description: An error occurred
+      tags:
+        - chart
   /historical-price-eod/light:
     get:
       summary: Access simplified stock chart data using the FMP Basic Stock Chart API. This API provides essential charting information, including date, price, and trading volume, making it ideal for tracking stock performance with minimal data and creating basic price and volume charts.
@@ -1627,6 +1667,37 @@ components:
         - symbol
         - date
         - price
+        - volume
+    DetailedCandle:
+      properties:
+        date:
+          type: string
+          example: "2025-02-04 15:45:00"
+        open:
+          type: number
+          format: double
+          example: 232.25
+        low:
+          type: number
+          format: double
+          example: 232.18
+        high:
+          type: number
+          format: double
+          example: 233.13
+        close:
+          type: number
+          format: double
+          example: 232.79
+        volume:
+          type: integer
+          example: 2535629
+      required:
+        - date
+        - open
+        - low
+        - high
+        - close
         - volume
     FullCandle:
       properties:

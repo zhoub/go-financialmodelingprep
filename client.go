@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/oapi-codegen/oapi-codegen/v2/pkg/securityprovider"
@@ -17,8 +18,14 @@ type restyDoer struct {
 }
 
 func newRestyDoer(debug bool) *restyDoer {
+	// Create resty clinet with retry.
 	c := resty.New()
+
 	c.Debug = debug
+
+	c.RetryCount = 100
+	c.RetryWaitTime = 1 * time.Minute
+
 	return &restyDoer{
 		client: c,
 	}
@@ -165,6 +172,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.GradesLatestNewsGet(ctx, &p)
+	case HistoricalChart15MinGetOperationPath:
+		var p HistoricalChart15MinGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.HistoricalChart15MinGet(ctx, &p)
 	case HistoricalPriceEodFullGetOperationPath:
 		var p HistoricalPriceEodFullGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
