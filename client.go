@@ -172,6 +172,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.GradesLatestNewsGet(ctx, &p)
+	case HistoricalChart15MinGetOperationPath:
+		var p HistoricalChart15MinGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.HistoricalChart15MinGet(ctx, &p)
 	case HistoricalPriceEodFullGetOperationPath:
 		var p HistoricalPriceEodFullGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
