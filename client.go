@@ -24,7 +24,7 @@ func newRestyDoer(debug bool) *restyDoer {
 	c.Debug = debug
 
 	c.RetryCount = 100
-	c.RetryWaitTime = 10 * time.Second
+	c.RetryWaitTime = 1 * time.Minute
 
 	return &restyDoer{
 		client: c,
