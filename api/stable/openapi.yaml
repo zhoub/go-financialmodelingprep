@@ -167,7 +167,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/RatingSnapshot"
+                  $ref: "#/components/schemas/StockRating"
         "4xx":
           description: An error occurred
       tags:
@@ -1366,6 +1366,181 @@ paths:
           description: An error occurred
       tags:
         - technical-indicator
+  /profile-bulk:
+    get:
+      summary: The FMP Profile Bulk API allows users to retrieve comprehensive company profile data in bulk. Access essential information, such as company details, stock price, market cap, sector, industry, and more for multiple companies in a single request.
+      operationId: ProfileBulkGet
+      parameters:
+        - in: query
+          name: part
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of company profiles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CompanyProfile"
+        "4xx":
+          description: An error occurred
+      tags:
+        - bulk
+  /rating-bulk:
+    get:
+      summary: The FMP Rating Bulk API provides users with comprehensive rating data for multiple stocks in a single request. Retrieve key financial ratings and recommendations such as overall ratings, DCF recommendations, and more for multiple companies at once.
+      operationId: RatingBulkGet
+      responses:
+        "200":
+          description: A list of ratings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StockRating"
+        "4xx":
+          description: An error occurred
+      tags:
+        - bulk
+  /dcf-bulk:
+    get:
+      summary: The FMP DCF Bulk API enables users to quickly retrieve discounted cash flow (DCF) valuations for multiple symbols in one request. Access the implied price movement and percentage differences for all listed companies.
+      operationId: DcfBulkGet
+      responses:
+        "200":
+          description: A list of DCF valuations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DCF"
+        "4xx":
+          description: An error occurred
+      tags:
+        - bulk
+  /key-metrics-ttm-bulk:
+    get:
+      summary: The Key Metrics TTM Bulk API allows users to retrieve trailing twelve months (TTM) data for all companies available in the database. The API provides critical financial ratios and metrics based on each company’s latest financial report, offering insights into company performance and financial health.
+      operationId: KeyMetricsTTMBulkGet
+      responses:
+        "200":
+          description: A list of key metrics TTM
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/KeyMetricsTTM"
+        "4xx":
+          description: An error occurred
+      tags:
+        - bulk
+  /ratios-ttm-bulk:
+    get:
+      summary: The Ratios TTM Bulk API offers an efficient way to retrieve trailing twelve months (TTM) financial ratios for stocks. It provides users with detailed insights into a company’s profitability, liquidity, efficiency, leverage, and valuation ratios, all based on the most recent financial report.
+      operationId: RatiosTTMBulkGet
+      responses:
+        "200":
+          description: A list of financial ratios TTM
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RatiosTTM"
+        "4xx":
+          description: An error occurred
+      tags:
+        - bulk
+  /income-statement-bulk:
+    get:
+      summary: The Bulk Income Statement API allows users to retrieve detailed income statement data in bulk. This API is designed for large-scale data analysis, providing comprehensive insights into a company's financial performance, including revenue, gross profit, expenses, and net income.
+      operationId: IncomeStatementBulkGet
+      parameters:
+        - in: query
+          name: period
+          schema:
+            $ref: "#/components/schemas/Period"
+          required: true
+        - in: query
+          name: year
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: A list of income statements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/IncomeStatement"
+        "4xx":
+          description: An error occurred
+      tags:
+        - bulk
+  /balance-sheet-statement-bulk:
+    get:
+      summary: The Bulk Balance Sheet Statement API provides comprehensive access to balance sheet data across multiple companies. It enables users to analyze financial positions by retrieving key figures such as total assets, liabilities, and equity. Ideal for comparing the financial health and stability of different companies on a large scale.
+      operationId: BalanceSheetStatementBulkGet
+      parameters:
+        - in: query
+          name: period
+          schema:
+            $ref: "#/components/schemas/Period"
+          required: true
+        - in: query
+          name: year
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: A list of balance sheet statement
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BalanceSheetStatement"
+        "4xx":
+          description: An error occurred
+      tags:
+        - bulk
+  /cash-flow-statement-bulk:
+    get:
+      summary: The Cash Flow Statement Bulk API provides access to detailed cash flow reports for a wide range of companies. This API enables users to retrieve bulk cash flow statement data, helping to analyze companies’ operating, investing, and financing activities over time.
+      operationId: CashFlowStatementBulkGet
+      parameters:
+        - in: query
+          name: period
+          schema:
+            $ref: "#/components/schemas/Period"
+          required: true
+        - in: query
+          name: year
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: A list of cash flow statements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CashFlowStatement"
+        "4xx":
+          description: An error occurred
+      tags:
+        - bulk
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -1560,7 +1735,7 @@ components:
         - epsLow
         - numAnalystsRevenue
         - numAnalystsEps
-    RatingSnapshot:
+    StockRating:
       properties:
         symbol:
           type: string
@@ -5017,6 +5192,75 @@ components:
         - low
         - close
         - volume
+    DCF:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: 000002.SZ
+        date:
+          type: string
+          example: "2025-07-09"
+        dcf:
+          type: string
+          example: "179.6654688379575"
+        stockPrice:
+          type: string
+          example: "6.54"
+      required:
+        - symbol
+        - date
+        - dcf
+        - stockPrice
+    FinancialScores:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "000001.SZ"
+        reportedCurrency:
+          type: string
+          example: "CNY"
+        altmanZScore:
+          type: string
+          example: "0.29153682196643543"
+        piotroskiScore:
+          type: string
+          example: "5"
+        workingCapital:
+          type: string
+          example: "746131000000"
+        totalAssets:
+          type: string
+          example: "5777858000000"
+        retainedEarnings:
+          type: string
+          example: "255621000000"
+        ebit:
+          type: string
+          example: "32590000000"
+        marketCap:
+          type: string
+          example: "236751980000"
+        totalLiabilities:
+          type: string
+          example: "5271746000000"
+        revenue:
+          type: string
+          example: "167996000000"
+      required:
+        - symbol
+        - reportedCurrency
+        - altmanZScore
+        - piotroskiScore
+        - workingCapital
+        - totalAssets
+        - retainedEarnings
+        - ebit
+        - marketCap
+        - totalLiabilities
+        - revenue
+        
   responses:
     ErrorResponse:
       description: Error response
