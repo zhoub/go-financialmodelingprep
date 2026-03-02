@@ -92,13 +92,16 @@ func MustClient(cfg *ClientConfig) *ClientWithResponses {
 }
 
 // Get executes an API operation using the provided client, context, operation path, and parameters.
-func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params map[string]interface{}) (*http.Response, error) {
-	paramsJSON, err := json.Marshal(params)
-	if err != nil {
-		return nil, err
+func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params map[string]interface{}) (resp *http.Response, err error) {
+	var paramsJSON []byte
+	if params != nil {
+		paramsJSON, err = json.Marshal(params)
+		if err != nil {
+			return nil, err
+		}
 	}
 
-	var resp *http.Response
+	// Execute the API operation.
 	switch path {
 	case AnalystEstimatesGetOperationPath:
 		var p AnalystEstimatesGetParams
@@ -142,6 +145,8 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.CashFlowStatementTTMGet(ctx, &p)
+	case DcfBulkGetOperationPath:
+		resp, err = c.DcfBulkGet(ctx)
 	case DelistedCompaniesOperationPath:
 		var p DelistedCompaniesParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
@@ -220,6 +225,8 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.KeyMetricsGet(ctx, &p)
+	case KeyMetricsTTMBulkGetOperationPath:
+		resp, err = c.KeyMetricsTTMBulkGet(ctx)
 	case MarketCapitalizationGetOperationPath:
 		var p MarketCapitalizationGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
@@ -244,6 +251,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.ProfileGet(ctx, &p)
+	case ProfileBulkGetOperationPath:
+		var p ProfileBulkGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.ProfileBulkGet(ctx, &p)
 	case QuoteGetOperationPath:
 		var p QuoteGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
@@ -256,6 +269,8 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.QuoteShortGet(ctx, &p)
+	case RatingBulkGetOperationPath:
+		resp, err = c.RatingBulkGet(ctx)
 	case RatingsSnapshotGetOperationPath:
 		var p RatingsSnapshotGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
@@ -375,7 +390,7 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 		}
 		resp, err = c.TechnicalIndicatorsRsiGet(ctx, &p)
 	default:
-		return nil, fmt.Errorf("%s", string(path))
+		return nil, fmt.Errorf("not supported operation path: %s", string(path))
 	}
 	if err != nil {
 		return nil, err
