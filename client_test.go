@@ -2,6 +2,7 @@ package financialmodelingprep
 
 import (
 	"context"
+	"encoding/csv"
 	"encoding/json"
 	"net/http"
 	"os"
@@ -23,7 +24,7 @@ func (r *clientSuite) SetupSuite() {
 	apiKey := os.Getenv("FMP_API_KEY")
 	r.c = MustClient(&ClientConfig{
 		APIKey: apiKey,
-		Debug:  true,
+		Debug:  false,
 	})
 }
 
@@ -103,8 +104,8 @@ func (r *clientSuite) TestProfileEQV() {
 		// Validate symbol.
 		r.Equal(symbol, profiles[0].Symbol)
 
-		// The field "ipoDate" is empty string.
-		r.Empty(profiles[0].IpoDate)
+		// The field "ipoDate" is not empty.
+		r.NotEmpty(profiles[0].IpoDate)
 	}
 }
 
@@ -386,6 +387,20 @@ func (r *clientSuite) TestHistoricalChart15Min() {
 		r.NoError(err)
 
 		r.NotEmpty(dcList)
+	}
+}
+
+func (r *clientSuite) TestKeyMetricsBulkTTM() {
+	if resp, err := Get(context.Background(), r.c, KeyMetricsTTMBulkGetOperationPath, nil); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		csvReader := csv.NewReader(resp.Body)
+		records, err := csvReader.ReadAll()
+		r.NoError(err)
+		r.NotEmpty(records)
 	}
 }
 
