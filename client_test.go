@@ -418,9 +418,9 @@ func (r *clientSuite) TestIndexList() {
 	}
 }
 
-func (r *clientSuite) TestBatchIndexQuotes() {
+func (r *clientSuite) TestBatchIndexQuotesShort() {
 	params := map[string]interface{}{
-		"symbols": "^DJI,^GSPC",
+		"short": true,
 	}
 	if resp, err := Get(context.Background(), r.c, BatchIndexQuotesGetOperationPath, params); err != nil {
 		r.NoError(err)
@@ -432,6 +432,23 @@ func (r *clientSuite) TestBatchIndexQuotes() {
 		err = json.NewDecoder(resp.Body).Decode(&sqList)
 		r.NoError(err)
 		r.NotEmpty(sqList)
+	}
+}
+
+func (r *clientSuite) TestBatchIndexQuotesFull() {
+	params := map[string]interface{}{
+		"short": false,
+	}
+	if resp, err := Get(context.Background(), r.c, BatchIndexQuotesGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var fqList []FullQuote
+		err = json.NewDecoder(resp.Body).Decode(&fqList)
+		r.NoError(err)
+		r.NotEmpty(fqList)
 	}
 }
 
