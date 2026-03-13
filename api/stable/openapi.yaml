@@ -1558,6 +1558,29 @@ paths:
           description: An error occurred
       tags:
         - indexes
+  /batch-index-quotes:
+    get:
+      summary: The All Index Quotes API provides real-time quotes for a wide range of stock indexes, from major market benchmarks to niche indexes. This API allows users to track market performance across multiple indexes in a single request, giving them a broad view of the financial markets.
+      operationId: BatchIndexQuotesGet
+      parameters:
+        - in: query
+          name: short
+          schema:
+            type: boolean
+          default: true
+      responses:
+        "200":
+          description: A list of index quotes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ShortQuote"
+        "4xx":
+          description: An error occurred
+      tags:
+        - indexes
 components:
   securitySchemes:
     ApiKeyAuth:
