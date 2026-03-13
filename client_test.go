@@ -404,6 +404,20 @@ func (r *clientSuite) TestKeyMetricsBulkTTM() {
 	}
 }
 
+func (r *clientSuite) TestIndexList() {
+	if resp, err := Get(context.Background(), r.c, IndexListGetOperationPath, nil); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var idxList []Index
+		err = json.NewDecoder(resp.Body).Decode(&idxList)
+		r.NoError(err)
+		r.NotEmpty(idxList)
+	}
+}
+
 func TestClientSuite(t *testing.T) {
 	suite.Run(t, new(clientSuite))
 }
