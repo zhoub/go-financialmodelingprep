@@ -404,6 +404,54 @@ func (r *clientSuite) TestKeyMetricsBulkTTM() {
 	}
 }
 
+func (r *clientSuite) TestIndexList() {
+	if resp, err := Get(context.Background(), r.c, IndexListGetOperationPath, nil); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var idxList []Index
+		err = json.NewDecoder(resp.Body).Decode(&idxList)
+		r.NoError(err)
+		r.NotEmpty(idxList)
+	}
+}
+
+func (r *clientSuite) TestBatchIndexQuotesShort() {
+	params := map[string]interface{}{
+		"short": true,
+	}
+	if resp, err := Get(context.Background(), r.c, BatchIndexQuotesGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var sqList []ShortQuote
+		err = json.NewDecoder(resp.Body).Decode(&sqList)
+		r.NoError(err)
+		r.NotEmpty(sqList)
+	}
+}
+
+func (r *clientSuite) TestBatchIndexQuotesFull() {
+	params := map[string]interface{}{
+		"short": false,
+	}
+	if resp, err := Get(context.Background(), r.c, BatchIndexQuotesGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var fqList []FullQuote
+		err = json.NewDecoder(resp.Body).Decode(&fqList)
+		r.NoError(err)
+		r.NotEmpty(fqList)
+	}
+}
+
 func TestClientSuite(t *testing.T) {
 	suite.Run(t, new(clientSuite))
 }

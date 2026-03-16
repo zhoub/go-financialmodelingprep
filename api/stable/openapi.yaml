@@ -1541,6 +1541,46 @@ paths:
           description: An error occurred
       tags:
         - bulk
+  /index-list:
+    get:
+      summary: Retrieve a comprehensive list of stock market indexes across global exchanges using the FMP Stock Market Indexes List API. This API provides essential information such as the symbol, name, exchange, and currency for each index, helping analysts and investors keep track of various market benchmarks.
+      operationId: IndexListGet
+      responses:
+        "200":
+          description: A list of stock market indexes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Index"
+        "4xx":
+          description: An error occurred
+      tags:
+        - indexes
+  /batch-index-quotes:
+    get:
+      summary: The All Index Quotes API provides real-time quotes for a wide range of stock indexes, from major market benchmarks to niche indexes. This API allows users to track market performance across multiple indexes in a single request, giving them a broad view of the financial markets.
+      operationId: BatchIndexQuotesGet
+      parameters:
+        - in: query
+          name: short
+          schema:
+            type: boolean
+          default: true
+      responses:
+        "200":
+          description: A list of index quotes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ShortQuote"
+        "4xx":
+          description: An error occurred
+      tags:
+        - indexes
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -5260,6 +5300,26 @@ components:
         - marketCap
         - totalLiabilities
         - revenue
+    Index:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "^TTIN"
+        name:
+          type: string
+          example: "S&P/TSX Capped Industrials Index"
+        exchange:
+          type: string
+          example: "TSX"
+        currency:
+          type: string
+          example: "CAD"
+      required:
+        - symbol
+        - name
+        - exchange
+        - currency
         
   responses:
     ErrorResponse:

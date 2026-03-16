@@ -389,6 +389,14 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.TechnicalIndicatorsRsiGet(ctx, &p)
+	case IndexListGetOperationPath:
+		resp, err = c.IndexListGet(ctx)
+	case BatchIndexQuotesGetOperationPath:
+		var p BatchIndexQuotesGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.BatchIndexQuotesGet(ctx, &p)
 	default:
 		return nil, fmt.Errorf("not supported operation path: %s", string(path))
 	}
