@@ -22,11 +22,11 @@ paths:
           required: true
         - in: query
           name: limit
-          schema: 
+          schema:
             type: integer
         - in: query
           name: exchange
-          schema: 
+          schema:
             type: string
       responses:
         "200":
@@ -204,15 +204,15 @@ paths:
     get:
       summary: Stay informed on upcoming dividend events with the Dividend Events Calendar API. Access a comprehensive schedule of dividend-related dates for all stocks, including record dates, payment dates, declaration dates, and dividend yields.
       operationId: DividendsGet
-      parameters: 
-        - in:  query
+      parameters:
+        - in: query
           name: symbol
-          schema: 
+          schema:
             type: string
           required: true
         - in: query
           name: limit
-          schema: 
+          schema:
             type: integer
       responses:
         "200":
@@ -234,12 +234,12 @@ paths:
       parameters:
         - in: query
           name: from
-          schema: 
+          schema:
             type: string
             format: date
         - in: query
           name: to
-          schema: 
+          schema:
             type: string
             format: date
       responses:
@@ -259,15 +259,15 @@ paths:
     get:
       summary: Retrieve in-depth earnings information with the FMP Earnings Report API. Gain access to key financial data for a specific stock symbol, including earnings report dates, EPS estimates, and revenue projections to help you stay on top of company performance.
       operationId: EarningsGet
-      parameters: 
-        - in:  query
+      parameters:
+        - in: query
           name: symbol
-          schema: 
+          schema:
             type: string
           required: true
         - in: query
           name: limit
-          schema: 
+          schema:
             type: integer
       responses:
         "200":
@@ -288,12 +288,12 @@ paths:
       parameters:
         - in: query
           name: from
-          schema: 
+          schema:
             type: string
             format: date
         - in: query
           name: to
-          schema: 
+          schema:
             type: string
             format: date
       responses:
@@ -312,15 +312,15 @@ paths:
   /splits:
     get:
       summary: Access detailed information on stock splits for a specific company using the FMP Stock Split Details API. This API provides essential data, including the split date and the split ratio, helping users understand changes in a company's share structure after a stock split.
-      parameters: 
-        - in:  query
+      parameters:
+        - in: query
           name: symbol
-          schema: 
+          schema:
             type: string
           required: true
         - in: query
           name: limit
-          schema: 
+          schema:
             type: integer
       responses:
         "200":
@@ -341,12 +341,12 @@ paths:
       parameters:
         - in: query
           name: from
-          schema: 
+          schema:
             type: string
             format: date
         - in: query
           name: to
-          schema: 
+          schema:
             type: string
             format: date
       responses:
@@ -707,11 +707,11 @@ paths:
           required: true
         - in: query
           name: limit
-          schema: 
+          schema:
             type: integer
         - in: query
           name: period
-          schema: 
+          schema:
             $ref: "#/components/schemas/Period"
       responses:
         "200":
@@ -986,7 +986,7 @@ paths:
                   $ref: "#/components/schemas/RatiosTTM"
         "4xx":
           description: An error occurred
-      tags: 
+      tags:
         - statement
   /revenue-product-segmentation:
     get:
@@ -1064,7 +1064,7 @@ paths:
           schema:
             type: string
           required: true
-      responses: 
+      responses:
         "200":
           description: A list of enterprise values
           content:
@@ -1075,7 +1075,7 @@ paths:
                   $ref: "#/components/schemas/EnterpriseValue"
         "4xx":
           description: An error occurred
-      tags: 
+      tags:
         - statement
   /insider-trading/latest:
     get:
@@ -1321,7 +1321,7 @@ paths:
         "4xx":
           description: An error occurred
       tags:
-        - news 
+        - news
   /technical-indicators/rsi:
     get:
       summary: Get the Relative Strength Index(RSI) technical indicator for a given symbol and time period.
@@ -1476,11 +1476,9 @@ paths:
         "200":
           description: A list of income statements
           content:
-            application/json:
+            text/csv:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/IncomeStatement"
+                type: string
         "4xx":
           description: An error occurred
       tags:
@@ -1504,11 +1502,9 @@ paths:
         "200":
           description: A list of balance sheet statement
           content:
-            application/json:
+            text/csv:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/BalanceSheetStatement"
+                type: string
         "4xx":
           description: An error occurred
       tags:
@@ -1532,11 +1528,9 @@ paths:
         "200":
           description: A list of cash flow statements
           content:
-            application/json:
+            text/csv:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/CashFlowStatement"
+                type: string
         "4xx":
           description: An error occurred
       tags:
