@@ -466,6 +466,42 @@ func (r *clientSuite) TestETFList() {
 	}
 }
 
+func (r *clientSuite) TestETFCountryWeightings() {
+	const symbol = "SPY"
+	params := map[string]interface{}{
+		"symbol": symbol,
+	}
+	if resp, err := Get(context.Background(), r.c, ETFCountryWeightingsGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var ecwList []ETFCountryWeight
+		err = json.NewDecoder(resp.Body).Decode(&ecwList)
+		r.NoError(err)
+		r.NotEmpty(ecwList)
+	}
+}
+
+func (r *clientSuite) TestETFSectorWeightings() {
+	const symbol = "SPY"
+	params := map[string]interface{}{
+		"symbol": symbol,
+	}
+	if resp, err := Get(context.Background(), r.c, ETFSectorWeightingsGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var eswList []ETFSectorWeight
+		err = json.NewDecoder(resp.Body).Decode(&eswList)
+		r.NoError(err)
+		r.NotEmpty(eswList)
+	}
+}
+
 func TestClientSuite(t *testing.T) {
 	suite.Run(t, new(clientSuite))
 }
