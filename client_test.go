@@ -290,7 +290,7 @@ func (r *clientSuite) TestKeyMetricsNMG() {
 		for _, km := range kmList {
 			r.Equal(symbol, km.Symbol)
 		}
-		r.Equal(time.Date(2024, time.December, 31, 0, 0, 0, 0, time.UTC), kmList[0].Date.Time)
+		r.Equal(time.Date(2025, time.December, 31, 0, 0, 0, 0, time.UTC), kmList[0].Date.Time)
 	}
 }
 

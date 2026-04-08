@@ -1911,8 +1911,9 @@ components:
           format: double
           example: 232.79
         volume:
-          type: integer
-          example: 2535629
+          type: number
+          format: double
+          example: 750590.924180001
       required:
         - date
         - open
