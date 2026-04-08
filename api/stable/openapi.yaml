@@ -1378,6 +1378,33 @@ paths:
               schema:
                 items:
                   $ref: "#/components/schemas/ETFSymbol"
+        "4xx":
+          description: An error occurred
+      tags:
+        - etf
+  /etf-info:
+    get:
+      summary: Access comprehensive data on ETFs and mutual funds with the FMP ETF & Mutual Fund Information API. Retrieve essential details such as ticker symbol, fund name, expense ratio, assets under management, and more.
+      operationId: ETFInfoGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of ETF profiles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ETFProfile"
+        "4xx":
+          description: An error occurred
+      tags:
+        - etf
   /profile-bulk:
     get:
       summary: The FMP Profile Bulk API allows users to retrieve comprehensive company profile data in bulk. Access essential information, such as company details, stock price, market cap, sector, industry, and more for multiple companies in a single request.
@@ -5268,6 +5295,100 @@ components:
         name:
           type: string
           example: "WisdomTree Middle East Dividend Fund"
+    ETFProfile:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "SPY"
+        name:
+          type: string
+          example: "SPDR S&P 500 ETF Trust"
+        description:
+          type: string
+          example: "The Trust seeks to achieve its investment objective by holding a portfolio of the common stocks that are included in the index (the “Portfolio”), with the weight of each stock in the Portfolio substantially corresponding to the weight of such stock in the index."
+        isin:
+          type: string
+          example: "US78462F1030"
+        assetClass:
+          type: string
+          example: "Equity"
+        securityCusip:
+          type: string
+          example: "78462F103"
+        domicile:
+          type: string
+          example: "US"
+        website:
+          type: string
+          example: "https://www.ssga.com/us/en/institutional/etfs/spdr-sp-500-etf-trust-spy"
+        etfCompany:
+          type: string
+          example: "SPDR"
+        expenseRatio:
+          type: number
+          format: float
+          example: 0.0945
+        assetsUnderManagement:
+          type: number
+          format: double
+          example: 633120180000
+        avgVolume:
+          type: number
+          format: double
+          example: 46396400
+        inceptionDate:
+          type: string
+          format: date
+          example: "1993-01-22"
+        nav:
+          type: number
+          format: double
+          example: 603.64
+        navCurrency:
+          type: string
+          example: "USD"
+        holdingsCount:
+          type: integer
+          example: 503
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2024-12-03T20:32:48.873Z"
+        sectorsList:
+          type: array
+          items:
+            type: object
+            properties:
+              industry:
+                type: string
+                example: "Basic Materials"
+              exposure:
+                type: number
+                format: float
+                example: 1.97
+            required:
+              - industry
+              - exposure
+      required:
+        - symbol
+        - name
+        - description
+        - isin
+        - assetClass
+        - securityCusip
+        - domicile
+        - website
+        - etfCompany
+        - expenseRatio
+        - assetsUnderManagement
+        - avgVolume
+        - inceptionDate
+        - nav
+        - navCurrency
+        - holdingsCount
+        - updatedAt
+        - sectorsList
     FinancialScores:
       type: object
       properties:
