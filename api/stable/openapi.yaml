@@ -1405,6 +1405,29 @@ paths:
           description: An error occurred
       tags:
         - etf
+  /etf/country-weights:
+    get:
+      summary: Gain insight into how ETFs and mutual funds distribute assets across different countries with the FMP ETF & Fund Country Allocation API. This tool provides detailed information on the percentage of assets allocated to various regions, helping you make informed investment decisions.
+      operationId: ETFCountryWeightsGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of ETF country weights
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ETFCountryWeight"
+        "4xx":
+          description: An error occurred
+      tags:
+        - etf
   /profile-bulk:
     get:
       summary: The FMP Profile Bulk API allows users to retrieve comprehensive company profile data in bulk. Access essential information, such as company details, stock price, market cap, sector, industry, and more for multiple companies in a single request.
@@ -5295,6 +5318,18 @@ components:
         name:
           type: string
           example: "WisdomTree Middle East Dividend Fund"
+    ETFCountryWeight:
+      type: object
+      properties:
+        country:
+          type: string
+          example: "United States"
+        weightPercentage:
+          type: string
+          example: "97.29%"
+      required:
+        - country
+        - weightPercentage
     ETFProfile:
       type: object
       properties:
