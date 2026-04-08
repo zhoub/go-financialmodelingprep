@@ -1405,10 +1405,10 @@ paths:
           description: An error occurred
       tags:
         - etf
-  /etf/country-weights:
+  /etf/country-weightings:
     get:
       summary: Gain insight into how ETFs and mutual funds distribute assets across different countries with the FMP ETF & Fund Country Allocation API. This tool provides detailed information on the percentage of assets allocated to various regions, helping you make informed investment decisions.
-      operationId: ETFCountryWeightsGet
+      operationId: ETFCountryWeightingsGet
       parameters:
         - in: query
           name: symbol
@@ -1431,7 +1431,7 @@ paths:
   /etf/sector-weightings:
     get:
       description: The FMP ETF Sector Weighting API provides a breakdown of the percentage of an ETF's assets that are invested in each sector. For example, an investor may want to invest in an ETF that has a high exposure to the technology sector if they believe that the technology sector is poised for growth.
-      operationId: ETFCountryWeightsGet
+      operationId: ETFSectorWeightingsGet
       parameters:
         - in: query
           name: symbol

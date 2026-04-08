@@ -1129,8 +1129,8 @@ type EsgRatingsGetParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
 }
 
-// ETFCountryWeightsGetParams defines parameters for ETFCountryWeightsGet.
-type ETFCountryWeightsGetParams struct {
+// ETFCountryWeightingsGetParams defines parameters for ETFCountryWeightingsGet.
+type ETFCountryWeightingsGetParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
 }
 
@@ -1139,8 +1139,8 @@ type ETFInfoGetParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
 }
 
-// ETFCountryWeightsGetParams defines parameters for ETFCountryWeightsGet.
-type ETFCountryWeightsGetParams struct {
+// ETFSectorWeightingsGetParams defines parameters for ETFSectorWeightingsGet.
+type ETFSectorWeightingsGetParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
 }
 
@@ -1414,14 +1414,14 @@ const (
 	// /etf-list
 	ETFListGetOperationPath OperationPath = "/etf-list"
 
-	// /etf/country-weights
-	ETFCountryWeightsGetOperationPath OperationPath = "/etf/country-weights"
+	// /etf/country-weightings
+	ETFCountryWeightingsGetOperationPath OperationPath = "/etf/country-weightings"
 
 	// /etf/info
 	ETFInfoGetOperationPath OperationPath = "/etf/info"
 
 	// /etf/sector-weightings
-	ETFCountryWeightsGetOperationPath OperationPath = "/etf/sector-weightings"
+	ETFSectorWeightingsGetOperationPath OperationPath = "/etf/sector-weightings"
 
 	// /grades-latest-news
 	GradesLatestNewsGetOperationPath OperationPath = "/grades-latest-news"
@@ -1671,14 +1671,14 @@ type ClientInterface interface {
 	// ETFListGet request
 	ETFListGet(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ETFCountryWeightsGet request
-	ETFCountryWeightsGet(ctx context.Context, params *ETFCountryWeightsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ETFCountryWeightingsGet request
+	ETFCountryWeightingsGet(ctx context.Context, params *ETFCountryWeightingsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ETFInfoGet request
 	ETFInfoGet(ctx context.Context, params *ETFInfoGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ETFCountryWeightsGet request
-	ETFCountryWeightsGet(ctx context.Context, params *ETFCountryWeightsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ETFSectorWeightingsGet request
+	ETFSectorWeightingsGet(ctx context.Context, params *ETFSectorWeightingsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GradesLatestNewsGet request
 	GradesLatestNewsGet(ctx context.Context, params *GradesLatestNewsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -2053,8 +2053,8 @@ func (c *Client) ETFListGet(ctx context.Context, reqEditors ...RequestEditorFn) 
 	return c.Client.Do(req)
 }
 
-func (c *Client) ETFCountryWeightsGet(ctx context.Context, params *ETFCountryWeightsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewETFCountryWeightsGetRequest(c.Server, params)
+func (c *Client) ETFCountryWeightingsGet(ctx context.Context, params *ETFCountryWeightingsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewETFCountryWeightingsGetRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -2077,8 +2077,8 @@ func (c *Client) ETFInfoGet(ctx context.Context, params *ETFInfoGetParams, reqEd
 	return c.Client.Do(req)
 }
 
-func (c *Client) ETFCountryWeightsGet(ctx context.Context, params *ETFCountryWeightsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewETFCountryWeightsGetRequest(c.Server, params)
+func (c *Client) ETFSectorWeightingsGet(ctx context.Context, params *ETFSectorWeightingsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewETFSectorWeightingsGetRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -3737,8 +3737,8 @@ func NewETFListGetRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewETFCountryWeightsGetRequest generates requests for ETFCountryWeightsGet
-func NewETFCountryWeightsGetRequest(server string, params *ETFCountryWeightsGetParams) (*http.Request, error) {
+// NewETFCountryWeightingsGetRequest generates requests for ETFCountryWeightingsGet
+func NewETFCountryWeightingsGetRequest(server string, params *ETFCountryWeightingsGetParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -3746,7 +3746,7 @@ func NewETFCountryWeightsGetRequest(server string, params *ETFCountryWeightsGetP
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/etf/country-weights")
+	operationPath := fmt.Sprintf("/etf/country-weightings")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -3827,8 +3827,8 @@ func NewETFInfoGetRequest(server string, params *ETFInfoGetParams) (*http.Reques
 	return req, nil
 }
 
-// NewETFCountryWeightsGetRequest generates requests for ETFCountryWeightsGet
-func NewETFCountryWeightsGetRequest(server string, params *ETFCountryWeightsGetParams) (*http.Request, error) {
+// NewETFSectorWeightingsGetRequest generates requests for ETFSectorWeightingsGet
+func NewETFSectorWeightingsGetRequest(server string, params *ETFSectorWeightingsGetParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6227,14 +6227,14 @@ type ClientWithResponsesInterface interface {
 	// ETFListGetWithResponse request
 	ETFListGetWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ETFListGetClientResponse, error)
 
-	// ETFCountryWeightsGetWithResponse request
-	ETFCountryWeightsGetWithResponse(ctx context.Context, params *ETFCountryWeightsGetParams, reqEditors ...RequestEditorFn) (*ETFCountryWeightsGetClientResponse, error)
+	// ETFCountryWeightingsGetWithResponse request
+	ETFCountryWeightingsGetWithResponse(ctx context.Context, params *ETFCountryWeightingsGetParams, reqEditors ...RequestEditorFn) (*ETFCountryWeightingsGetClientResponse, error)
 
 	// ETFInfoGetWithResponse request
 	ETFInfoGetWithResponse(ctx context.Context, params *ETFInfoGetParams, reqEditors ...RequestEditorFn) (*ETFInfoGetClientResponse, error)
 
-	// ETFCountryWeightsGetWithResponse request
-	ETFCountryWeightsGetWithResponse(ctx context.Context, params *ETFCountryWeightsGetParams, reqEditors ...RequestEditorFn) (*ETFCountryWeightsGetClientResponse, error)
+	// ETFSectorWeightingsGetWithResponse request
+	ETFSectorWeightingsGetWithResponse(ctx context.Context, params *ETFSectorWeightingsGetParams, reqEditors ...RequestEditorFn) (*ETFSectorWeightingsGetClientResponse, error)
 
 	// GradesLatestNewsGetWithResponse request
 	GradesLatestNewsGetWithResponse(ctx context.Context, params *GradesLatestNewsGetParams, reqEditors ...RequestEditorFn) (*GradesLatestNewsGetClientResponse, error)
@@ -6827,14 +6827,14 @@ func (r ETFListGetClientResponse) StatusCode() int {
 	return 0
 }
 
-type ETFCountryWeightsGetClientResponse struct {
+type ETFCountryWeightingsGetClientResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]ETFCountryWeight
 }
 
 // Status returns HTTPResponse.Status
-func (r ETFCountryWeightsGetClientResponse) Status() string {
+func (r ETFCountryWeightingsGetClientResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -6842,7 +6842,7 @@ func (r ETFCountryWeightsGetClientResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ETFCountryWeightsGetClientResponse) StatusCode() int {
+func (r ETFCountryWeightingsGetClientResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -6871,14 +6871,14 @@ func (r ETFInfoGetClientResponse) StatusCode() int {
 	return 0
 }
 
-type ETFCountryWeightsGetClientResponse struct {
+type ETFSectorWeightingsGetClientResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]ETFSectorWeight
 }
 
 // Status returns HTTPResponse.Status
-func (r ETFCountryWeightsGetClientResponse) Status() string {
+func (r ETFSectorWeightingsGetClientResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -6886,7 +6886,7 @@ func (r ETFCountryWeightsGetClientResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ETFCountryWeightsGetClientResponse) StatusCode() int {
+func (r ETFSectorWeightingsGetClientResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7883,13 +7883,13 @@ func (c *ClientWithResponses) ETFListGetWithResponse(ctx context.Context, reqEdi
 	return ParseETFListGetClientResponse(rsp)
 }
 
-// ETFCountryWeightsGetWithResponse request returning *ETFCountryWeightsGetClientResponse
-func (c *ClientWithResponses) ETFCountryWeightsGetWithResponse(ctx context.Context, params *ETFCountryWeightsGetParams, reqEditors ...RequestEditorFn) (*ETFCountryWeightsGetClientResponse, error) {
-	rsp, err := c.ETFCountryWeightsGet(ctx, params, reqEditors...)
+// ETFCountryWeightingsGetWithResponse request returning *ETFCountryWeightingsGetClientResponse
+func (c *ClientWithResponses) ETFCountryWeightingsGetWithResponse(ctx context.Context, params *ETFCountryWeightingsGetParams, reqEditors ...RequestEditorFn) (*ETFCountryWeightingsGetClientResponse, error) {
+	rsp, err := c.ETFCountryWeightingsGet(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseETFCountryWeightsGetClientResponse(rsp)
+	return ParseETFCountryWeightingsGetClientResponse(rsp)
 }
 
 // ETFInfoGetWithResponse request returning *ETFInfoGetClientResponse
@@ -7901,13 +7901,13 @@ func (c *ClientWithResponses) ETFInfoGetWithResponse(ctx context.Context, params
 	return ParseETFInfoGetClientResponse(rsp)
 }
 
-// ETFCountryWeightsGetWithResponse request returning *ETFCountryWeightsGetClientResponse
-func (c *ClientWithResponses) ETFCountryWeightsGetWithResponse(ctx context.Context, params *ETFCountryWeightsGetParams, reqEditors ...RequestEditorFn) (*ETFCountryWeightsGetClientResponse, error) {
-	rsp, err := c.ETFCountryWeightsGet(ctx, params, reqEditors...)
+// ETFSectorWeightingsGetWithResponse request returning *ETFSectorWeightingsGetClientResponse
+func (c *ClientWithResponses) ETFSectorWeightingsGetWithResponse(ctx context.Context, params *ETFSectorWeightingsGetParams, reqEditors ...RequestEditorFn) (*ETFSectorWeightingsGetClientResponse, error) {
+	rsp, err := c.ETFSectorWeightingsGet(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseETFCountryWeightsGetClientResponse(rsp)
+	return ParseETFSectorWeightingsGetClientResponse(rsp)
 }
 
 // GradesLatestNewsGetWithResponse request returning *GradesLatestNewsGetClientResponse
@@ -8786,15 +8786,15 @@ func ParseETFListGetClientResponse(rsp *http.Response) (*ETFListGetClientRespons
 	return response, nil
 }
 
-// ParseETFCountryWeightsGetClientResponse parses an HTTP response from a ETFCountryWeightsGetWithResponse call
-func ParseETFCountryWeightsGetClientResponse(rsp *http.Response) (*ETFCountryWeightsGetClientResponse, error) {
+// ParseETFCountryWeightingsGetClientResponse parses an HTTP response from a ETFCountryWeightingsGetWithResponse call
+func ParseETFCountryWeightingsGetClientResponse(rsp *http.Response) (*ETFCountryWeightingsGetClientResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ETFCountryWeightsGetClientResponse{
+	response := &ETFCountryWeightingsGetClientResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -8838,15 +8838,15 @@ func ParseETFInfoGetClientResponse(rsp *http.Response) (*ETFInfoGetClientRespons
 	return response, nil
 }
 
-// ParseETFCountryWeightsGetClientResponse parses an HTTP response from a ETFCountryWeightsGetWithResponse call
-func ParseETFCountryWeightsGetClientResponse(rsp *http.Response) (*ETFCountryWeightsGetClientResponse, error) {
+// ParseETFSectorWeightingsGetClientResponse parses an HTTP response from a ETFSectorWeightingsGetWithResponse call
+func ParseETFSectorWeightingsGetClientResponse(rsp *http.Response) (*ETFSectorWeightingsGetClientResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ETFCountryWeightsGetClientResponse{
+	response := &ETFSectorWeightingsGetClientResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10031,73 +10031,73 @@ var swaggerSpec = []string{
 	"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",
-	"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",
-	"X/7/AAAA///YgPbf+MABAA==",
+	"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",
+	"v/z0y/8fAAD//6K8tUoAwQEA",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
