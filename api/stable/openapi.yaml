@@ -1382,7 +1382,7 @@ paths:
           description: An error occurred
       tags:
         - etf
-  /etf-info:
+  /etf/info:
     get:
       summary: Access comprehensive data on ETFs and mutual funds with the FMP ETF & Mutual Fund Information API. Retrieve essential details such as ticker symbol, fund name, expense ratio, assets under management, and more.
       operationId: ETFInfoGet
