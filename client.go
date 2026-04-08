@@ -399,6 +399,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 		resp, err = c.BatchIndexQuotesGet(ctx, &p)
 	case ETFListGetOperationPath:
 		resp, err = c.ETFListGet(ctx)
+	case ETFInfoGetOperationPath:
+		var p ETFInfoGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.ETFInfoGet(ctx, &p)
 	default:
 		return nil, fmt.Errorf("not supported operation path: %s", string(path))
 	}
