@@ -405,6 +405,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.ETFInfoGet(ctx, &p)
+	case ETFCountryWeightsGetOperationPath:
+		var p ETFCountryWeightsGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.ETFCountryWeightsGet(ctx, &p)
 	default:
 		return nil, fmt.Errorf("not supported operation path: %s", string(path))
 	}
