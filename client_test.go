@@ -452,6 +452,20 @@ func (r *clientSuite) TestBatchIndexQuotesFull() {
 	}
 }
 
+func (r *clientSuite) TestETFList() {
+	if resp, err := Get(context.Background(), r.c, ETFListGetOperationPath, nil); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var etfList []ETFSymbol
+		err = json.NewDecoder(resp.Body).Decode(&etfList)
+		r.NoError(err)
+		r.NotEmpty(etfList)
+	}
+}
+
 func TestClientSuite(t *testing.T) {
 	suite.Run(t, new(clientSuite))
 }

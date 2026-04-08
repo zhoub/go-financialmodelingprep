@@ -397,6 +397,8 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.BatchIndexQuotesGet(ctx, &p)
+	case ETFListGetOperationPath:
+		resp, err = c.ETFListGet(ctx)
 	default:
 		return nil, fmt.Errorf("not supported operation path: %s", string(path))
 	}
