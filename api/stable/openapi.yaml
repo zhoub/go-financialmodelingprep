@@ -1428,6 +1428,29 @@ paths:
           description: An error occurred
       tags:
         - etf
+  /etf/sector-weightings:
+    get:
+      description: The FMP ETF Sector Weighting API provides a breakdown of the percentage of an ETF's assets that are invested in each sector. For example, an investor may want to invest in an ETF that has a high exposure to the technology sector if they believe that the technology sector is poised for growth.
+      operationId: ETFCountryWeightsGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of ETF sector weightings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ETFSectorWeight"
+        "4xx":
+          description: An error occurred
+      tags:
+        - etf
   /profile-bulk:
     get:
       summary: The FMP Profile Bulk API allows users to retrieve comprehensive company profile data in bulk. Access essential information, such as company details, stock price, market cap, sector, industry, and more for multiple companies in a single request.
@@ -5329,6 +5352,23 @@ components:
           example: "97.29%"
       required:
         - country
+        - weightPercentage
+    ETFSectorWeight:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "SPY"
+        sector:
+          type: string
+          example: "Basic Materials"
+        weightPercentage:
+          type: number
+          format: double
+          example: 1.97
+      required:
+        - symbol
+        - sector
         - weightPercentage
     ETFProfile:
       type: object
