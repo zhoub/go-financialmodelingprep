@@ -1366,6 +1366,91 @@ paths:
           description: An error occurred
       tags:
         - technical-indicator
+  /etf-list:
+    get:
+      summary: Quickly find ticker symbols and company names for Exchange Traded Funds (ETFs) using the FMP ETF Symbol Search API. This tool simplifies identifying specific ETFs by their name or ticker.
+      operationId: ETFListGet
+      responses:
+        "200":
+          description: A list of ETF symbols
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/ETFSymbol"
+        "4xx":
+          description: An error occurred
+      tags:
+        - etf
+  /etf/info:
+    get:
+      summary: Access comprehensive data on ETFs and mutual funds with the FMP ETF & Mutual Fund Information API. Retrieve essential details such as ticker symbol, fund name, expense ratio, assets under management, and more.
+      operationId: ETFInfoGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of ETF profiles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ETFProfile"
+        "4xx":
+          description: An error occurred
+      tags:
+        - etf
+  /etf/country-weightings:
+    get:
+      summary: Gain insight into how ETFs and mutual funds distribute assets across different countries with the FMP ETF & Fund Country Allocation API. This tool provides detailed information on the percentage of assets allocated to various regions, helping you make informed investment decisions.
+      operationId: ETFCountryWeightingsGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of ETF country weights
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ETFCountryWeight"
+        "4xx":
+          description: An error occurred
+      tags:
+        - etf
+  /etf/sector-weightings:
+    get:
+      description: The FMP ETF Sector Weighting API provides a breakdown of the percentage of an ETF's assets that are invested in each sector. For example, an investor may want to invest in an ETF that has a high exposure to the technology sector if they believe that the technology sector is poised for growth.
+      operationId: ETFSectorWeightingsGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of ETF sector weightings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ETFSectorWeight"
+        "4xx":
+          description: An error occurred
+      tags:
+        - etf
   /profile-bulk:
     get:
       summary: The FMP Profile Bulk API allows users to retrieve comprehensive company profile data in bulk. Access essential information, such as company details, stock price, market cap, sector, industry, and more for multiple companies in a single request.
@@ -1899,8 +1984,9 @@ components:
           format: double
           example: 232.79
         volume:
-          type: integer
-          example: 2535629
+          type: number
+          format: double
+          example: 750590.924180001
       required:
         - date
         - open
@@ -5246,6 +5332,138 @@ components:
         - date
         - dcf
         - stockPrice
+    ETFSymbol:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "GULF"
+        name:
+          type: string
+          example: "WisdomTree Middle East Dividend Fund"
+    ETFCountryWeight:
+      type: object
+      properties:
+        country:
+          type: string
+          example: "United States"
+        weightPercentage:
+          type: string
+          example: "97.29%"
+      required:
+        - country
+        - weightPercentage
+    ETFSectorWeight:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "SPY"
+        sector:
+          type: string
+          example: "Basic Materials"
+        weightPercentage:
+          type: number
+          format: double
+          example: 1.97
+      required:
+        - symbol
+        - sector
+        - weightPercentage
+    ETFProfile:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "SPY"
+        name:
+          type: string
+          example: "SPDR S&P 500 ETF Trust"
+        description:
+          type: string
+          example: "The Trust seeks to achieve its investment objective by holding a portfolio of the common stocks that are included in the index (the “Portfolio”), with the weight of each stock in the Portfolio substantially corresponding to the weight of such stock in the index."
+        isin:
+          type: string
+          example: "US78462F1030"
+        assetClass:
+          type: string
+          example: "Equity"
+        securityCusip:
+          type: string
+          example: "78462F103"
+        domicile:
+          type: string
+          example: "US"
+        website:
+          type: string
+          example: "https://www.ssga.com/us/en/institutional/etfs/spdr-sp-500-etf-trust-spy"
+        etfCompany:
+          type: string
+          example: "SPDR"
+        expenseRatio:
+          type: number
+          format: float
+          example: 0.0945
+        assetsUnderManagement:
+          type: number
+          format: double
+          example: 633120180000
+        avgVolume:
+          type: number
+          format: double
+          example: 46396400
+        inceptionDate:
+          type: string
+          format: date
+          example: "1993-01-22"
+        nav:
+          type: number
+          format: double
+          example: 603.64
+        navCurrency:
+          type: string
+          example: "USD"
+        holdingsCount:
+          type: integer
+          example: 503
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2024-12-03T20:32:48.873Z"
+        sectorsList:
+          type: array
+          items:
+            type: object
+            properties:
+              industry:
+                type: string
+                example: "Basic Materials"
+              exposure:
+                type: number
+                format: float
+                example: 1.97
+            required:
+              - industry
+              - exposure
+      required:
+        - symbol
+        - name
+        - description
+        - isin
+        - assetClass
+        - securityCusip
+        - domicile
+        - website
+        - etfCompany
+        - expenseRatio
+        - assetsUnderManagement
+        - avgVolume
+        - inceptionDate
+        - nav
+        - navCurrency
+        - holdingsCount
+        - updatedAt
+        - sectorsList
     FinancialScores:
       type: object
       properties:
@@ -5314,7 +5532,7 @@ components:
         - name
         - exchange
         - currency
-        
+
   responses:
     ErrorResponse:
       description: Error response

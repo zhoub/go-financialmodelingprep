@@ -290,7 +290,7 @@ func (r *clientSuite) TestKeyMetricsNMG() {
 		for _, km := range kmList {
 			r.Equal(symbol, km.Symbol)
 		}
-		r.Equal(time.Date(2024, time.December, 31, 0, 0, 0, 0, time.UTC), kmList[0].Date.Time)
+		r.Equal(time.Date(2025, time.December, 31, 0, 0, 0, 0, time.UTC), kmList[0].Date.Time)
 	}
 }
 
@@ -449,6 +449,56 @@ func (r *clientSuite) TestBatchIndexQuotesFull() {
 		err = json.NewDecoder(resp.Body).Decode(&fqList)
 		r.NoError(err)
 		r.NotEmpty(fqList)
+	}
+}
+
+func (r *clientSuite) TestETFList() {
+	if resp, err := Get(context.Background(), r.c, ETFListGetOperationPath, nil); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var etfList []ETFSymbol
+		err = json.NewDecoder(resp.Body).Decode(&etfList)
+		r.NoError(err)
+		r.NotEmpty(etfList)
+	}
+}
+
+func (r *clientSuite) TestETFCountryWeightings() {
+	const symbol = "SPY"
+	params := map[string]interface{}{
+		"symbol": symbol,
+	}
+	if resp, err := Get(context.Background(), r.c, ETFCountryWeightingsGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var ecwList []ETFCountryWeight
+		err = json.NewDecoder(resp.Body).Decode(&ecwList)
+		r.NoError(err)
+		r.NotEmpty(ecwList)
+	}
+}
+
+func (r *clientSuite) TestETFSectorWeightings() {
+	const symbol = "SPY"
+	params := map[string]interface{}{
+		"symbol": symbol,
+	}
+	if resp, err := Get(context.Background(), r.c, ETFSectorWeightingsGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var eswList []ETFSectorWeight
+		err = json.NewDecoder(resp.Body).Decode(&eswList)
+		r.NoError(err)
+		r.NotEmpty(eswList)
 	}
 }
 
