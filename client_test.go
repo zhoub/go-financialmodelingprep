@@ -502,6 +502,24 @@ func (r *clientSuite) TestETFSectorWeightings() {
 	}
 }
 
+func (r *clientSuite) TestETFInfoSKWEAS() {
+	const symbol = "SKWE.AS"
+	params := map[string]interface{}{
+		"symbol": symbol,
+	}
+	if resp, err := Get(context.Background(), r.c, ETFInfoGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var epList []ETFProfile
+		err = json.NewDecoder(resp.Body).Decode(&epList)
+		r.NoError(err)
+		r.NotEmpty(epList)
+	}
+}
+
 func TestClientSuite(t *testing.T) {
 	suite.Run(t, new(clientSuite))
 }
