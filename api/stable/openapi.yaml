@@ -1451,6 +1451,29 @@ paths:
           description: An error occurred
       tags:
         - etf
+  /etf/holdings:
+    get:
+      summary: Get a detailed breakdown of the assets held within ETFs and mutual funds using the FMP ETF & Fund Holdings API. Access real-time data on the specific securities and their weights in the portfolio, providing insights into asset composition and fund strategies.
+      operationId: ETFHoldingsGet
+      parameters:
+        - in: query
+          name: symbol
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of ETF holdings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ETFHolding"
+        "4xx":
+          description: An error occurred
+      tags:
+        - etf
   /profile-bulk:
     get:
       summary: The FMP Profile Bulk API allows users to retrieve comprehensive company profile data in bulk. Access essential information, such as company details, stock price, market cap, sector, industry, and more for multiple companies in a single request.
@@ -5463,6 +5486,52 @@ components:
         - holdingsCount
         - updatedAt
         - sectorsList
+    ETFHolding:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "SPY"
+        asset:
+          type: string
+          example: "AAPL"
+        name:
+          type: string
+          example: "APPLE INC"
+        isin:
+          type: string
+          example: "US0378331005"
+        securityCusip:
+          type: string
+          example: "037833100"
+        sharesNumber:
+          type: integer
+          example: 188106081
+        weightPercentage:
+          type: number
+          format: double
+          example: 7.137
+        marketValue:
+          type: number
+          format: double
+          example: 44744793487.47
+        updatedAt:
+          type: string
+          example: "2025-01-16 05:01:09"
+        updated:
+          type: string
+          example: "2025-02-04 19:02:31"
+      required:
+        - symbol
+        - asset
+        - name
+        - isin
+        - securityCusip
+        - sharesNumber
+        - weightPercentage
+        - marketValue
+        - updatedAt
+        - updated
     FinancialScores:
       type: object
       properties:
