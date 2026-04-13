@@ -5458,7 +5458,6 @@ components:
         - expenseRatio
         - assetsUnderManagement
         - avgVolume
-        - inceptionDate
         - nav
         - navCurrency
         - holdingsCount
