@@ -1474,6 +1474,23 @@ paths:
           description: An error occurred
       tags:
         - etf
+  /forex-list:
+    get:
+      description: Access a comprehensive list of all currency pairs traded on the forex market with the FMP Forex Currency Pairs API. Analyze and track the performance of currency pairs to make informed investment decisions.
+      operationId: ForexCurrencyPairsGet
+      responses:
+        "200":
+          description: A list of forex currency pairs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ForexCurrencyPair"
+        "4xx":
+          description: An error occurred
+      tags:
+        - forex
   /profile-bulk:
     get:
       summary: The FMP Profile Bulk API allows users to retrieve comprehensive company profile data in bulk. Access essential information, such as company details, stock price, market cap, sector, industry, and more for multiple companies in a single request.
@@ -5580,6 +5597,30 @@ components:
         - marketCap
         - totalLiabilities
         - revenue
+    ForexCurrencyPair:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "EURUSD"
+        fromCurrency:
+          type: string
+          example: "EUR"
+        toCurrency:
+          type: string
+          example: "USD"
+        fromName:
+          type: string
+          example: "Euro"
+        toName:
+          type: string
+          example: "US Dollar"
+      required:
+        - symbol
+        - fromCurrency
+        - toCurrency
+        - fromName
+        - toName
     Index:
       type: object
       properties:
