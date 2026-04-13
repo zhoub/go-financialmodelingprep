@@ -5522,7 +5522,8 @@ components:
           type: string
           example: "037833100"
         sharesNumber:
-          type: integer
+          type: number
+          format: double
           example: 188106081
         weightPercentage:
           type: number
