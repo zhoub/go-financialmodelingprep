@@ -417,6 +417,8 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.ETFSectorWeightingsGet(ctx, &p)
+	case ForexCurrencyPairsGetOperationPath:
+		resp, err = c.ForexCurrencyPairsGet(ctx)
 	default:
 		return nil, fmt.Errorf("not supported operation path: %s", string(path))
 	}

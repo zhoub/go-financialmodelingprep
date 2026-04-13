@@ -373,8 +373,8 @@ func (r *clientSuite) TestHistoricalChart15Min() {
 	const symbol = "AAPL"
 	params := map[string]interface{}{
 		"symbol": symbol,
-		"from":   time.Now().AddDate(0, 0, -2).Format(time.DateOnly),
-		"to":     time.Now().AddDate(0, 0, -1).Format(time.DateOnly),
+		"from":   time.Now().AddDate(0, 1, -2).Format(time.DateOnly),
+		"to":     time.Now().AddDate(0, 1, -1).Format(time.DateOnly),
 	}
 	if resp, err := Get(context.Background(), r.c, HistoricalChart15MinGetOperationPath, params); err != nil {
 		r.NoError(err)

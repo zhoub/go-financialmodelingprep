@@ -1,13 +1,13 @@
 module github.com/zhoub/go-financialmodelingprep
 
-go 1.23.6
+go 1.24.0
 
 require (
 	github.com/getkin/kin-openapi v0.132.0
 	github.com/go-resty/resty/v2 v2.16.5
 	github.com/oapi-codegen/oapi-codegen/v2 v2.4.1
-	github.com/oapi-codegen/runtime v1.1.1
-	github.com/stretchr/testify v1.10.0
+	github.com/oapi-codegen/runtime v1.4.0
+	github.com/stretchr/testify v1.11.1
 )
 
 require (
@@ -23,6 +23,6 @@ require (
 	github.com/oasdiff/yaml3 v0.0.0-20250309153720-d2182401db90 // indirect
 	github.com/perimeterx/marshmallow v1.1.5 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	golang.org/x/net v0.41.0 // indirect
+	golang.org/x/net v0.48.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
