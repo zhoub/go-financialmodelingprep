@@ -5680,6 +5680,7 @@ components:
           type: string
         dateFirstAdded:
           type: string
+          format: date
         cik:
           type: string
         founded:
@@ -5691,7 +5692,6 @@ components:
         - sector
         - subSector
         - headQuarter
-        - dateFirstAdded
         - cik
 
   responses:
