@@ -1677,6 +1677,29 @@ paths:
           description: An error occurred
       tags:
         - indexes
+  /index-constituent-list:
+    get:
+      summary: Retrieve a comprehensive list of stock market indexes across global exchanges using the FMP Stock Market Indexes List API. This API provides essential information such as the symbol, name, exchange, and currency for each index, helping analysts and investors keep track of various market benchmarks.
+      operationId: IndexConstituentListGet
+      parameters:
+        - in: query
+          name: type
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: A list of index constituents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/IndexConstituent"
+        "4xx":
+          description: An error occurred
+      tags:
+        - indexes
   /batch-index-quotes:
     get:
       summary: The All Index Quotes API provides real-time quotes for a wide range of stock indexes, from major market benchmarks to niche indexes. This API allows users to track market performance across multiple indexes in a single request, giving them a broad view of the financial markets.
@@ -5642,6 +5665,34 @@ components:
         - name
         - exchange
         - currency
+    IndexConstituent:
+      type: object
+      properties:
+        symbol:
+          type: string
+        name:
+          type: string
+        sector:
+          type: string
+        subSector:
+          type: string
+        headQuarter:
+          type: string
+        dateFirstAdded:
+          type: string
+        cik:
+          type: string
+        founded:
+          type: string
+          format: date
+      required:
+        - symbol
+        - name
+        - sector
+        - subSector
+        - headQuarter
+        - dateFirstAdded
+        - cik
 
   responses:
     ErrorResponse:
