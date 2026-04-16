@@ -418,6 +418,24 @@ func (r *clientSuite) TestIndexList() {
 	}
 }
 
+func (r *clientSuite) TestIndexConstituentList() {
+	const index = "STOXX50"
+	params := map[string]interface{}{
+		"type": index,
+	}
+	if resp, err := Get(context.Background(), r.c, IndexConstituentListGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var icList []IndexConstituent
+		err = json.NewDecoder(resp.Body).Decode(&icList)
+		r.NoError(err)
+		r.NotEmpty(icList)
+	}
+}
+
 func (r *clientSuite) TestBatchIndexQuotesShort() {
 	params := map[string]interface{}{
 		"short": true,

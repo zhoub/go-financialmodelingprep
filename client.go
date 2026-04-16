@@ -391,6 +391,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 		resp, err = c.TechnicalIndicatorsRsiGet(ctx, &p)
 	case IndexListGetOperationPath:
 		resp, err = c.IndexListGet(ctx)
+	case IndexConstituentListGetOperationPath:
+		var p IndexConstituentListGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.IndexConstituentListGet(ctx, &p)
 	case BatchIndexQuotesGetOperationPath:
 		var p BatchIndexQuotesGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
