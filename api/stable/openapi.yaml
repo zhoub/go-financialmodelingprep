@@ -5680,12 +5680,10 @@ components:
           type: string
         dateFirstAdded:
           type: string
-          format: date
         cik:
           type: string
         founded:
           type: string
-          format: date
       required:
         - symbol
         - name
