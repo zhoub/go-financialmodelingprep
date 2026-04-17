@@ -5479,6 +5479,9 @@ components:
           type: string
           format: date
           example: "1993-01-22"
+        isActivelyTrading:
+          type: boolean
+          example: true
         nav:
           type: number
           format: double
@@ -5519,6 +5522,7 @@ components:
         - website
         - etfCompany
         - expenseRatio
+        - isActivelyTrading
         - assetsUnderManagement
         - avgVolume
         - nav
