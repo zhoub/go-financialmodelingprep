@@ -145,6 +145,8 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.CashFlowStatementTTMGet(ctx, &p)
+	case CommodityListGetOperationPath:
+		resp, err = c.CommodityListGet(ctx)
 	case DcfBulkGetOperationPath:
 		resp, err = c.DcfBulkGet(ctx)
 	case DelistedCompaniesOperationPath:
