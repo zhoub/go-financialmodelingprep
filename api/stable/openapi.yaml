@@ -1366,6 +1366,22 @@ paths:
           description: An error occurred
       tags:
         - technical-indicator
+  /commodity-list:
+    get:
+      summary: Access an extensive list of tracked commodities across various sectors, including energy, metals, and agricultural products. The FMP Commodities List API provides essential data on tradable commodities, giving investors the ability to explore market options.
+      operationId: CommodityListGet
+      responses:
+        "200":
+          description: A list of commodities
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/CommoditySymbol"
+        "4xx":
+          description: An error occurred
+      tags:
+        - commodity
   /etf-list:
     get:
       summary: Quickly find ticker symbols and company names for Exchange Traded Funds (ETFs) using the FMP ETF Symbol Search API. This tool simplifies identifying specific ETFs by their name or ticker.
@@ -5395,6 +5411,28 @@ components:
         - date
         - dcf
         - stockPrice
+    CommoditySymbol:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: "HEUSX"
+        name:
+          type: string
+          example: "Lean Hogs Futures"
+        exchange:
+          type: string
+        tradeMonth:
+          type: string
+          example: "Dec"
+        currency:
+          type: string
+          example: "USX"
+      required:
+        - symbol
+        - name
+        - tradeMonth
+        - currency
     ETFSymbol:
       type: object
       properties:
