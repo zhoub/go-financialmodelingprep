@@ -1376,6 +1376,7 @@ paths:
           content:
             application/json:
               schema:
+                type: array
                 items:
                   $ref: "#/components/schemas/CommoditySymbol"
         "4xx":
@@ -1392,6 +1393,7 @@ paths:
           content:
             application/json:
               schema:
+                type: array
                 items:
                   $ref: "#/components/schemas/ETFSymbol"
         "4xx":
