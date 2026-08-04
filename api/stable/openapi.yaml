@@ -2877,6 +2877,10 @@ components:
           type: number
           format: double
           example: 1632000000
+        capitalLeaseObligationsNonCurrent:
+          type: number
+          format: double
+          example: 0
         taxPayables:
           type: number
           format: double
@@ -3016,6 +3020,7 @@ components:
         - accruedExpenses
         - shortTermDebt
         - capitalLeaseObligationsCurrent
+        - capitalLeaseObligationsNonCurrent
         - taxPayables
         - deferredRevenue
         - otherCurrentLiabilities
@@ -3492,106 +3497,137 @@ components:
           type: string
           example: "2025-01-31 06:01:27"
         fiscalYear:
-          type: string
-          example: "2025"
+          type: integer
+          example: 2025
         period:
           type: string
           example: "Q1"
         cashAndCashEquivalents:
           type: number
+          format: double
           example: 30299000000
         shortTermInvestments:
           type: number
+          format: double
           example: 23476000000
         cashAndShortTermInvestments:
           type: number
+          format: double
           example: 53775000000
         netReceivables:
           type: number
+          format: double
           example: 59306000000
         accountsReceivables:
           type: number
+          format: double
           example: 29639000000
         otherReceivables:
           type: number
+          format: double
           example: 29667000000
         inventory:
           type: number
+          format: double
           example: 6911000000
         prepaids:
           type: number
+          format: double
           example: 0
         otherCurrentAssets:
           type: number
+          format: double
           example: 13248000000
         totalCurrentAssets:
           type: number
+          format: double
           example: 133240000000
         propertyPlantEquipmentNet:
           type: number
+          format: double
           example: 46069000000
         goodwill:
           type: number
+          format: double
           example: 0
         intangibleAssets:
           type: number
+          format: double
           example: 0
         goodwillAndIntangibleAssets:
           type: number
+          format: double
           example: 0
         longTermInvestments:
           type: number
+          format: double
           example: 87593000000
         taxAssets:
           type: number
+          format: double
           example: 0
         otherNonCurrentAssets:
           type: number
+          format: double
           example: 77183000000
         totalNonCurrentAssets:
           type: number
+          format: double
           example: 210845000000
         otherAssets:
           type: number
+          format: double
           example: 0
         totalAssets:
           type: number
+          format: double
           example: 344085000000
         totalPayables:
           type: number
+          format: double
           example: 61910000000
         accountPayables:
           type: number
+          format: double
           example: 61910000000
         otherPayables:
           type: number
+          format: double
           example: 0
         accruedExpenses:
           type: number
+          format: double
           example: 0
         shortTermDebt:
           type: number
           example: 12843000000
         capitalLeaseObligationsCurrent:
           type: number
+          format: double
           example: 0
         taxPayables:
           type: number
+          format: double
           example: 0
         deferredRevenue:
           type: number
+          format: double
           example: 8461000000
         otherCurrentLiabilities:
           type: number
+          format: double
           example: 61151000000
         totalCurrentLiabilities:
           type: number
+          format: double
           example: 144365000000
         longTermDebt:
           type: number
+          format: double
           example: 83956000000
         deferredRevenueNonCurrent:
           type: number
+          format: double
           example: 0
         deferredTaxLiabilitiesNonCurrent:
           type: number
@@ -3607,51 +3643,67 @@ components:
           example: 0
         capitalLeaseObligations:
           type: number
+          format: double
           example: 0
         totalLiabilities:
           type: number
+          format: double
           example: 277327000000
         treasuryStock:
           type: number
+          format: double
           example: 0
         preferredStock:
           type: number
+          format: double
           example: 0
         commonStock:
           type: number
+          format: double
           example: 84768000000
         retainedEarnings:
           type: number
+          format: double
           example: -11221000000
         additionalPaidInCapital:
           type: number
+          format: double
           example: 0
         accumulatedOtherComprehensiveIncomeLoss:
           type: number
+          format: double
           example: -6789000000
         otherTotalStockholdersEquity:
           type: number
+          format: double
           example: 0
         totalStockholdersEquity:
           type: number
+          format: double
           example: 66758000000
         totalEquity:
           type: number
+          format: double
           example: 66758000000
         minorityInterest:
           type: number
+          format: double
           example: 0
         totalLiabilitiesAndTotalEquity:
           type: number
+          format: double
           example: 344085000000
         totalInvestments:
           type: number
+          format: double
           example: 111069000000
         totalDebt:
           type: number
+          format: double
           example: 96799000000
         netDebt:
           type: number
+          format: double
           example: 66500000000
       required:
         - date
