@@ -4703,6 +4703,10 @@ components:
           type: number
           format: double
           example: 26.524727497716487
+        dividendPerShare:
+          type: number
+          format: double
+          example: 1.0316085225942402
       required:
         - symbol
         - date
@@ -4767,6 +4771,7 @@ components:
         - debtToMarketCap
         - effectiveTaxRate
         - enterpriseValueMultiple
+        - dividendPerShare
     RatiosTTM:
       type: object
       properties:
