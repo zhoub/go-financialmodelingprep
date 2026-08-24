@@ -5259,21 +5259,24 @@ components:
           type: string
           example: "AAPL"
         bidSize:
-          type: integer
+          type: number
+          format: double
           example: 23
         bidPrice:
           type: number
           format: double
           example: 309.5
         askSize:
-          type: integer
+          type: number
+          format: double
           example: 1
         askPrice:
           type: number
           format: double
           example: 310
         volume:
-          type: integer
+          type: number
+          format: double
           example: 46876815
         timestamp:
           type: integer
