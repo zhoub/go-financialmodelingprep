@@ -121,6 +121,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.BalanceSheetStatementTTMGet(ctx, &p)
+	case BatchAfterMarketQuoteGetOperationPath:
+		var p BatchAfterMarketQuoteGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.BatchAfterMarketQuoteGet(ctx, &p)
 	case BatchQuoteGetOperationPath:
 		var p BatchQuoteGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {

@@ -436,6 +436,23 @@ func (r *clientSuite) TestIndexConstituentList() {
 	}
 }
 
+func (r *clientSuite) TestBatchAfterMarketQuote() {
+	params := map[string]interface{}{
+		"symbols": "AAPL,7203.T",
+	}
+	if resp, err := Get(context.Background(), r.c, BatchAfterMarketQuoteGetOperationPath, params); err != nil {
+		r.NoError(err)
+	} else {
+		r.NoError(err)
+		r.Equal(http.StatusOK, resp.StatusCode)
+
+		var amqList []AfterMarketQuote
+		err = json.NewDecoder(resp.Body).Decode(&amqList)
+		r.NoError(err)
+		r.NotEmpty(amqList)
+	}
+}
+
 func (r *clientSuite) TestBatchIndexQuotesShort() {
 	params := map[string]interface{}{
 		"short": true,
