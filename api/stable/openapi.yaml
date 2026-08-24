@@ -5280,6 +5280,7 @@ components:
           example: 46876815
         timestamp:
           type: integer
+          format: int64
           example: 1787356802000
       required:
         - symbol
