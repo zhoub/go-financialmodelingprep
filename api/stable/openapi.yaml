@@ -2354,6 +2354,8 @@ components:
         symbol:
           type: string
           example: "AAPL"
+        source:
+          type: string
         date:
           type: string
           example: "2025-02-04 17:01:35"
@@ -2369,6 +2371,7 @@ components:
           example: 15037900000
       required:
         - symbol
+        - source
         - date
         - freeFloat
         - floatShares
