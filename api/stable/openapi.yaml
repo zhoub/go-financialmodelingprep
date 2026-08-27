@@ -5430,11 +5430,14 @@ components:
           type: number
           format: double
           example: 80
+        splitType:
+          type: string
       required:
         - symbol
         - date
         - numerator
         - denominator
+        - splitType
     EnterpriseValue:
       type: object
       properties:
