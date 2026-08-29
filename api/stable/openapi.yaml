@@ -4936,6 +4936,9 @@ components:
         revenuePerShareTTM:
           type: number
           format: double
+        dividendPerShareTTM:
+          type: number
+          format: double
         netIncomePerShareTTM:
           type: number
           format: double
