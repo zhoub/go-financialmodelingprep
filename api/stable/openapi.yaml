@@ -2451,6 +2451,9 @@ components:
         date:
           type: string
           example: "2024-03-01 03:35:00"
+        unit:
+          type: string
+          example: "%"
         country:
           type: string
           example: "JP"
