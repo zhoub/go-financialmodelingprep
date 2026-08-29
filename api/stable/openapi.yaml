@@ -5029,6 +5029,7 @@ components:
         - dividendYieldTTM
         - enterpriseValueTTM
         - revenuePerShareTTM
+        - dividendPerShareTTM
         - netIncomePerShareTTM
         - interestDebtPerShareTTM
         - cashPerShareTTM
