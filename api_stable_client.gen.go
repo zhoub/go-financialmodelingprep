@@ -2673,8 +2673,8 @@ type EarningsGetParams struct {
 	Limit  *int   `form:"limit,omitempty" json:"limit,omitempty"`
 }
 
-// GetEarningsCalendarParams defines parameters for GetEarningsCalendar.
-type GetEarningsCalendarParams struct {
+// EarningsCalendarGetParams defines parameters for EarningsCalendarGet.
+type EarningsCalendarGetParams struct {
 	From *openapi_types.Date `form:"from,omitempty" json:"from,omitempty"`
 	To   *openapi_types.Date `form:"to,omitempty" json:"to,omitempty"`
 }
@@ -2898,14 +2898,14 @@ type SharesFloatGetParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
 }
 
-// GetSplitsParams defines parameters for GetSplits.
-type GetSplitsParams struct {
+// SplitsGetParams defines parameters for SplitsGet.
+type SplitsGetParams struct {
 	Symbol string `form:"symbol" json:"symbol"`
 	Limit  *int   `form:"limit,omitempty" json:"limit,omitempty"`
 }
 
-// GetSplitsCalendarParams defines parameters for GetSplitsCalendar.
-type GetSplitsCalendarParams struct {
+// SplitsCalendarGetParams defines parameters for SplitsCalendarGet.
+type SplitsCalendarGetParams struct {
 	From *openapi_types.Date `form:"from,omitempty" json:"from,omitempty"`
 	To   *openapi_types.Date `form:"to,omitempty" json:"to,omitempty"`
 }
@@ -2984,7 +2984,7 @@ const (
 	EarningsGetOperationPath OperationPath = "/earnings"
 
 	// /earnings-calendar
-	GetEarningsCalendarOperationPath OperationPath = "/earnings-calendar"
+	EarningsCalendarGetOperationPath OperationPath = "/earnings-calendar"
 
 	// /economic-calendar
 	EconomicCalendarGetOperationPath OperationPath = "/economic-calendar"
@@ -3113,10 +3113,10 @@ const (
 	SharesFloatGetOperationPath OperationPath = "/shares-float"
 
 	// /splits
-	GetSplitsOperationPath OperationPath = "/splits"
+	SplitsGetOperationPath OperationPath = "/splits"
 
 	// /splits-calendar
-	GetSplitsCalendarOperationPath OperationPath = "/splits-calendar"
+	SplitsCalendarGetOperationPath OperationPath = "/splits-calendar"
 
 	// /stock-list
 	StockListGetOperationPath OperationPath = "/stock-list"
@@ -3292,10 +3292,10 @@ type ClientInterface interface {
 	// Corresponds with GET /earnings (the `EarningsGet` operationId).
 	EarningsGet(ctx context.Context, params *EarningsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetEarningsCalendar Stay informed on upcoming and past earnings announcements with the FMP Earnings Calendar API. Access key data, including announcement dates, estimated earnings per share (EPS), and actual EPS for publicly traded companies.
+	// EarningsCalendarGet Stay informed on upcoming and past earnings announcements with the FMP Earnings Calendar API. Access key data, including announcement dates, estimated earnings per share (EPS), and actual EPS for publicly traded companies.
 	//
-	// Corresponds with GET /earnings-calendar (the `GetEarningsCalendar` operationId).
-	GetEarningsCalendar(ctx context.Context, params *GetEarningsCalendarParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// Corresponds with GET /earnings-calendar (the `EarningsCalendarGet` operationId).
+	EarningsCalendarGet(ctx context.Context, params *EarningsCalendarGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EconomicCalendarGet Stay informed with the FMP Economic Data Releases Calendar API. Access a comprehensive calendar of upcoming economic data releases to prepare for market impacts and make informed investment decisions.
 	//
@@ -3507,15 +3507,15 @@ type ClientInterface interface {
 	// Corresponds with GET /shares-float (the `SharesFloatGet` operationId).
 	SharesFloatGet(ctx context.Context, params *SharesFloatGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetSplits Access detailed information on stock splits for a specific company using the FMP Stock Split Details API. This API provides essential data, including the split date and the split ratio, helping users understand changes in a company's share structure after a stock split.
+	// SplitsGet Access detailed information on stock splits for a specific company using the FMP Stock Split Details API. This API provides essential data, including the split date and the split ratio, helping users understand changes in a company's share structure after a stock split.
 	//
-	// Corresponds with GET /splits (the `GetSplits` operationId).
-	GetSplits(ctx context.Context, params *GetSplitsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// Corresponds with GET /splits (the `SplitsGet` operationId).
+	SplitsGet(ctx context.Context, params *SplitsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetSplitsCalendar Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
+	// SplitsCalendarGet Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
 	//
-	// Corresponds with GET /splits-calendar (the `GetSplitsCalendar` operationId).
-	GetSplitsCalendar(ctx context.Context, params *GetSplitsCalendarParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// Corresponds with GET /splits-calendar (the `SplitsCalendarGet` operationId).
+	SplitsCalendarGet(ctx context.Context, params *SplitsCalendarGetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// StockListGet Easily retrieve a comprehensive list of financial symbols with the FMP Company Symbols List API. Access a broad range of stock symbols and other tradable financial instruments from various global exchanges, helping you explore the full range of available securities.
 	//
@@ -3803,11 +3803,11 @@ func (c *Client) EarningsGet(ctx context.Context, params *EarningsGetParams, req
 	return c.Client.Do(req)
 }
 
-// GetEarningsCalendar Stay informed on upcoming and past earnings announcements with the FMP Earnings Calendar API. Access key data, including announcement dates, estimated earnings per share (EPS), and actual EPS for publicly traded companies.
+// EarningsCalendarGet Stay informed on upcoming and past earnings announcements with the FMP Earnings Calendar API. Access key data, including announcement dates, estimated earnings per share (EPS), and actual EPS for publicly traded companies.
 //
-// Corresponds with GET /earnings-calendar (the `GetEarningsCalendar` operationId).
-func (c *Client) GetEarningsCalendar(ctx context.Context, params *GetEarningsCalendarParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetEarningsCalendarRequest(c.Server, params)
+// Corresponds with GET /earnings-calendar (the `EarningsCalendarGet` operationId).
+func (c *Client) EarningsCalendarGet(ctx context.Context, params *EarningsCalendarGetParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEarningsCalendarGetRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4448,11 +4448,11 @@ func (c *Client) SharesFloatGet(ctx context.Context, params *SharesFloatGetParam
 	return c.Client.Do(req)
 }
 
-// GetSplits Access detailed information on stock splits for a specific company using the FMP Stock Split Details API. This API provides essential data, including the split date and the split ratio, helping users understand changes in a company's share structure after a stock split.
+// SplitsGet Access detailed information on stock splits for a specific company using the FMP Stock Split Details API. This API provides essential data, including the split date and the split ratio, helping users understand changes in a company's share structure after a stock split.
 //
-// Corresponds with GET /splits (the `GetSplits` operationId).
-func (c *Client) GetSplits(ctx context.Context, params *GetSplitsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSplitsRequest(c.Server, params)
+// Corresponds with GET /splits (the `SplitsGet` operationId).
+func (c *Client) SplitsGet(ctx context.Context, params *SplitsGetParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSplitsGetRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4463,11 +4463,11 @@ func (c *Client) GetSplits(ctx context.Context, params *GetSplitsParams, reqEdit
 	return c.Client.Do(req)
 }
 
-// GetSplitsCalendar Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
+// SplitsCalendarGet Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
 //
-// Corresponds with GET /splits-calendar (the `GetSplitsCalendar` operationId).
-func (c *Client) GetSplitsCalendar(ctx context.Context, params *GetSplitsCalendarParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSplitsCalendarRequest(c.Server, params)
+// Corresponds with GET /splits-calendar (the `SplitsCalendarGet` operationId).
+func (c *Client) SplitsCalendarGet(ctx context.Context, params *SplitsCalendarGetParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSplitsCalendarGetRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -5534,8 +5534,8 @@ func NewEarningsGetRequest(server string, params *EarningsGetParams) (*http.Requ
 	return req, nil
 }
 
-// NewGetEarningsCalendarRequest constructs an http.Request for the GetEarningsCalendar method
-func NewGetEarningsCalendarRequest(server string, params *GetEarningsCalendarParams) (*http.Request, error) {
+// NewEarningsCalendarGetRequest constructs an http.Request for the EarningsCalendarGet method
+func NewEarningsCalendarGetRequest(server string, params *EarningsCalendarGetParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -8034,8 +8034,8 @@ func NewSharesFloatGetRequest(server string, params *SharesFloatGetParams) (*htt
 	return req, nil
 }
 
-// NewGetSplitsRequest constructs an http.Request for the GetSplits method
-func NewGetSplitsRequest(server string, params *GetSplitsParams) (*http.Request, error) {
+// NewSplitsGetRequest constructs an http.Request for the SplitsGet method
+func NewSplitsGetRequest(server string, params *SplitsGetParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -8096,8 +8096,8 @@ func NewGetSplitsRequest(server string, params *GetSplitsParams) (*http.Request,
 	return req, nil
 }
 
-// NewGetSplitsCalendarRequest constructs an http.Request for the GetSplitsCalendar method
-func NewGetSplitsCalendarRequest(server string, params *GetSplitsCalendarParams) (*http.Request, error) {
+// NewSplitsCalendarGetRequest constructs an http.Request for the SplitsCalendarGet method
+func NewSplitsCalendarGetRequest(server string, params *SplitsCalendarGetParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -8515,12 +8515,12 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /earnings (the `EarningsGet` operationId).
 	EarningsGetWithResponse(ctx context.Context, params *EarningsGetParams, reqEditors ...RequestEditorFn) (*EarningsGetClientResponse, error)
 
-	// GetEarningsCalendarWithResponse Stay informed on upcoming and past earnings announcements with the FMP Earnings Calendar API. Access key data, including announcement dates, estimated earnings per share (EPS), and actual EPS for publicly traded companies.
+	// EarningsCalendarGetWithResponse Stay informed on upcoming and past earnings announcements with the FMP Earnings Calendar API. Access key data, including announcement dates, estimated earnings per share (EPS), and actual EPS for publicly traded companies.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
-	// Corresponds with GET /earnings-calendar (the `GetEarningsCalendar` operationId).
-	GetEarningsCalendarWithResponse(ctx context.Context, params *GetEarningsCalendarParams, reqEditors ...RequestEditorFn) (*GetEarningsCalendarClientResponse, error)
+	// Corresponds with GET /earnings-calendar (the `EarningsCalendarGet` operationId).
+	EarningsCalendarGetWithResponse(ctx context.Context, params *EarningsCalendarGetParams, reqEditors ...RequestEditorFn) (*EarningsCalendarGetClientResponse, error)
 
 	// EconomicCalendarGetWithResponse Stay informed with the FMP Economic Data Releases Calendar API. Access a comprehensive calendar of upcoming economic data releases to prepare for market impacts and make informed investment decisions.
 	//
@@ -8816,19 +8816,19 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /shares-float (the `SharesFloatGet` operationId).
 	SharesFloatGetWithResponse(ctx context.Context, params *SharesFloatGetParams, reqEditors ...RequestEditorFn) (*SharesFloatGetClientResponse, error)
 
-	// GetSplitsWithResponse Access detailed information on stock splits for a specific company using the FMP Stock Split Details API. This API provides essential data, including the split date and the split ratio, helping users understand changes in a company's share structure after a stock split.
+	// SplitsGetWithResponse Access detailed information on stock splits for a specific company using the FMP Stock Split Details API. This API provides essential data, including the split date and the split ratio, helping users understand changes in a company's share structure after a stock split.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
-	// Corresponds with GET /splits (the `GetSplits` operationId).
-	GetSplitsWithResponse(ctx context.Context, params *GetSplitsParams, reqEditors ...RequestEditorFn) (*GetSplitsClientResponse, error)
+	// Corresponds with GET /splits (the `SplitsGet` operationId).
+	SplitsGetWithResponse(ctx context.Context, params *SplitsGetParams, reqEditors ...RequestEditorFn) (*SplitsGetClientResponse, error)
 
-	// GetSplitsCalendarWithResponse Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
+	// SplitsCalendarGetWithResponse Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
-	// Corresponds with GET /splits-calendar (the `GetSplitsCalendar` operationId).
-	GetSplitsCalendarWithResponse(ctx context.Context, params *GetSplitsCalendarParams, reqEditors ...RequestEditorFn) (*GetSplitsCalendarClientResponse, error)
+	// Corresponds with GET /splits-calendar (the `SplitsCalendarGet` operationId).
+	SplitsCalendarGetWithResponse(ctx context.Context, params *SplitsCalendarGetParams, reqEditors ...RequestEditorFn) (*SplitsCalendarGetClientResponse, error)
 
 	// StockListGetWithResponse Easily retrieve a comprehensive list of financial symbols with the FMP Company Symbols List API. Access a broad range of stock symbols and other tradable financial instruments from various global exchanges, helping you explore the full range of available securities.
 	//
@@ -9576,7 +9576,7 @@ func (r EarningsGetClientResponse) ContentType() string {
 	return ""
 }
 
-type GetEarningsCalendarClientResponse struct {
+type EarningsCalendarGetClientResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
@@ -9584,17 +9584,17 @@ type GetEarningsCalendarClientResponse struct {
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetEarningsCalendarClientResponse) GetJSON200() *[]EarningEvent {
+func (r EarningsCalendarGetClientResponse) GetJSON200() *[]EarningEvent {
 	return r.JSON200
 }
 
 // GetBody returns the raw response body bytes
-func (r GetEarningsCalendarClientResponse) GetBody() []byte {
+func (r EarningsCalendarGetClientResponse) GetBody() []byte {
 	return r.Body
 }
 
 // Status returns HTTPResponse.Status
-func (r GetEarningsCalendarClientResponse) Status() string {
+func (r EarningsCalendarGetClientResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -9602,7 +9602,7 @@ func (r GetEarningsCalendarClientResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetEarningsCalendarClientResponse) StatusCode() int {
+func (r EarningsCalendarGetClientResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -9610,7 +9610,7 @@ func (r GetEarningsCalendarClientResponse) StatusCode() int {
 }
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetEarningsCalendarClientResponse) ContentType() string {
+func (r EarningsCalendarGetClientResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -11339,7 +11339,7 @@ func (r SharesFloatGetClientResponse) ContentType() string {
 	return ""
 }
 
-type GetSplitsClientResponse struct {
+type SplitsGetClientResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
@@ -11347,17 +11347,17 @@ type GetSplitsClientResponse struct {
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetSplitsClientResponse) GetJSON200() *[]SplitEvent {
+func (r SplitsGetClientResponse) GetJSON200() *[]SplitEvent {
 	return r.JSON200
 }
 
 // GetBody returns the raw response body bytes
-func (r GetSplitsClientResponse) GetBody() []byte {
+func (r SplitsGetClientResponse) GetBody() []byte {
 	return r.Body
 }
 
 // Status returns HTTPResponse.Status
-func (r GetSplitsClientResponse) Status() string {
+func (r SplitsGetClientResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -11365,7 +11365,7 @@ func (r GetSplitsClientResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetSplitsClientResponse) StatusCode() int {
+func (r SplitsGetClientResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -11373,14 +11373,14 @@ func (r GetSplitsClientResponse) StatusCode() int {
 }
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetSplitsClientResponse) ContentType() string {
+func (r SplitsGetClientResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
 	return ""
 }
 
-type GetSplitsCalendarClientResponse struct {
+type SplitsCalendarGetClientResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
@@ -11388,17 +11388,17 @@ type GetSplitsCalendarClientResponse struct {
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetSplitsCalendarClientResponse) GetJSON200() *[]SplitEvent {
+func (r SplitsCalendarGetClientResponse) GetJSON200() *[]SplitEvent {
 	return r.JSON200
 }
 
 // GetBody returns the raw response body bytes
-func (r GetSplitsCalendarClientResponse) GetBody() []byte {
+func (r SplitsCalendarGetClientResponse) GetBody() []byte {
 	return r.Body
 }
 
 // Status returns HTTPResponse.Status
-func (r GetSplitsCalendarClientResponse) Status() string {
+func (r SplitsCalendarGetClientResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -11406,7 +11406,7 @@ func (r GetSplitsCalendarClientResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetSplitsCalendarClientResponse) StatusCode() int {
+func (r SplitsCalendarGetClientResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -11414,7 +11414,7 @@ func (r GetSplitsCalendarClientResponse) StatusCode() int {
 }
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GetSplitsCalendarClientResponse) ContentType() string {
+func (r SplitsCalendarGetClientResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -11778,17 +11778,17 @@ func (c *ClientWithResponses) EarningsGetWithResponse(ctx context.Context, param
 	return ParseEarningsGetClientResponse(rsp)
 }
 
-// GetEarningsCalendarWithResponse Stay informed on upcoming and past earnings announcements with the FMP Earnings Calendar API. Access key data, including announcement dates, estimated earnings per share (EPS), and actual EPS for publicly traded companies.
+// EarningsCalendarGetWithResponse Stay informed on upcoming and past earnings announcements with the FMP Earnings Calendar API. Access key data, including announcement dates, estimated earnings per share (EPS), and actual EPS for publicly traded companies.
 //
 // Returns a wrapper object for the known response body format(s).
 //
-// Corresponds with GET /earnings-calendar (the `GetEarningsCalendar` operationId).
-func (c *ClientWithResponses) GetEarningsCalendarWithResponse(ctx context.Context, params *GetEarningsCalendarParams, reqEditors ...RequestEditorFn) (*GetEarningsCalendarClientResponse, error) {
-	rsp, err := c.GetEarningsCalendar(ctx, params, reqEditors...)
+// Corresponds with GET /earnings-calendar (the `EarningsCalendarGet` operationId).
+func (c *ClientWithResponses) EarningsCalendarGetWithResponse(ctx context.Context, params *EarningsCalendarGetParams, reqEditors ...RequestEditorFn) (*EarningsCalendarGetClientResponse, error) {
+	rsp, err := c.EarningsCalendarGet(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetEarningsCalendarClientResponse(rsp)
+	return ParseEarningsCalendarGetClientResponse(rsp)
 }
 
 // EconomicCalendarGetWithResponse Stay informed with the FMP Economic Data Releases Calendar API. Access a comprehensive calendar of upcoming economic data releases to prepare for market impacts and make informed investment decisions.
@@ -12337,30 +12337,30 @@ func (c *ClientWithResponses) SharesFloatGetWithResponse(ctx context.Context, pa
 	return ParseSharesFloatGetClientResponse(rsp)
 }
 
-// GetSplitsWithResponse Access detailed information on stock splits for a specific company using the FMP Stock Split Details API. This API provides essential data, including the split date and the split ratio, helping users understand changes in a company's share structure after a stock split.
+// SplitsGetWithResponse Access detailed information on stock splits for a specific company using the FMP Stock Split Details API. This API provides essential data, including the split date and the split ratio, helping users understand changes in a company's share structure after a stock split.
 //
 // Returns a wrapper object for the known response body format(s).
 //
-// Corresponds with GET /splits (the `GetSplits` operationId).
-func (c *ClientWithResponses) GetSplitsWithResponse(ctx context.Context, params *GetSplitsParams, reqEditors ...RequestEditorFn) (*GetSplitsClientResponse, error) {
-	rsp, err := c.GetSplits(ctx, params, reqEditors...)
+// Corresponds with GET /splits (the `SplitsGet` operationId).
+func (c *ClientWithResponses) SplitsGetWithResponse(ctx context.Context, params *SplitsGetParams, reqEditors ...RequestEditorFn) (*SplitsGetClientResponse, error) {
+	rsp, err := c.SplitsGet(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetSplitsClientResponse(rsp)
+	return ParseSplitsGetClientResponse(rsp)
 }
 
-// GetSplitsCalendarWithResponse Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
+// SplitsCalendarGetWithResponse Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
 //
 // Returns a wrapper object for the known response body format(s).
 //
-// Corresponds with GET /splits-calendar (the `GetSplitsCalendar` operationId).
-func (c *ClientWithResponses) GetSplitsCalendarWithResponse(ctx context.Context, params *GetSplitsCalendarParams, reqEditors ...RequestEditorFn) (*GetSplitsCalendarClientResponse, error) {
-	rsp, err := c.GetSplitsCalendar(ctx, params, reqEditors...)
+// Corresponds with GET /splits-calendar (the `SplitsCalendarGet` operationId).
+func (c *ClientWithResponses) SplitsCalendarGetWithResponse(ctx context.Context, params *SplitsCalendarGetParams, reqEditors ...RequestEditorFn) (*SplitsCalendarGetClientResponse, error) {
+	rsp, err := c.SplitsCalendarGet(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetSplitsCalendarClientResponse(rsp)
+	return ParseSplitsCalendarGetClientResponse(rsp)
 }
 
 // StockListGetWithResponse Easily retrieve a comprehensive list of financial symbols with the FMP Company Symbols List API. Access a broad range of stock symbols and other tradable financial instruments from various global exchanges, helping you explore the full range of available securities.
@@ -12850,15 +12850,15 @@ func ParseEarningsGetClientResponse(rsp *http.Response) (*EarningsGetClientRespo
 	return response, nil
 }
 
-// ParseGetEarningsCalendarClientResponse parses an HTTP response from a GetEarningsCalendarWithResponse call
-func ParseGetEarningsCalendarClientResponse(rsp *http.Response) (*GetEarningsCalendarClientResponse, error) {
+// ParseEarningsCalendarGetClientResponse parses an HTTP response from a EarningsCalendarGetWithResponse call
+func ParseEarningsCalendarGetClientResponse(rsp *http.Response) (*EarningsCalendarGetClientResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetEarningsCalendarClientResponse{
+	response := &EarningsCalendarGetClientResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -13965,15 +13965,15 @@ func ParseSharesFloatGetClientResponse(rsp *http.Response) (*SharesFloatGetClien
 	return response, nil
 }
 
-// ParseGetSplitsClientResponse parses an HTTP response from a GetSplitsWithResponse call
-func ParseGetSplitsClientResponse(rsp *http.Response) (*GetSplitsClientResponse, error) {
+// ParseSplitsGetClientResponse parses an HTTP response from a SplitsGetWithResponse call
+func ParseSplitsGetClientResponse(rsp *http.Response) (*SplitsGetClientResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetSplitsClientResponse{
+	response := &SplitsGetClientResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -13991,15 +13991,15 @@ func ParseGetSplitsClientResponse(rsp *http.Response) (*GetSplitsClientResponse,
 	return response, nil
 }
 
-// ParseGetSplitsCalendarClientResponse parses an HTTP response from a GetSplitsCalendarWithResponse call
-func ParseGetSplitsCalendarClientResponse(rsp *http.Response) (*GetSplitsCalendarClientResponse, error) {
+// ParseSplitsCalendarGetClientResponse parses an HTTP response from a SplitsCalendarGetWithResponse call
+func ParseSplitsCalendarGetClientResponse(rsp *http.Response) (*SplitsCalendarGetClientResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetSplitsCalendarClientResponse{
+	response := &SplitsCalendarGetClientResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -14334,85 +14334,85 @@ var swaggerSpec = []string{
 	"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",
-	"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",
+	"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",
 }
 
 // decodeSpec returns the embedded OpenAPI spec as raw JSON bytes,
