@@ -347,12 +347,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.EarningsGet(ctx, &p)
-	case GetEarningsCalendarOperationPath:
-		var p GetEarningsCalendarParams
+	case EarningsCalendarGetOperationPath:
+		var p EarningsCalendarGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
 			return nil, err
 		}
-		resp, err = c.GetEarningsCalendar(ctx, &p)
+		resp, err = c.EarningsCalendarGet(ctx, &p)
 	case EnterpriseValueGetOperationPath:
 		var p EnterpriseValueGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
@@ -371,18 +371,18 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.RatiosTTMGet(ctx, &p)
-	case GetSplitsOperationPath:
-		var p GetSplitsParams
+	case SplitsGetOperationPath:
+		var p SplitsGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
 			return nil, err
 		}
-		resp, err = c.GetSplits(ctx, &p)
-	case GetSplitsCalendarOperationPath:
-		var p GetSplitsCalendarParams
+		resp, err = c.SplitsGet(ctx, &p)
+	case SplitsCalendarGetOperationPath:
+		var p SplitsCalendarGetParams
 		if err := json.Unmarshal(paramsJSON, &p); err != nil {
 			return nil, err
 		}
-		resp, err = c.GetSplitsCalendar(ctx, &p)
+		resp, err = c.SplitsCalendarGet(ctx, &p)
 	case StockListGetOperationPath:
 		resp, err = c.StockListGet(ctx)
 	case NewsStockLatestGetOperationPath:

@@ -285,6 +285,7 @@ paths:
   /earnings-calendar:
     get:
       summary: Stay informed on upcoming and past earnings announcements with the FMP Earnings Calendar API. Access key data, including announcement dates, estimated earnings per share (EPS), and actual EPS for publicly traded companies.
+      operationId: EarningsCalendarGet
       parameters:
         - in: query
           name: from
@@ -312,6 +313,7 @@ paths:
   /splits:
     get:
       summary: Access detailed information on stock splits for a specific company using the FMP Stock Split Details API. This API provides essential data, including the split date and the split ratio, helping users understand changes in a company's share structure after a stock split.
+      operationId: SplitsGet
       parameters:
         - in: query
           name: symbol
@@ -338,6 +340,7 @@ paths:
   /splits-calendar:
     get:
       summary: Stay informed about upcoming stock splits with the FMP Stock Splits Calendar API. This API provides essential data on upcoming stock splits across multiple companies, including the split date and ratio, helping you track changes in share structures before they occur.
+      operationId: SplitsCalendarGet
       parameters:
         - in: query
           name: from
