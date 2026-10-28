@@ -437,6 +437,8 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 		resp, err = c.BiggestGainersGet(ctx)
 	case BiggestLosersGetOperationPath:
 		resp, err = c.BiggestLosersGet(ctx)
+	case MostActivesGetOperationPath:
+		resp, err = c.MostActivesGet(ctx)
 	default:
 		return nil, fmt.Errorf("not supported operation path: %s", string(path))
 	}

@@ -592,6 +592,7 @@ paths:
           description: An error occurred
       tags:
         - company
+
   /biggest-gainers:
     get:
       description: Track the stocks with the largest price increases using the Top Stock Gainers API. Identify the companies that are leading the market with significant price surges, offering potential growth opportunities.
@@ -604,7 +605,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/StockGainLose"
+                  $ref: "#/components/schemas/StockActivity"
         "4xx":
           description: An error occurred
       tags:
@@ -621,11 +622,29 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/StockGainLose"
+                  $ref: "#/components/schemas/StockActivity"
         "4xx":
           description: An error occurred
       tags:
         - market-performance
+  /most-actives:
+    get:
+      description: View the most actively traded stocks using the Top Traded Stocks API. Identify the companies experiencing the highest trading volumes in the market and track where the most trading activity is happening.
+      operationId: MostActivesGet
+      responses:
+        "200":
+          description: A list of most actives
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StockActivity"
+        "4xx":
+          description: An error occurred
+      tags:
+        - market-performance
+
   /treasury-rates:
     get:
       summary: Access real-time and historical Treasury rates for all maturities with the FMP Treasury Rates API. Track key benchmarks for interest rates across the economy.
@@ -5903,7 +5922,7 @@ components:
         - subSector
         - headQuarter
         - cik
-    StockGainLose:
+    StockActivity:
       type: object
       properties:
         symbol:
