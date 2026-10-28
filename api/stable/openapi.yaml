@@ -592,6 +592,40 @@ paths:
           description: An error occurred
       tags:
         - company
+  /biggest-gainers:
+    get:
+      description: Track the stocks with the largest price increases using the Top Stock Gainers API. Identify the companies that are leading the market with significant price surges, offering potential growth opportunities.
+      operationId: BiggestGainersGet
+      responses:
+        "200":
+          description: A list of biggest gainers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StockGainLose"
+        "4xx":
+          description: An error occurred
+      tags:
+        - market-performance
+  /biggest-losers:
+    get:
+      description: Access data on the stocks with the largest price drops using the Biggest Stock Losers API. Identify companies experiencing significant declines and track the stocks that are falling the fastest in the market.
+      operationId: BiggestLosersGet
+      responses:
+        "200":
+          description: A list of biggest losers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StockGainLose"
+        "4xx":
+          description: An error occurred
+      tags:
+        - market-performance
   /treasury-rates:
     get:
       summary: Access real-time and historical Treasury rates for all maturities with the FMP Treasury Rates API. Track key benchmarks for interest rates across the economy.
@@ -5869,6 +5903,31 @@ components:
         - subSector
         - headQuarter
         - cik
+    StockGainLose:
+      type: object
+      properties:
+        symbol:
+          type: string
+        price:
+          type: number
+          format: double
+        name:
+          type: string
+        change:
+          type: number
+          format: double
+        changesPercentage:
+          type: number
+          format: double
+        exchange:
+          type: string
+      required:
+        - symbol
+        - price
+        - name
+        - change
+        - changesPercentage
+        - exchange
 
   responses:
     ErrorResponse:

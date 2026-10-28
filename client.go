@@ -433,6 +433,10 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 		resp, err = c.ETFSectorWeightingsGet(ctx, &p)
 	case ForexCurrencyPairsGetOperationPath:
 		resp, err = c.ForexCurrencyPairsGet(ctx)
+	case BiggestGainersGetOperationPath:
+		resp, err = c.BiggestGainersGet(ctx)
+	case BiggestLosersGetOperationPath:
+		resp, err = c.BiggestLosersGet(ctx)
 	default:
 		return nil, fmt.Errorf("not supported operation path: %s", string(path))
 	}
