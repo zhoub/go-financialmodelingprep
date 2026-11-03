@@ -5663,7 +5663,6 @@ components:
         - symbol
         - name
         - exchange
-        - icoDate
         - circulatingSupply
         - totalSupply
     ETFSymbol:
