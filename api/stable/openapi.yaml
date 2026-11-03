@@ -1838,7 +1838,7 @@ paths:
         "5xx":
           description: An error occurred
       tags:
-        - cryptocurrency
+        - crypto
 components:
   securitySchemes:
     ApiKeyAuth:
