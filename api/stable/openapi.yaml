@@ -1820,6 +1820,25 @@ paths:
           description: An error occurred
       tags:
         - indexes
+  /cryptocurrency-list:
+    get:
+      summary: Access a comprehensive list of all cryptocurrencies traded on exchanges worldwide with the FMP Cryptocurrencies Overview API. Get detailed information on each cryptocurrency to inform your investment strategies.
+      operationId: CryptocurrencyListGet
+      responses:
+        "200":
+          description: A list of cryptocurrencies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CryptoSymbol"
+        "4xx":
+          description: An error occurred
+        "5xx":
+          description: An error occurred
+      tags:
+        - cryptocurrency
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -5622,6 +5641,31 @@ components:
         - name
         - tradeMonth
         - currency
+    CryptoSymbol:
+      type: object
+      properties:
+        symbol:
+          type: string
+        name:
+          type: string
+        exchange:
+          type: string
+        icoDate:
+          type: string
+          format: date
+        circulatingSupply:
+          type: number
+          format: double
+        totalSupply:
+          type: number
+          format: double
+      required:
+        - symbol
+        - name
+        - exchange
+        - icoDate
+        - circulatingSupply
+        - totalSupply
     ETFSymbol:
       type: object
       properties:
