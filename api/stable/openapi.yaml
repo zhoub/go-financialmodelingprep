@@ -1839,6 +1839,31 @@ paths:
           description: An error occurred
       tags:
         - crypto
+  /all-exchange-market-hours:
+    get:
+      summary: Get all exchange market hours
+      operationId: AllExchangeMarketHoursGet
+      parameters:
+        - name: timestamp
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: A list of exchange market hours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ExchangeHour"
+        "4xx":
+          description: An error occurred
+        "5xx":
+          description: An error occurred
+      tags:
+        - market-hours
+
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -5990,6 +6015,28 @@ components:
         - change
         - changesPercentage
         - exchange
+    ExchangeHour:
+      type: object
+      properties:
+        exchange:
+          type: string
+        name:
+          type: string
+        openingTime:
+          type: string
+        closingTime:
+          type: string
+        timezone:
+          type: string
+        isMarketOpen:
+          type: boolean
+      required:
+        - exchange
+        - name
+        - openingTime
+        - closingTime
+        - timezone
+        - isMarketOpen
 
   responses:
     ErrorResponse:
