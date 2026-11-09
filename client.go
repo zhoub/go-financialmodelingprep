@@ -447,6 +447,12 @@ func Get(ctx context.Context, c *ClientWithResponses, path OperationPath, params
 			return nil, err
 		}
 		resp, err = c.AllExchangeMarketHoursGet(ctx, &p)
+	case ExchangeMarketHoursGetOperationPath:
+		var p ExchangeMarketHoursGetParams
+		if err := json.Unmarshal(paramsJSON, &p); err != nil {
+			return nil, err
+		}
+		resp, err = c.ExchangeMarketHoursGet(ctx, &p)
 	default:
 		return nil, fmt.Errorf("not supported operation path: %s", string(path))
 	}

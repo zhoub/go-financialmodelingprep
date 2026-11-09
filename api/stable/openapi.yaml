@@ -1863,6 +1863,36 @@ paths:
           description: An error occurred
       tags:
         - market-hours
+  /exchange-market-hours:
+    get:
+      summary: Retrieve trading hours for specific stock exchanges using the Global Exchange Market Hours API. Find out the opening and closing times of global exchanges to plan your trading strategies effectively.
+      operationId: ExchangeMarketHoursGet
+      parameters:
+        - name: exchange
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "NASDAQ"
+        - name: timestamp
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: A list of exchange market hours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ExchangeHour"
+        "4xx":
+          description: An error occurred
+        "5xx":
+          description: An error occurred
+      tags:
+        - market-hours
 
 components:
   securitySchemes:
