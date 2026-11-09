@@ -1839,6 +1839,99 @@ paths:
           description: An error occurred
       tags:
         - crypto
+  /all-exchange-market-hours:
+    get:
+      summary: Get all exchange market hours
+      operationId: AllExchangeMarketHoursGet
+      parameters:
+        - name: timestamp
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: A list of exchange market hours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ExchangeHour"
+        "4xx":
+          description: An error occurred
+        "5xx":
+          description: An error occurred
+      tags:
+        - market-hours
+  /exchange-market-hours:
+    get:
+      summary: Retrieve trading hours for specific stock exchanges using the Global Exchange Market Hours API. Find out the opening and closing times of global exchanges to plan your trading strategies effectively.
+      operationId: ExchangeMarketHoursGet
+      parameters:
+        - name: exchange
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "NASDAQ"
+        - name: timestamp
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: A list of exchange market hours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ExchangeHour"
+        "4xx":
+          description: An error occurred
+        "5xx":
+          description: An error occurred
+      tags:
+        - market-hours
+  /holidays-by-exchange:
+    get:
+      summary: Retrieve a list of market holidays and non-trading days for a specific stock exchange using the Holidays By Exchange API. Plan your trading schedule by knowing exactly when exchanges like NASDAQ, NYSE, and others are closed.
+      operationId: HolidaysByExchangeGet
+      parameters:
+        - name: exchange
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "NASDAQ"
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+            example: "2025-01-01"
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+            example: "2025-12-31"
+      responses:
+        "200":
+          description: A list of exchange holidays
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ExchangeHoliday"
+        "4xx":
+          description: An error occurred
+        "5xx":
+          description: An error occurred
+      tags:
+        - market-hours
+
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -5990,6 +6083,50 @@ components:
         - change
         - changesPercentage
         - exchange
+    ExchangeHour:
+      type: object
+      properties:
+        exchange:
+          type: string
+        name:
+          type: string
+        openingTime:
+          type: string
+        closingTime:
+          type: string
+        timezone:
+          type: string
+        isMarketOpen:
+          type: boolean
+      required:
+        - exchange
+        - name
+        - openingTime
+        - closingTime
+        - timezone
+        - isMarketOpen
+    ExchangeHoliday:
+      type: object
+      properties:
+        exchange:
+          type: string
+        date:
+          type: string
+        name:
+          type: string
+        isClose:
+          type: boolean
+        adjOpenTime:
+          type: string
+        adjCloseTime:
+          type: string
+        isFullyClosed:
+          type: boolean
+      required:
+        - exchange
+        - date
+        - name
+        - isFullyClosed
 
   responses:
     ErrorResponse:
