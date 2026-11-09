@@ -6126,7 +6126,6 @@ components:
         - exchange
         - date
         - name
-        - isFullyClosed
 
   responses:
     ErrorResponse:
